@@ -1,4 +1,7 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://objects/Plug.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=2]
 
 [node name="Node" type="Node"]
 
@@ -7,3 +10,18 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="Plug" parent="Node2D" instance=ExtResource( 1 )]
+position = Vector2( 271, 203 )
+
+[node name="Plug2" parent="Node2D" instance=ExtResource( 1 )]
+position = Vector2( 310, 281 )
+
+[node name="Outlet" parent="Node2D" instance=ExtResource( 2 )]
+position = Vector2( 557, 164 )
+
+[node name="Outlet2" parent="Node2D" instance=ExtResource( 2 )]
+position = Vector2( 625, 312 )
+
+[node name="Outlet3" parent="Node2D" instance=ExtResource( 2 )]
+position = Vector2( 775, 162 )
