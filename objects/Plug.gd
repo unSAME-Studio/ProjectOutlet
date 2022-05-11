@@ -3,20 +3,16 @@ extends Area2D
 export (PackedScene) var outlet
 
 var selected = false
-var rest_point
 var original_point
+var rest_point
+
 
 # drag and drop code adapted from Youtube
 # https://www.youtube.com/watch?v=iSpWZzL2i1o
 
 
 func _ready():
-	var o = outlet.instance()
-	o.set_global_position(get_global_position())
-	get_parent().call_deferred("add_child", o)
-	o.remove_from_group("outlet")
-	original_point = o
-	rest_point = original_point
+	original_point = get_global_position()
 
 
 # on drag
@@ -30,7 +26,11 @@ func _physics_process(delta):
 	if selected:
 		set_global_position(lerp(get_global_position(), get_global_mouse_position(), 25 * delta))
 	else:
-		set_global_position(lerp(get_global_position(), rest_point.get_global_position(), 10 * delta))
+		if rest_point:
+			set_global_position(lerp(get_global_position(), rest_point.get_global_position(), 10 * delta))
+		else:
+			set_global_position(lerp(get_global_position(), original_point, 10 * delta))
+
 
 # on drop
 func _input(event):
@@ -40,15 +40,20 @@ func _input(event):
 			
 			# detect outlet
 			var shortest_dist = 75
-			var closest_point = original_point
+			var closest_point = null
 			for child in get_tree().get_nodes_in_group("outlet"):
 				var distance = global_position.distance_to(child.get_global_position())
 				if distance < shortest_dist:
 					closest_point = child
 					shortest_dist = distance
 			
+			if rest_point:
+				rest_point.deselect()
+			
 			# if found another close point, select it
 			# else send back to original point
-			rest_point.deselect()
-			rest_point = closest_point
-			rest_point.select()
+			if closest_point:
+				rest_point = closest_point
+				rest_point.select()
+			else:
+				rest_point = null
