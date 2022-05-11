@@ -1,10 +1,13 @@
 extends Position2D
 
+signal select
+signal deselect
+
 
 func select():
-	for child in get_tree().get_nodes_in_group("outlet"):
-		child.deselect()
+	emit_signal("select")
 	modulate = Color.blue
 
 func deselect():
+	emit_signal("deselect")
 	modulate = Color.white
