@@ -1,7 +1,7 @@
 extends Area2D
 
 export (PackedScene) var outlet
-
+export (PackedScene) var string
 var selected = false
 var original_point
 var rest_point
@@ -13,7 +13,12 @@ var rest_point
 
 func _ready():
 	original_point = get_global_position()
-
+	
+	# spawn the string
+	var s = string.instance()
+	s.plug = $"End"
+	get_parent().call_deferred("add_child", s)
+	s.set_global_position(Vector2(rand_range(0, get_viewport().size.x), get_viewport().size.y))
 
 # on drag
 func _on_Plug_input_event(viewport, event, shape_idx):

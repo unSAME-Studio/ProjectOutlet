@@ -16,7 +16,7 @@ margin_bottom = 40.0
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Plug" parent="Node2D" instance=ExtResource( 1 )]
-position = Vector2( 271, 203 )
+position = Vector2( 215, 128 )
 
 [node name="Plug2" parent="Node2D" instance=ExtResource( 1 )]
 position = Vector2( 310, 281 )
