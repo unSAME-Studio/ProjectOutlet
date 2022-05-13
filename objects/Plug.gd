@@ -102,8 +102,8 @@ func spin():
 	print("!! current direction %d" % [direction])
 	
 	# do the magic number flipping thingy
-	#if not direction % 2 == 0:
-	#	size.y *= -1
+	if not direction % 2 == 0:
+		size.y *= -1
 	
 	# move head position
 	
