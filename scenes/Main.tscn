@@ -30,6 +30,17 @@ Right Click - Rotate"
 align = 1
 valign = 1
 
+[node name="Tag" type="Label" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -400.0
+margin_top = 930.0
+margin_right = -167.0
+margin_bottom = 961.0
+rect_scale = Vector2( 3.42883, 3.40738 )
+align = 1
+valign = 1
+
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="Node2D"]

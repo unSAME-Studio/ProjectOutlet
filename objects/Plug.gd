@@ -95,6 +95,8 @@ func _input(event):
 					Global.console.avaliable_plugs.erase(self)
 					Global.console.attached_plugs[self] = 0
 					
+					Global.console.detect_complete()
+					
 					print("Avaliable")
 					print(Global.console.avaliable_plugs)
 					print("Attached")
