@@ -4,7 +4,7 @@ extends Node2D
 export (PackedScene) var outlet
 
 
-var outlet_size = 80
+var outlet_size = 64
 
 
 func _ready():
