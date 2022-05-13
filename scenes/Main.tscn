@@ -9,9 +9,27 @@
 [node name="Console" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="Control" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -390.0
+margin_top = 83.0
+margin_right = -157.0
+margin_bottom = 97.0
+rect_scale = Vector2( 3.42883, 3.40738 )
+text = "Try to fit all the plugs on the outlets!
+
+Left Click - Move
+Right Click - Rotate"
+align = 1
+valign = 1
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -21,19 +39,19 @@ current = true
 [node name="OutletGrid" parent="Node2D" instance=ExtResource( 4 )]
 
 [node name="Plug" parent="Node2D" instance=ExtResource( 1 )]
-position = Vector2( 215, 128 )
+position = Vector2( 385, 134 )
 
 [node name="Plug2" parent="Node2D" instance=ExtResource( 1 )]
-position = Vector2( 310, 281 )
+position = Vector2( 378, 357 )
 
 [node name="Plug3" parent="Node2D" instance=ExtResource( 1 )]
-position = Vector2( 96, 189 )
+position = Vector2( -405, 376 )
 
 [node name="Plug4" parent="Node2D" instance=ExtResource( 1 )]
-position = Vector2( 191, 342 )
+position = Vector2( 250, 367 )
 
 [node name="Plug5" parent="Node2D" instance=ExtResource( 1 )]
-position = Vector2( 62, 359 )
+position = Vector2( -238, 373 )
 
 [node name="Plug6" parent="Node2D" instance=ExtResource( 1 )]
-position = Vector2( 157, 512 )
+position = Vector2( -414, 175 )
