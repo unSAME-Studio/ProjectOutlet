@@ -9,7 +9,7 @@ var rest_point
 var head_position = Vector2(0, 0)
 var size = Vector2(1, 2)
 
-#var rotation_matrix = [Vector2(1, 1), Vector2(1, -1), Vector2(1, 1), Vector2(1, -1)]
+var rotation_matrix = [Vector2(1, 1), Vector2(1, -1), Vector2(1, 1), Vector2(1, -1)]
 var direction = 0
 
 
@@ -102,8 +102,11 @@ func spin():
 	print("!! current direction %d" % [direction])
 	
 	# do the magic number flipping thingy
-	if not direction % 2 == 0:
-		size.y *= -1
+	#if not direction % 2 == 0:
+	#	size.y *= -1
+	
+	# move head position
+	
 	
 	# swap size x and y
 	var temp_size = size

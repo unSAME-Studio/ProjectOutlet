@@ -16,7 +16,7 @@ func grid_aabb(a, b):
 	var a_grid = grid_position - a.head_position
 	var b_grid = b.rest_point.grid_position - b.head_position 
 	
-	print("comparing %s & %s" % [a_grid, b_grid])
+	print(" -- comparing %s & %s" % [a_grid, b_grid])
 	if(a_grid.x < b_grid.x + b.size.x and
 	a_grid.x + a.size.x > b_grid.x and
 	a_grid.y < b_grid.y + b.size.y and
