@@ -2,19 +2,20 @@ extends Node2D
 
 
 export (PackedScene) var outlet
-
+export (PackedScene) var plug
 
 var outlet_size = 64
 
 
 func _ready():
 	Global.grid = self
+	var grid = Global.console.level["grid"]
 	
-	for r in range(Global.console.level.size()):
-		for c in range(Global.console.level[r].size()):
+	for r in range(grid.size()):
+		for c in range(grid[r].size()):
 			
 			# check if slot is true
-			if Global.console.level[r][c] == 1:
+			if grid[r][c] == 1:
 			
 				print("Current at %d x %d" % [c, r])
 				
@@ -23,3 +24,9 @@ func _ready():
 				o.grid_position = Vector2(c, r)
 				add_child(o)
 				o.set_position(Vector2(c * outlet_size, r * outlet_size))
+	
+	for pos in Global.console.level["plugs"]:
+		var p = plug.instance()
+		p.size = pos
+		get_parent().add_child(p)
+	

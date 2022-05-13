@@ -12,14 +12,16 @@ script = ExtResource( 1 )
 outlet = ExtResource( 2 )
 string = ExtResource( 3 )
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="Body" type="Polygon2D" parent="."]
 position = Vector2( -32, -32 )
+antialiased = true
 polygon = PoolVector2Array( 0, 0, 0, 64, 0, 128, 64, 128, 64, 0 )
 
-[node name="Polygon2D2" type="Polygon2D" parent="."]
+[node name="Head" type="Polygon2D" parent="."]
 position = Vector2( -2.38419e-07, -1.43051e-06 )
 scale = Vector2( 0.75, 0.75 )
 color = Color( 0.909804, 0.854902, 0.270588, 1 )
+antialiased = true
 polygon = PoolVector2Array( 0, -32, -24, -24, -32, 0, -24, 24, 0, 32, 24, 24, 32, 0, 24, -24 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
