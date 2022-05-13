@@ -25,3 +25,15 @@ position = Vector2( 215, 128 )
 
 [node name="Plug2" parent="Node2D" instance=ExtResource( 1 )]
 position = Vector2( 310, 281 )
+
+[node name="Plug3" parent="Node2D" instance=ExtResource( 1 )]
+position = Vector2( 96, 189 )
+
+[node name="Plug4" parent="Node2D" instance=ExtResource( 1 )]
+position = Vector2( 191, 342 )
+
+[node name="Plug5" parent="Node2D" instance=ExtResource( 1 )]
+position = Vector2( 62, 359 )
+
+[node name="Plug6" parent="Node2D" instance=ExtResource( 1 )]
+position = Vector2( 157, 512 )
