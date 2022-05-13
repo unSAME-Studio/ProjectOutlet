@@ -6,19 +6,25 @@ var selected = false
 var original_point
 var rest_point
 
+var head_position = Vector2(0, 0)
+var size = Vector2(1, 2)
+
 
 # drag and drop code adapted from Youtube
 # https://www.youtube.com/watch?v=iSpWZzL2i1o
 
 
 func _ready():
+	# add this plug to the avaliable plugs
+	Global.console.avaliable_plugs[self] = 0
+	
 	original_point = get_global_position()
 	
 	# spawn the string
 	var s = string.instance()
 	s.plug = $"End"
 	get_parent().call_deferred("add_child", s)
-	s.set_global_position(Vector2(rand_range(0, get_viewport().size.x), get_viewport().size.y))
+	s.set_global_position(Vector2(rand_range(0, get_viewport().size.x), get_viewport().size.y * 2))
 
 # on drag
 func _on_Plug_input_event(viewport, event, shape_idx):
@@ -39,7 +45,7 @@ func _physics_process(delta):
 
 # on drop
 func _input(event):
-	if event is InputEventMouseButton:
+	if selected and event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and not event.pressed:
 			selected = false
 			
@@ -57,8 +63,41 @@ func _input(event):
 			
 			# if found another close point, select it
 			# else send back to original point
-			if closest_point:
+			# check for overlapping tiles (IMPORTANT)
+			if closest_point and closest_point.check_empty(self):
 				rest_point = closest_point
 				rest_point.select()
+				
+				Global.console.avaliable_plugs.erase(self)
+				Global.console.attached_plugs[self] = 0
+				
+				print("Avaliable")
+				print(Global.console.avaliable_plugs)
+				print("Attached")
+				print(Global.console.attached_plugs)
 			else:
 				rest_point = null
+				
+				Global.console.avaliable_plugs[self] = 0
+				Global.console.attached_plugs.erase(self)
+				
+				print("Avaliable")
+				print(Global.console.avaliable_plugs)
+				print("Attached")
+				print(Global.console.attached_plugs)
+	
+		# rotating
+		if event.button_index == BUTTON_RIGHT and event.pressed:
+			spin()
+
+
+func spin():
+	# swap size x and y
+	var temp_size = size
+	size.x = temp_size.y
+	size.y = temp_size.x
+	
+	# move head position
+	#head_position = size - Vector2(1,1)
+	
+	set_rotation(get_rotation() + PI / 2)
