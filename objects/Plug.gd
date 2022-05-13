@@ -35,13 +35,9 @@ func _ready():
 	
 	var shape = RectangleShape2D.new()
 	shape.set_extents(size * GRID_SIZE / 2)
-
-	#var collision = CollisionShape2D.new()
-	#collision.set_shape(shape)
-
-	#add_child(collision)
 	$CollisionShape2D.set_shape(shape)
-	$CollisionShape2D.set_position((-head_position * GRID_SIZE) + Vector2(0, GRID_SIZE / 2))
+	$CollisionShape2D.set_position($Body.get_position() + size * GRID_SIZE / 2)
+	#$CollisionShape2D.set_position((-head_position * GRID_SIZE) + Vector2(0, GRID_SIZE / 2))
 	
 	# move attach point
 	$End.set_position(Vector2(0, (size.y - head_position.y) * GRID_SIZE - GRID_SIZE / 2))
@@ -51,6 +47,7 @@ func _ready():
 	s.plug = $"End"
 	get_parent().call_deferred("add_child", s)
 	s.set_global_position(Vector2(rand_range(0, get_viewport().size.x), get_viewport().size.y * 2))
+
 
 # on drag
 func _on_Plug_input_event(viewport, event, shape_idx):

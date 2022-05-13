@@ -26,7 +26,9 @@ func _ready():
 				o.set_position(Vector2(c * outlet_size, r * outlet_size))
 	
 	for pos in Global.console.level["plugs"]:
+		print("Spawning Plug at %s" % [pos])
 		var p = plug.instance()
 		p.size = pos
-		get_parent().add_child(p)
+		add_child(p)
+		p.move_local_y(100)
 	
