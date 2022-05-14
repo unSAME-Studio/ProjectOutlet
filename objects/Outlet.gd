@@ -4,7 +4,7 @@ signal select
 signal deselect
 
 var grid_position = Vector2(0, 0)
-
+var accepted_direction = [0, 2]
 
 # code adapted from 
 # https://tutorialedge.net/gamedev/aabb-collision-detection-tutorial/#:~:text=AABB%20Collision%20Detection%20or%20%22Axis,is%20axis%2Daligned%2C%20ie.
@@ -27,19 +27,24 @@ func grid_aabb(a, b):
 
 
 # return true if possible for pluging in
-# if collide with another plug then return
-func check_empty(new_plug):
-	var empty = true
+func check_fit(new_plug):
+	# check direction
+	print("Is this the right direction? %s" % [new_plug.direction in accepted_direction])
+	if not new_plug.direction in accepted_direction:
+		return false
+	
+	var fit = true
 	for plug in Global.console.attached_plugs.keys():
 		# don't check if it's the same plug
 		if new_plug == plug:
 			continue
 		
+		# check collision
 		if grid_aabb(new_plug, plug):
-			empty = false
+			fit = false
 			break
 	
-	return empty
+	return fit
 
 
 func select():	

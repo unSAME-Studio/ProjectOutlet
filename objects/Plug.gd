@@ -88,7 +88,7 @@ func _input(event):
 				# if found another close point, select it
 				# else send back to original point
 				# check for overlapping tiles (IMPORTANT)
-				if closest_point and closest_point.check_empty(self):
+				if closest_point and closest_point.check_fit(self):
 					rest_point = closest_point
 					rest_point.select()
 					

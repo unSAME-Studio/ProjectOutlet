@@ -24,6 +24,10 @@ color = Color( 0.909804, 0.854902, 0.270588, 1 )
 antialiased = true
 polygon = PoolVector2Array( 0, -32, -24, -24, -32, 0, -24, 24, 0, 32, 24, 24, 32, 0, 24, -24 )
 
+[node name="Hole" type="Polygon2D" parent="Head"]
+color = Color( 0.470588, 0.470588, 0.470588, 1 )
+polygon = PoolVector2Array( 3.17892e-07, -5.33333, -10.6667, -5.33333, -16, -10.6667, -26.6667, 1.90735e-06, -16, 10.6667, -10.6667, 5.33334, 10.6667, 5.33334, 16, 10.6667, 26.6667, 1.90735e-06, 16, -10.6667, 10.6667, -5.33333 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 32 )
 shape = SubResource( 1 )
