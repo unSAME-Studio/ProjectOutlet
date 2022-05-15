@@ -22,8 +22,6 @@ func _ready():
 	# add this plug to the avaliable plugs
 	Global.console.avaliable_plugs[self] = 0
 	
-	original_point = get_global_position()
-	
 	# set up graphics
 	$Body.set_polygon(PoolVector2Array([
 		Vector2(0, 0),
@@ -101,15 +99,20 @@ func _input(event):
 					
 					$In.play()
 					
+					$Body.set_color(Color("fcffad"))
+					
 					print("Avaliable")
 					print(Global.console.avaliable_plugs)
 					print("Attached")
 					print(Global.console.attached_plugs)
+					
 				else:
 					rest_point = null
 					
 					Global.console.avaliable_plugs[self] = 0
 					Global.console.attached_plugs.erase(self)
+					
+					$Body.set_color(Color("ffffff"))
 					
 					print("Avaliable")
 					print(Global.console.avaliable_plugs)

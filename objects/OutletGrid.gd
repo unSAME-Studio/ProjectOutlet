@@ -26,10 +26,11 @@ func _ready():
 				o.set_position(Vector2(c * outlet_size, r * outlet_size))
 	
 	# spawn all the plugs
-	for pos in Global.console.level["plugs"]:
+	for i in range(Global.console.level["plugs"].size()):
+		var pos = Global.console.level["plugs"][i]
 		print("Spawning Plug at %s" % [pos])
 		var p = plug.instance()
 		p.size = pos
-		add_child(p)
-		p.move_local_y(100)
+		p.original_point = Vector2(i * 100 - 100, 350)
+		get_parent().call_deferred("add_child", p)
 	
