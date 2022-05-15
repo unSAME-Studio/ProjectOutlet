@@ -11,24 +11,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/CenterContainer"]
-margin_left = 506.0
+margin_left = 459.0
 margin_top = 530.0
-margin_right = 574.0
+margin_right = 621.0
 margin_bottom = 550.0
 
 [node name="Button" type="Button" parent="Control/CenterContainer/HBoxContainer"]
-margin_right = 20.0
+margin_right = 63.0
 margin_bottom = 20.0
-text = "1"
+text = "Settings"
 
 [node name="Button2" type="Button" parent="Control/CenterContainer/HBoxContainer"]
-margin_left = 24.0
-margin_right = 44.0
+margin_left = 67.0
+margin_right = 105.0
 margin_bottom = 20.0
-text = "2"
+text = "Play"
 
 [node name="Button3" type="Button" parent="Control/CenterContainer/HBoxContainer"]
-margin_left = 48.0
-margin_right = 68.0
+margin_left = 109.0
+margin_right = 162.0
 margin_bottom = 20.0
-text = "3"
+text = "Levels"
+
+[node name="Label" type="Label" parent="Control"]
+margin_left = 363.0
+margin_top = 126.0
+margin_right = 433.0
+margin_bottom = 140.0
+rect_scale = Vector2( 5, 5 )
+text = "Plug It In"
+uppercase = true
