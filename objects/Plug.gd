@@ -44,7 +44,7 @@ func _ready():
 	var s = string.instance()
 	s.plug = $"End"
 	get_parent().call_deferred("add_child", s)
-	s.set_global_position(Vector2(rand_range(0, get_viewport().size.x), get_viewport().size.y * 2))
+	s.set_global_position(Vector2(original_point.x, get_viewport().size.y))
 
 
 # on drag
@@ -148,4 +148,11 @@ func spin():
 	
 	print(size)
 	
-	set_rotation(get_rotation() + PI / 2)
+	#set_rotation(get_rotation() + PI / 2)
+	
+	var tween = get_node("Tween")
+	var target_rotation = direction * PI / 2
+	tween.interpolate_property(self, "rotation",
+			get_rotation(), target_rotation, 0.15,
+			Tween.TRANS_CIRC, Tween.EASE_OUT)
+	tween.start()

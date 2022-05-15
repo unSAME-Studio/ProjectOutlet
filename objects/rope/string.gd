@@ -54,8 +54,8 @@ func _process(delta)->void:
 	update_points(delta)
 	update_constrain()
 	
-	#update_constrain()	#Repeat to get tighter rope
-	#update_constrain()
+	update_constrain()	#Repeat to get tighter rope
+	update_constrain()
 	
 	# Send positions to Line2D for drawing
 	line2D.points = pos
