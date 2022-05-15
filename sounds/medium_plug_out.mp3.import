@@ -11,5 +11,5 @@ dest_files=[ "res://.import/medium_plug_out.mp3-1c66e8c00ca1727c69bde7d6d8be0282
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

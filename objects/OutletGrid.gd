@@ -25,6 +25,7 @@ func _ready():
 				add_child(o)
 				o.set_position(Vector2(c * outlet_size, r * outlet_size))
 	
+	# spawn all the plugs
 	for pos in Global.console.level["plugs"]:
 		print("Spawning Plug at %s" % [pos])
 		var p = plug.instance()

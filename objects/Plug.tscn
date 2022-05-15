@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://objects/Plug.gd" type="Script" id=1]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/rope/Verlet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sounds/small_plug_in.mp3" type="AudioStream" id=4]
+[ext_resource path="res://sounds/small_plug_out.mp3" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 64 )
@@ -34,5 +36,13 @@ shape = SubResource( 1 )
 
 [node name="End" type="Position2D" parent="."]
 position = Vector2( 0, 96 )
+
+[node name="In" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+bus = "Sound"
+
+[node name="Out" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+bus = "Sound"
 
 [connection signal="input_event" from="." to="." method="_on_Plug_input_event"]

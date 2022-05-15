@@ -3,10 +3,10 @@ extends Node
 
 var level = {
 	"grid": [
-		[1, 1],
+		[1, 0],
 		[0, 1],
 		[0, 1],
-		[1, 1]
+		[1, 0]
 	],
 	"plugs": [
 		Vector2(1, 2),

@@ -54,6 +54,8 @@ func _on_Plug_input_event(viewport, event, shape_idx):
 	if Input.is_action_just_pressed("click") and not get_tree().is_input_handled():
 		selected = true
 		get_tree().set_input_as_handled()
+		
+		$Out.play()
 
 
 func _physics_process(delta):
@@ -96,6 +98,8 @@ func _input(event):
 					Global.console.attached_plugs[self] = 0
 					
 					Global.console.detect_complete()
+					
+					$In.play()
 					
 					print("Avaliable")
 					print(Global.console.avaliable_plugs)

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/medium_plug_in.mp3-b30e076246df5e1173ab8ce7e937e77e.
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
