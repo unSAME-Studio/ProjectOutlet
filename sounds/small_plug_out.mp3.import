@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/small_plug_out.mp3-8cfb9e3f2966ffc2cd596c8f38c64c40.mp3str"
+
+[deps]
+
+source_file="res://sounds/small_plug_out.mp3"
+dest_files=[ "res://.import/small_plug_out.mp3-8cfb9e3f2966ffc2cd596c8f38c64c40.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/medium_plug_in.mp3-b30e076246df5e1173ab8ce7e937e77e.mp3str"
+
+[deps]
+
+source_file="res://sounds/medium_plug_in.mp3"
+dest_files=[ "res://.import/medium_plug_in.mp3-b30e076246df5e1173ab8ce7e937e77e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
