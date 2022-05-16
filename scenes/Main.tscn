@@ -26,11 +26,12 @@ rect_scale = Vector2( 3.42883, 3.40738 )
 text = "Try to fit all the plugs on the outlets!
 
 Left Click - Move
-Right Click - Rotate"
+Right Click | Space - Rotate"
 align = 1
 valign = 1
 
 [node name="Tag" type="Label" parent="CanvasLayer/Control"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -400.0
@@ -38,8 +39,26 @@ margin_top = 930.0
 margin_right = -167.0
 margin_bottom = 961.0
 rect_scale = Vector2( 3.42883, 3.40738 )
+text = "PUZZLE COMPLETE!"
 align = 1
 valign = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/Tag"]
+margin_left = 191.319
+margin_top = 3.81525
+margin_right = 235.319
+margin_bottom = 23.8152
+text = "NEXT"
+
+[node name="Level" type="Label" parent="CanvasLayer/Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 41.0
+margin_top = -115.0
+margin_right = 97.0
+margin_bottom = -101.0
+rect_scale = Vector2( 4.9508, 5.53508 )
+text = "LEVEL : 1"
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -47,3 +66,5 @@ valign = 1
 current = true
 
 [node name="OutletGrid" parent="Node2D" instance=ExtResource( 4 )]
+
+[connection signal="pressed" from="CanvasLayer/Control/Tag/Button" to="Console" method="next_level"]

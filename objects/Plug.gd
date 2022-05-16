@@ -13,6 +13,7 @@ var size = Vector2(2, 3)
 var rotation_matrix = [Vector2(1, 1), Vector2(1, -1), Vector2(1, 1), Vector2(1, -1)]
 var direction = 0
 
+var cable
 
 # drag and drop code adapted from Youtube
 # https://www.youtube.com/watch?v=iSpWZzL2i1o
@@ -41,10 +42,10 @@ func _ready():
 	$End.set_position(Vector2(0, (size.y - head_position.y) * GRID_SIZE - GRID_SIZE / 2))
 	
 	# spawn the string
-	var s = string.instance()
-	s.plug = $"End"
-	get_parent().call_deferred("add_child", s)
-	s.set_global_position(Vector2(original_point.x, get_viewport().size.y))
+	cable = string.instance()
+	cable.plug = $"End"
+	get_parent().call_deferred("add_child", cable)
+	cable.set_global_position(Vector2(original_point.x, get_viewport().size.y))
 
 
 # on drag
@@ -54,9 +55,10 @@ func _on_Plug_input_event(viewport, event, shape_idx):
 		get_tree().set_input_as_handled()
 		
 		$Out.play()
+		set_modulate(Color(1,1,1,0.5))
 
 
-func _physics_process(delta):
+func _process(delta):
 	if selected:
 		set_global_position(lerp(get_global_position(), get_global_mouse_position(), 25 * delta))
 	else:
@@ -72,6 +74,8 @@ func _input(event):
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_LEFT and not event.pressed:
 				selected = false
+				
+				set_modulate(Color(1,1,1,1))
 				
 				# detect outlet
 				var shortest_dist = 75

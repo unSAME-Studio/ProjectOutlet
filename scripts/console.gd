@@ -2,18 +2,63 @@ extends Node
 
 
 var level = {
-	"grid": [
-		[1, 0],
-		[1, 0],
-		[1, 0],
-		[1, 0]
-	],
-	"plugs": [
-		Vector2(1, 2),
-		Vector2(1, 1),
-		Vector2(1, 1),
-		Vector2(2, 3)
-	]
+	1: {
+		"grid": [
+			[1, 0],
+			[1, 0],
+			[1, 0],
+		],
+		"plugs": [
+			[Vector2(1, 2), Vector2(0, 0)],
+		]
+	},
+	2: {
+		"grid": [
+			[1, 0],
+			[1, 0],
+		],
+		"plugs": [
+			[Vector2(1, 2), Vector2(0, 0)],
+			[Vector2(1, 1), Vector2(0, 0)],
+		]
+	},
+	3: {
+		"grid": [
+			[1, 0],
+			[1, 0],
+			[1, 0],
+			[1, 0]
+		],
+		"plugs": [
+			[Vector2(1, 2), Vector2(0, 0)],
+			[Vector2(1, 1), Vector2(0, 0)],
+			[Vector2(1, 1), Vector2(0, 0)],
+			[Vector2(2, 3), Vector2(0, 0)]
+		]
+	},
+	4: {
+		"grid": [
+			[1, 0],
+			[1, 0],
+			[1, 0],
+			[1, 0]
+		],
+		"plugs": [
+			[Vector2(1, 2), Vector2(0, 0)],
+			[Vector2(1, 1), Vector2(0, 0)],
+			[Vector2(1, 1), Vector2(0, 0)],
+			[Vector2(2, 3), Vector2(0, 0)]
+		]
+	},
+	5: {
+		"grid": [
+			[1, 1, 0, 1, 0, 1, 0, 1],
+			[1, 0, 0, 1, 0, 1, 1, 1],
+			[1, 1, 0, 1, 0, 1, 0, 1],
+			[1, 0, 0, 1, 0, 1, 0, 1]
+		],
+		"plugs": []
+	}
 }
 
 
@@ -23,6 +68,8 @@ var attached_plugs = {}
 
 func _ready():
 	Global.console = self
+	
+	$"../CanvasLayer/Control/Level".set_text("Level: %d" % Global.current_level)
 
 
 func detect_complete():
@@ -31,4 +78,9 @@ func detect_complete():
 
 
 func game_finished():
-	$"../CanvasLayer/Control/Tag".set_text("PLUZZLE COMPLETE!")
+	$"../CanvasLayer/Control/Tag".show()
+
+
+func next_level():
+	Global.current_level += 1
+	get_tree().reload_current_scene()
