@@ -38,19 +38,30 @@ var level = {
 	},
 	4: {
 		"grid": [
-			[1, 0],
-			[1, 0],
-			[1, 0],
-			[1, 0]
+			[0, 0, 1],
+			[0, 0, 1],
+			[1, 1, 1]
 		],
 		"plugs": [
-			[Vector2(1, 2), Vector2(0, 0)],
-			[Vector2(1, 1), Vector2(0, 0)],
-			[Vector2(1, 1), Vector2(0, 0)],
-			[Vector2(2, 3), Vector2(0, 0)]
+			[Vector2(1, 3), Vector2(0, 1)],
+			[Vector2(2, 3), Vector2(1, 0)],
+			[Vector2(2, 2), Vector2(1, 1)],
 		]
 	},
 	5: {
+		"grid": [
+			[0, 1, 0],
+			[1, 1, 1],
+			[0, 1, 0]
+		],
+		"plugs": [
+			[Vector2(2, 2), Vector2(0, 0)],
+			[Vector2(1, 2), Vector2(0, 0)],
+			[Vector2(3, 1), Vector2(1, 0)],
+			[Vector2(1, 3), Vector2(0, 0)],
+		]
+	},
+	6: {
 		"grid": [
 			[1, 1, 0, 1, 0, 1, 0, 1],
 			[1, 0, 0, 1, 0, 1, 1, 1],

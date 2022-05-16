@@ -12,9 +12,20 @@ anchor_bottom = 1.0
 [node name="Play" type="Button" parent="Control"]
 margin_left = 414.0
 margin_top = 561.0
-margin_right = 690.0
-margin_bottom = 703.0
+margin_right = 452.0
+margin_bottom = 581.0
+rect_scale = Vector2( 3.22758, 3.41076 )
 text = "Play"
+
+[node name="SpinBox" type="SpinBox" parent="Control"]
+margin_left = 567.0
+margin_top = 560.0
+margin_right = 641.0
+margin_bottom = 584.0
+rect_scale = Vector2( 2.78083, 2.76677 )
+min_value = 1.0
+max_value = 5.0
+value = 1.0
 
 [node name="Label" type="Label" parent="Control"]
 margin_left = 363.0
