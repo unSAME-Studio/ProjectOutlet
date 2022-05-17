@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="ProjectOutlet"
-config/description="CMPM 120 Project"
+config/description="(c) 2022 unSAME Studio"
 run/main_scene="res://scenes/Menu.tscn"
 config/icon="res://icon.png"
 

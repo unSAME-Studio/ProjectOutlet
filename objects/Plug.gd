@@ -5,6 +5,7 @@ export (PackedScene) var string
 var selected = false
 var original_point
 var rest_point
+var closest_point = null
 
 const GRID_SIZE = 200
 const MARGIN = 20
@@ -63,7 +64,7 @@ func _ready():
 	cable = string.instance()
 	cable.plug = $"End"
 	get_parent().call_deferred("add_child", cable)
-	cable.set_global_position(Vector2(original_point.x, get_viewport().size.y))
+	cable.set_global_position(Vector2(original_point.x, OS.get_real_window_size().y))
 
 
 # on drag
@@ -78,12 +79,28 @@ func _on_Plug_input_event(viewport, event, shape_idx):
 
 func _process(delta):
 	if selected:
-		set_global_position(lerp(get_global_position(), get_global_mouse_position(), 25 * delta))
+		# continueous detection
+		closest_point = null
+		var shortest_dist = 100
+		
+		# detect outlet
+		for child in get_tree().get_nodes_in_group("outlet"):
+			var distance = get_global_mouse_position().distance_to(child.get_global_position())
+			if distance < shortest_dist:
+				closest_point = child
+				shortest_dist = distance
+		
+		if closest_point:
+			set_global_position(lerp(get_global_position(), closest_point.get_global_position(), 25 * delta))
+		else:
+			set_global_position(lerp(get_global_position(), get_global_mouse_position(), 25 * delta))
+	
 	else:
 		if rest_point:
 			set_global_position(lerp(get_global_position(), rest_point.get_global_position(), 10 * delta))
 		else:
 			set_global_position(lerp(get_global_position(), original_point, 10 * delta))
+	
 
 
 # on drop
@@ -94,15 +111,6 @@ func _input(event):
 				selected = false
 				
 				set_modulate(Color(1,1,1,1))
-				
-				# detect outlet
-				var shortest_dist = 75
-				var closest_point = null
-				for child in get_tree().get_nodes_in_group("outlet"):
-					var distance = global_position.distance_to(child.get_global_position())
-					if distance < shortest_dist:
-						closest_point = child
-						shortest_dist = distance
 				
 				if rest_point:
 					rest_point.deselect()
@@ -160,10 +168,6 @@ func spin():
 		direction = 0
 		
 	print("!! current direction %d" % [direction])
-	
-	# do the magic number flipping thingy
-	#if not direction % 2 == 0:
-	#	size.y *= -1
 	
 	# move head position
 	# MAGIC

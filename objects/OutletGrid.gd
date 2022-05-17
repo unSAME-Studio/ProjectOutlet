@@ -35,10 +35,11 @@ func _ready():
 				o.set_position(Vector2(c - (float(grid[r].size()) / 2.0), r - (float(grid.size()) / 2.0)) * GRID_SIZE + Vector2(GRID_SIZE / 2, GRID_SIZE / 2))
 	
 	# spawn all the plugs
-	for i in range(Global.current_level_data["plugs"].size()):
+	var plugs_count = Global.current_level_data["plugs"].size()
+	for i in range(plugs_count):
 		var p = plug.instance()
 		p.size = Global.current_level_data["plugs"][i][0]
 		p.head_position = Global.current_level_data["plugs"][i][1]
-		p.original_point = Vector2(i * 200, 350)
+		p.original_point = Vector2((i - float(plugs_count) / 2.0) * 200, 350)
 		get_parent().call_deferred("add_child", p)
 	
