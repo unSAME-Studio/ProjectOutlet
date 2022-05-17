@@ -11,8 +11,10 @@ const MARGIN = 20
 var head_position = Vector2(0, 0)
 var size = Vector2(2, 3)
 
-var rotation_matrix = [Vector2(1, 1), Vector2(1, -1), Vector2(1, 1), Vector2(1, -1)]
 var direction = 0
+
+enum TYPE {ONE, TWO, ALL}
+var outlet_type = TYPE.TWO
 
 var cable
 
@@ -23,6 +25,15 @@ var cable
 func _ready():
 	# add this plug to the avaliable plugs
 	Global.console.avaliable_plugs[self] = 0
+	
+	# change head sprite
+	match outlet_type:
+		TYPE.ONE:
+			$Head.set_texture(load("res://arts/Temp_OutletAlt.png"))
+		TYPE.TWO:
+			pass
+		TYPE.ALL:
+			$Head.set_texture("res://arts/Temp_OutletAll.png")
 	
 	# set up graphics
 	$Body.set_polygon(PoolVector2Array([

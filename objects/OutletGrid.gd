@@ -23,12 +23,13 @@ func _ready():
 				var o = outlet.instance()
 				o.grid_position = Vector2(c, r)
 				
+				o.outlet_type = grid[r][c] - 1
+				
 				# get rotation
 				if Global.current_level_data.has("rot"):
 					o.direction = Global.current_level_data["rot"][r][c]
 				
 				add_child(o)
-				
 				
 				#o.set_position(Vector2(c, r) * GRID_SIZE)
 				o.set_position(Vector2(c - (float(grid[r].size()) / 2.0), r - (float(grid.size()) / 2.0)) * GRID_SIZE + Vector2(GRID_SIZE / 2, GRID_SIZE / 2))

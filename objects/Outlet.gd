@@ -14,11 +14,11 @@ var outlet_type = TYPE.TWO
 func _ready():
 	match outlet_type:
 		TYPE.ONE:
-			pass
+			$Head.set_texture(load("res://arts/Temp_OutletAlt.png"))
 		TYPE.TWO:
 			pass
 		TYPE.ALL:
-			pass
+			$Head.set_texture(load("res://arts/Temp_OutletAll.png"))
 	
 	# rotate the outlet
 	$Head.set_rotation(direction * PI / 2)
@@ -45,10 +45,34 @@ func grid_aabb(a, b):
 
 # return true if possible for pluging in
 func check_fit(new_plug):
-	# check direction
-	print("Is this the right direction? %s" % [(new_plug.direction + direction) % 2])
-	if not (new_plug.direction + direction) % 2 == 0:
-		return false
+	# check if type competable
+	if new_plug.outlet_type != outlet_type:
+		match outlet_type:
+			TYPE.ONE:
+				pass
+			TYPE.TWO:
+				pass
+			TYPE.ALL:
+				pass
+	
+	# check direction based on plug type
+	# the single plug also allow the plug in of two direction
+	
+	#print("Is this the right direction? %s" % [(new_plug.direction + direction) % 2])
+	match outlet_type:
+		TYPE.ONE:
+			match new_plug.outlet_type:
+				TYPE.ONE:
+					if not new_plug.direction == direction:
+						return false
+				TYPE.TWO:
+					if not (new_plug.direction + direction) % 2 == 0:
+						return false
+		TYPE.TWO:
+			if not (new_plug.direction + direction) % 2 == 0:
+				return false
+		TYPE.ALL:
+			pass
 	
 	var fit = true
 	for plug in Global.console.attached_plugs.keys():

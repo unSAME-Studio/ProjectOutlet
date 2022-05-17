@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TempOutletAlt.png-c0fa423dcf132515046af8dd5b7e09dc.stex"
+path="res://.import/Temp_OutletAll.png-0a6df3e76b058257c345af8739ed7383.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arts/TempOutletAlt.png"
-dest_files=[ "res://.import/TempOutletAlt.png-c0fa423dcf132515046af8dd5b7e09dc.stex" ]
+source_file="res://arts/Temp_OutletAll.png"
+dest_files=[ "res://.import/Temp_OutletAll.png-0a6df3e76b058257c345af8739ed7383.stex" ]
 
 [params]
 
