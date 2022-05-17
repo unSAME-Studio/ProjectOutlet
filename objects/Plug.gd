@@ -114,6 +114,8 @@ func _input(event):
 					$Head.set_modulate(Color("2f936d"))
 					cable.get_node("Line2D").set_default_color(Color("2f936d"))
 					
+					set_z_index(4)
+					
 					print("Avaliable")
 					print(Global.console.avaliable_plugs)
 					print("Attached")
@@ -128,6 +130,8 @@ func _input(event):
 					$Body.set_color(Color("939393"))
 					$Head.set_modulate(Color("ffffff"))
 					cable.get_node("Line2D").set_default_color(Color("939393"))
+					
+					set_z_index(6)
 					
 					print("Avaliable")
 					print(Global.console.avaliable_plugs)

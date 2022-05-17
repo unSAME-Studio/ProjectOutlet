@@ -29,6 +29,12 @@ var level = {
 			[1],
 			[1]
 		],
+		"rot": [
+			[0],
+			[1],
+			[1],
+			[0]
+		],
 		"plugs": [
 			[Vector2(1, 2), Vector2(0, 0)],
 			[Vector2(1, 1), Vector2(0, 0)],

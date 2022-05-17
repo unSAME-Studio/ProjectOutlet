@@ -4,14 +4,24 @@ signal select
 signal deselect
 
 var grid_position = Vector2(0, 0)
-var accepted_direction = [0, 2]
+#var accepted_direction = [0, 2] #ODD EVEN CHECK DECIMAL 0.12
+var direction = 0
 
 enum TYPE {ONE, TWO, ALL}
-var direction = 0
+var outlet_type = TYPE.TWO
 
 
 func _ready():
-	pass
+	match outlet_type:
+		TYPE.ONE:
+			pass
+		TYPE.TWO:
+			pass
+		TYPE.ALL:
+			pass
+	
+	# rotate the outlet
+	$Head.set_rotation(direction * PI / 2)
 
 
 # code adapted from 
@@ -36,8 +46,8 @@ func grid_aabb(a, b):
 # return true if possible for pluging in
 func check_fit(new_plug):
 	# check direction
-	print("Is this the right direction? %s" % [new_plug.direction in accepted_direction])
-	if not new_plug.direction in accepted_direction:
+	print("Is this the right direction? %s" % [(new_plug.direction + direction) % 2])
+	if not (new_plug.direction + direction) % 2 == 0:
 		return false
 	
 	var fit = true

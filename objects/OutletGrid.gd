@@ -17,12 +17,19 @@ func _ready():
 			# check if slot is true
 			if grid[r][c] != 0:
 			
-				print("Current at %d x %d" % [c, r])
+				#print("Current at %d x %d" % [c, r])
 				
 				# generate the grid
 				var o = outlet.instance()
 				o.grid_position = Vector2(c, r)
+				
+				# get rotation
+				if Global.current_level_data.has("rot"):
+					o.direction = Global.current_level_data["rot"][r][c]
+				
 				add_child(o)
+				
+				
 				#o.set_position(Vector2(c, r) * GRID_SIZE)
 				o.set_position(Vector2(c - (float(grid[r].size()) / 2.0), r - (float(grid.size()) / 2.0)) * GRID_SIZE + Vector2(GRID_SIZE / 2, GRID_SIZE / 2))
 	
