@@ -6,9 +6,16 @@ signal deselect
 var grid_position = Vector2(0, 0)
 var accepted_direction = [0, 2]
 
+enum TYPE {ONE, TWO, ALL}
+var direction = 0
+
+
+func _ready():
+	pass
+
+
 # code adapted from 
 # https://tutorialedge.net/gamedev/aabb-collision-detection-tutorial/#:~:text=AABB%20Collision%20Detection%20or%20%22Axis,is%20axis%2Daligned%2C%20ie.
-
 
 # a is new plug in coming
 # b is other ones
@@ -49,8 +56,8 @@ func check_fit(new_plug):
 
 func select():	
 	emit_signal("select")
-	$"Polygon2D".color = Color("ffffff")
+	$Head.modulate = Color("ffffff")
 
 func deselect():
 	emit_signal("deselect")
-	$"Polygon2D".color = Color("c4c4c4")
+	$Head.modulate = Color("c4c4c4")

@@ -23,7 +23,7 @@ MusicPlayer="*res://scripts/MusicPlayer.gd"
 [display]
 
 window/size/width=1080
-window/size/height=1080
+window/size/height=1920
 window/size/test_width=720
 window/size/test_height=720
 window/dpi/allow_hidpi=true

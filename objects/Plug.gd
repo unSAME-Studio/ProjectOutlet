@@ -6,7 +6,8 @@ var selected = false
 var original_point
 var rest_point
 
-const GRID_SIZE = 64
+const GRID_SIZE = 200
+const MARGIN = 20
 var head_position = Vector2(0, 0)
 var size = Vector2(2, 3)
 
@@ -25,11 +26,17 @@ func _ready():
 	
 	# set up graphics
 	$Body.set_polygon(PoolVector2Array([
-		Vector2(0, 0),
-		Vector2(size.x * GRID_SIZE, 0),
-		Vector2(size.x * GRID_SIZE, size.y * GRID_SIZE),
-		Vector2(0, size.y * GRID_SIZE)
+		Vector2(0 + MARGIN, 0 + MARGIN),
+		Vector2(size.x * GRID_SIZE - MARGIN, 0 + MARGIN),
+		Vector2(size.x * GRID_SIZE - MARGIN, size.y * GRID_SIZE - MARGIN),
+		Vector2(0 + MARGIN, size.y * GRID_SIZE - MARGIN)
 	]))
+	$Body.uv = PoolVector2Array([
+		Vector2(0.0, 0.0),
+		Vector2(0.0, 501.0),
+		Vector2(501.0, 501.0),
+		Vector2(501.0, 0.0),
+	])
 	$Body.set_position((-head_position * GRID_SIZE) - Vector2(GRID_SIZE / 2, GRID_SIZE / 2))
 	
 	var shape = RectangleShape2D.new()
@@ -39,7 +46,7 @@ func _ready():
 	#$CollisionShape2D.set_position((-head_position * GRID_SIZE) + Vector2(0, GRID_SIZE / 2))
 	
 	# move attach point
-	$End.set_position(Vector2(0, (size.y - head_position.y) * GRID_SIZE - GRID_SIZE / 2))
+	$End.set_position(Vector2(0, (size.y - head_position.y) * GRID_SIZE - GRID_SIZE / 2 - MARGIN))
 	
 	# spawn the string
 	cable = string.instance()
@@ -103,7 +110,9 @@ func _input(event):
 					
 					$In.play()
 					
-					$Body.set_color(Color("fcffad"))
+					$Body.set_color(Color("2f936d"))
+					$Head.set_modulate(Color("2f936d"))
+					cable.get_node("Line2D").set_default_color(Color("2f936d"))
 					
 					print("Avaliable")
 					print(Global.console.avaliable_plugs)
@@ -116,7 +125,9 @@ func _input(event):
 					Global.console.avaliable_plugs[self] = 0
 					Global.console.attached_plugs.erase(self)
 					
-					$Body.set_color(Color("ffffff"))
+					$Body.set_color(Color("939393"))
+					$Head.set_modulate(Color("ffffff"))
+					cable.get_node("Line2D").set_default_color(Color("939393"))
 					
 					print("Avaliable")
 					print(Global.console.avaliable_plugs)
