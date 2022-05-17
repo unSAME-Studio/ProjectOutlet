@@ -4,9 +4,9 @@ extends Node
 var level = {
 	1: {
 		"grid": [
-			[1, 0],
-			[1, 0],
-			[1, 0],
+			[1],
+			[1],
+			[1],
 		],
 		"plugs": [
 			[Vector2(1, 2), Vector2(0, 0)],
@@ -14,8 +14,8 @@ var level = {
 	},
 	2: {
 		"grid": [
-			[1, 0],
-			[1, 0],
+			[1],
+			[1],
 		],
 		"plugs": [
 			[Vector2(1, 2), Vector2(0, 0)],
@@ -24,10 +24,10 @@ var level = {
 	},
 	3: {
 		"grid": [
-			[1, 0],
-			[1, 0],
-			[1, 0],
-			[1, 0]
+			[1],
+			[1],
+			[1],
+			[1]
 		],
 		"plugs": [
 			[Vector2(1, 2), Vector2(0, 0)],
@@ -59,6 +59,7 @@ var level = {
 			[Vector2(1, 2), Vector2(0, 0)],
 			[Vector2(3, 1), Vector2(1, 0)],
 			[Vector2(1, 3), Vector2(0, 0)],
+			[Vector2(1, 1), Vector2(0, 0)],
 		]
 	},
 	6: {

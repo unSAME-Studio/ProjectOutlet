@@ -23,7 +23,8 @@ func _ready():
 				var o = outlet.instance()
 				o.grid_position = Vector2(c, r)
 				add_child(o)
-				o.set_position(Vector2(c * outlet_size, r * outlet_size))
+				#o.set_position(Vector2(c, r) * outlet_size)
+				o.set_position(Vector2(c - (float(grid[r].size()) / 2.0), r - (float(grid.size()) / 2.0)) * outlet_size + Vector2(outlet_size / 2, outlet_size / 2))
 	
 	# spawn all the plugs
 	for i in range(Global.current_level_data["plugs"].size()):

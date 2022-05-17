@@ -140,8 +140,7 @@ func spin():
 	#	size.y *= -1
 	
 	# move head position
-	# MAGIC (COPYRIGHTED pending)
-	# (c) 2022 Sam Feng jk
+	# MAGIC
 	head_position = Vector2(size.y - 1 - head_position.y, head_position.x)
 	print("New head position %s" % [head_position])
 	
