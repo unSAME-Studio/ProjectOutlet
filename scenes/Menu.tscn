@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/Menu.gd" type="Script" id=1]
+[ext_resource path="res://ui/fonts/Ubuntu_Reg.tres" type="DynamicFont" id=2]
 
 [node name="Menu" type="Node"]
 script = ExtResource( 1 )
@@ -19,6 +20,7 @@ margin_top = -99.0
 margin_right = -73.0
 margin_bottom = -38.0
 rect_scale = Vector2( 3.22758, 3.41076 )
+custom_fonts/font = ExtResource( 2 )
 text = "Play"
 
 [node name="SpinBox" type="SpinBox" parent="Control"]
