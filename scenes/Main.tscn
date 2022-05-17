@@ -24,7 +24,7 @@ margin_left = -390.0
 margin_top = 83.0
 margin_right = -157.0
 margin_bottom = 97.0
-rect_scale = Vector2( 3.42883, 3.40738 )
+rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = ExtResource( 2 )
 text = "Try to fit all the plugs on the outlets!
 
