@@ -12,4 +12,3 @@ default_color = Color( 0.576471, 0.576471, 0.576471, 1 )
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
-antialiased = true

@@ -40,6 +40,6 @@ func _ready():
 		var p = plug.instance()
 		p.size = Global.current_level_data["plugs"][i][0]
 		p.head_position = Global.current_level_data["plugs"][i][1]
-		p.original_point = Vector2((i - float(plugs_count) / 2.0) * 200, 350)
+		p.original_point = Vector2(OS.get_real_window_size().x / plugs_count * i - OS.get_real_window_size().x / 2, OS.get_real_window_size().y - 200)
 		get_parent().call_deferred("add_child", p)
 	

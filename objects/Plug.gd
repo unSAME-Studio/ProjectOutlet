@@ -75,6 +75,7 @@ func _on_Plug_input_event(viewport, event, shape_idx):
 		
 		$Out.play()
 		set_modulate(Color(1,1,1,0.5))
+		cable.set_modulate(Color(1,1,1,0.5))
 
 
 func _process(delta):
@@ -111,6 +112,7 @@ func _input(event):
 				selected = false
 				
 				set_modulate(Color(1,1,1,1))
+				cable.set_modulate(Color(1,1,1,1))
 				
 				if rest_point:
 					rest_point.deselect()
