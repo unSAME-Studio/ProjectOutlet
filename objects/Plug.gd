@@ -73,7 +73,8 @@ func _on_Plug_input_event(viewport, event, shape_idx):
 		selected = true
 		get_tree().set_input_as_handled()
 		
-		$Out.play()
+		get_node("In%d" % (randi() % 2)).play()
+		
 		set_modulate(Color(1,1,1,0.5))
 		cable.set_modulate(Color(1,1,1,0.5))
 
@@ -129,7 +130,7 @@ func _input(event):
 					
 					Global.console.detect_complete()
 					
-					$In.play()
+					get_node("Out%d" % (randi() % 2)).play()
 					
 					$Body.set_color(Color("2f936d"))
 					$Head.set_modulate(Color("2f936d"))

@@ -23,9 +23,10 @@ func _ready():
 				var o = outlet.instance()
 				o.grid_position = Vector2(c, r)
 				
+				# set outlet type from data
 				o.outlet_type = grid[r][c] - 1
 				
-				# get rotation
+				# set rotation from data
 				if Global.current_level_data.has("rot"):
 					o.direction = Global.current_level_data["rot"][r][c]
 				
@@ -40,6 +41,11 @@ func _ready():
 		var p = plug.instance()
 		p.size = Global.current_level_data["plugs"][i][0]
 		p.head_position = Global.current_level_data["plugs"][i][1]
+		
+		# set outlet type from data
+		if Global.current_level_data["plugs"][i].size() >= 3:
+			p.outlet_type = Global.current_level_data["plugs"][i][2]
+		
 		p.original_point = Vector2(OS.get_real_window_size().x / plugs_count * i - OS.get_real_window_size().x / 2, OS.get_real_window_size().y - 200)
 		get_parent().call_deferred("add_child", p)
 	

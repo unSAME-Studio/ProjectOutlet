@@ -1,5 +1,7 @@
 extends Node
 
+enum TYPE {ONE, TWO, ALL}
+
 
 var level = {
 	1: {
@@ -51,7 +53,7 @@ var level = {
 		"plugs": [
 			[Vector2(1, 3), Vector2(0, 1)],
 			[Vector2(2, 3), Vector2(1, 0)],
-			[Vector2(2, 2), Vector2(1, 1)],
+			[Vector2(2, 2), Vector2(1, 1), TYPE.ONE],
 		]
 	},
 	5: {

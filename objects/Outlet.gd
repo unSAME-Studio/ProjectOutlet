@@ -46,19 +46,15 @@ func grid_aabb(a, b):
 # return true if possible for pluging in
 func check_fit(new_plug):
 	# check if type competable
-	if new_plug.outlet_type != outlet_type:
-		match outlet_type:
-			TYPE.ONE:
-				pass
-			TYPE.TWO:
-				pass
-			TYPE.ALL:
-				pass
+	# (check for if ONE can't go in TWO && ALL only for ALL)
+	if new_plug.outlet_type == TYPE.ALL and outlet_type != TYPE.ALL:
+		return false
+	
+	if new_plug.outlet_type == TYPE.ONE and outlet_type == TYPE.TWO:
+		return false
 	
 	# check direction based on plug type
 	# the single plug also allow the plug in of two direction
-	
-	#print("Is this the right direction? %s" % [(new_plug.direction + direction) % 2])
 	match outlet_type:
 		TYPE.ONE:
 			match new_plug.outlet_type:
@@ -74,6 +70,7 @@ func check_fit(new_plug):
 		TYPE.ALL:
 			pass
 	
+	# loop and check other plugs
 	var fit = true
 	for plug in Global.console.attached_plugs.keys():
 		# don't check if it's the same plug
