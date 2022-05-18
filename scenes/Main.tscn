@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://sounds/Fixaproblem.ogg" type="AudioStream" id=1]
+[ext_resource path="res://ui/fonts/Ubuntu_Reg.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scripts/console.gd" type="Script" id=3]
 [ext_resource path="res://objects/OutletGrid.tscn" type="PackedScene" id=4]
 
@@ -23,7 +24,8 @@ margin_left = -390.0
 margin_top = 83.0
 margin_right = -157.0
 margin_bottom = 97.0
-rect_scale = Vector2( 3.42883, 3.40738 )
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 2 )
 text = "Try to fit all the plugs on the outlets!
 
 Left Click - Move

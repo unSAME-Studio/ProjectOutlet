@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/Menu.gd" type="Script" id=1]
+[ext_resource path="res://ui/fonts/Ubuntu_Reg.tres" type="DynamicFont" id=2]
 
 [node name="Menu" type="Node"]
 script = ExtResource( 1 )
@@ -16,9 +17,9 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -190.0
 margin_top = -99.0
-margin_right = -73.0
-margin_bottom = -38.0
-rect_scale = Vector2( 3.22758, 3.41076 )
+margin_right = 107.0
+margin_bottom = 76.0
+custom_fonts/font = ExtResource( 2 )
 text = "Play"
 
 [node name="SpinBox" type="SpinBox" parent="Control"]
@@ -36,11 +37,11 @@ value = 1.0
 [node name="Label" type="Label" parent="Control"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -174.0
-margin_top = 347.0
-margin_right = -104.0
-margin_bottom = 361.0
-rect_scale = Vector2( 5, 5 )
+margin_left = -390.0
+margin_top = 200.0
+margin_right = 327.003
+margin_bottom = 369.0
+custom_fonts/font = ExtResource( 2 )
 text = "Plug It In"
 uppercase = true
 
