@@ -34,7 +34,7 @@ func _ready():
 		TYPE.TWO:
 			pass
 		TYPE.ALL:
-			$Head.set_texture("res://arts/Temp_OutletAll.png")
+			$Head.set_texture(load("res://arts/Temp_OutletAll.png"))
 	
 	# set up graphics
 	$Body.set_polygon(PoolVector2Array([
@@ -103,6 +103,7 @@ func _process(delta):
 		else:
 			set_global_position(lerp(get_global_position(), original_point, 10 * delta))
 	
+	set_rotation(lerp_angle(get_rotation(), direction * PI / 2, 0.3))
 
 
 # on drop
@@ -186,9 +187,9 @@ func spin():
 	
 	#set_rotation(get_rotation() + PI / 2)
 	
-	var tween = get_node("Tween")
-	var target_rotation = direction * PI / 2
-	tween.interpolate_property(self, "rotation",
-			get_rotation(), target_rotation, 0.15,
-			Tween.TRANS_CIRC, Tween.EASE_OUT)
-	tween.start()
+	#var tween = get_node("Tween")
+	#var target_rotation = direction * PI / 2
+	#tween.interpolate_property(self, "rotation",
+	#		get_rotation(), target_rotation, 0.15,
+	#		Tween.TRANS_CIRC, Tween.EASE_OUT)
+	#tween.start()
