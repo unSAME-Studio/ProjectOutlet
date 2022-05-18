@@ -2,13 +2,16 @@ extends Node
 
 var default_volume = -12
 
+var song1 = preload("res://sounds/Fixaproblem.ogg")
+
 func _ready():
 	var a = AudioStreamPlayer.new()
-	a.set_stream(load("res://sounds/Fixaproblem.ogg"))
+	a.set_stream(song1)
 	a.set_volume_db(-80)
 	a.set_bus("Music")
 	a.set_autoplay(true)
 	a.set_name("BGM")
+	a.connect("finished", self, "_on_finished")
 	add_child(a)
 	
 	var t = Tween.new()
@@ -16,6 +19,10 @@ func _ready():
 	add_child(t)
 	
 	fade_in()
+
+
+func _on_finished():
+	pass
 
 
 func fade_in():
