@@ -94,8 +94,20 @@ func _process(delta):
 		
 		if closest_point:
 			set_global_position(lerp(get_global_position(), closest_point.get_global_position(), 25 * delta))
+			
+			if closest_point.check_fit(self):
+				set_modulate(Color(0,0.5,0.5,0.5))
+				cable.set_modulate(Color(0,0.5,0.5,0.5))
+			else:
+				closest_point = null
+				
+				set_modulate(Color(1,0.5,0.5,0.5))
+				cable.set_modulate(Color(1,0.5,0.5,0.5))
 		else:
 			set_global_position(lerp(get_global_position(), get_global_mouse_position(), 25 * delta))
+			
+			set_modulate(Color(1,1,1,0.5))
+			cable.set_modulate(Color(1,1,1,0.5))
 	
 	else:
 		if rest_point:
@@ -122,7 +134,7 @@ func _input(event):
 				# if found another close point, select it
 				# else send back to original point
 				# check for overlapping tiles (IMPORTANT)
-				if closest_point and closest_point.check_fit(self):
+				if closest_point:
 					rest_point = closest_point
 					rest_point.select()
 					
@@ -132,10 +144,13 @@ func _input(event):
 					Global.console.detect_complete()
 					
 					get_node("Out%d" % (randi() % 2)).play()
+					$AnimationPlayer.play("body_hint")
 					
-					$Body.set_color(Color("2f936d"))
-					$Head.set_modulate(Color("2f936d"))
-					cable.get_node("Line2D").set_default_color(Color("2f936d"))
+					#$Body.set_color(Color("2f936d"))
+					#$Head.set_modulate(Color("2f936d"))
+					#cable.get_node("Line2D").set_default_color(Color("2f936d"))
+					set_modulate(Color("44d29c"))
+					cable.set_modulate(Color("44d29c"))
 					
 					set_z_index(4)
 					
@@ -150,9 +165,11 @@ func _input(event):
 					Global.console.avaliable_plugs[self] = 0
 					Global.console.attached_plugs.erase(self)
 					
-					$Body.set_color(Color("939393"))
-					$Head.set_modulate(Color("ffffff"))
-					cable.get_node("Line2D").set_default_color(Color("939393"))
+					#$Body.set_color(Color("939393"))
+					#$Head.set_modulate(Color("ffffff"))
+					#cable.get_node("Line2D").set_default_color(Color("939393"))
+					set_modulate(Color("ffffff"))
+					cable.set_modulate(Color("ffffff"))
 					
 					set_z_index(6)
 					
@@ -193,3 +210,5 @@ func spin():
 	#		get_rotation(), target_rotation, 0.15,
 	#		Tween.TRANS_CIRC, Tween.EASE_OUT)
 	#tween.start()
+	
+	$AnimationPlayer.play("head_hint")

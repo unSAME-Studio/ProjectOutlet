@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/Menu.gd" type="Script" id=1]
 [ext_resource path="res://ui/fonts/Ubuntu_Reg.tres" type="DynamicFont" id=2]
+[ext_resource path="res://ui/theme.tres" type="Theme" id=3]
 
 [node name="Menu" type="Node"]
 script = ExtResource( 1 )
@@ -9,18 +10,6 @@ script = ExtResource( 1 )
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="Play" type="Button" parent="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -190.0
-margin_top = -99.0
-margin_right = 107.0
-margin_bottom = 76.0
-custom_fonts/font = ExtResource( 2 )
-text = "Play"
 
 [node name="SpinBox" type="SpinBox" parent="Control"]
 anchor_top = 1.0
@@ -31,40 +20,52 @@ margin_right = 156.0
 margin_bottom = -107.0
 rect_scale = Vector2( 2.78083, 2.76677 )
 min_value = 1.0
-max_value = 5.0
+max_value = 8.0
 value = 1.0
 
 [node name="Label" type="Label" parent="Control"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -390.0
-margin_top = 200.0
-margin_right = 327.003
-margin_bottom = 369.0
+margin_left = -359.0
+margin_right = 358.0
+margin_bottom = 449.0
 custom_fonts/font = ExtResource( 2 )
-text = "Plug It In"
+text = "Plug It In
+Demo BUILD"
+align = 1
+valign = 1
 uppercase = true
 
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/CenterContainer"]
-margin_left = 480.0
-margin_top = 950.0
-margin_right = 600.0
-margin_bottom = 970.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+margin_left = 445.0
+margin_top = 903.0
+margin_right = 635.0
+margin_bottom = 1016.0
 
-[node name="Button" type="Button" parent="Control/CenterContainer/HBoxContainer"]
-margin_right = 63.0
-margin_bottom = 20.0
-text = "Settings"
+[node name="Play" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+margin_right = 190.0
+margin_bottom = 113.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 3 )
+enabled_focus_mode = 0
+text = "Play"
 
-[node name="Button3" type="Button" parent="Control/CenterContainer/HBoxContainer"]
-margin_left = 67.0
-margin_right = 120.0
-margin_bottom = 20.0
-text = "Levels"
+[node name="Editor" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+visible = false
+margin_top = 179.0
+margin_right = 431.0
+margin_bottom = 354.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "Editor"
 
-[connection signal="pressed" from="Control/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Editor" to="." method="_on_Play_pressed"]

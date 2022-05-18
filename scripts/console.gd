@@ -77,6 +77,44 @@ var level = {
 	},
 	6: {
 		"grid": [
+			[1, 1],
+			[1, 1],
+			[2, 2]
+		],
+		"rot": [
+			[1, 3],
+			[1, 3],
+			[1, 1]
+		],
+		"plugs": [
+			[2, 2, 1, 0],
+			[2, 2, 1, 0, TYPE.ONE],
+			[3, 2, 0, 0],
+			[1, 2, 0, 0, TYPE.ONE],
+			[1, 1, 0, 0, TYPE.ONE],
+		]
+	},
+	7: {
+		"grid": [
+			[2, 3, 0],
+			[0, 3, 0],
+			[0, 2, 3]
+		],
+		"rot": [
+			[0, 0, 0],
+			[0, 0, 0],
+			[0, 1, 0]
+		],
+		"plugs": [
+			[1, 2, 0, 0],
+			[1, 2, 0, 0],
+			[1, 2, 0, 0],
+			[1, 2, 0, 0],
+			[1, 1, 0, 0, TYPE.ALL],
+		]
+	},
+	8: {
+		"grid": [
 			[1, 1, 0, 1, 0, 1, 0, 0, 1],
 			[1, 0, 0, 1, 0, 1, 1, 0, 1],
 			[1, 1, 0, 1, 0, 1, 0, 1, 1],
@@ -94,7 +132,7 @@ var attached_plugs = {}
 func _ready():
 	Global.console = self
 	
-	$"../CanvasLayer/Control/Level".set_text("Level: %d" % Global.current_level)
+	$"../CanvasLayer/Control/Level".set_text("Level %d" % Global.current_level)
 
 
 func detect_complete():
@@ -103,7 +141,7 @@ func detect_complete():
 
 
 func game_finished():
-	$"../CanvasLayer/Control/Tag".show()
+	$"../CanvasLayer/Control/OverScreen".show()
 
 
 func next_level():

@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://sounds/Fixaproblem.ogg" type="AudioStream" id=1]
-[ext_resource path="res://ui/fonts/Ubuntu_Reg.tres" type="DynamicFont" id=2]
+[ext_resource path="res://ui/ui_blur.gdshader" type="Shader" id=2]
 [ext_resource path="res://scripts/console.gd" type="Script" id=3]
 [ext_resource path="res://objects/OutletGrid.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/theme.tres" type="Theme" id=5]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
+shader_param/blur_amount = 5.0
+shader_param/mix_amount = 0.4
+shader_param/color_over = Color( 0, 0, 0, 1 )
 
 [node name="Main" type="Node"]
 
@@ -17,41 +23,86 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Control"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -390.0
-margin_top = 83.0
-margin_right = -157.0
-margin_bottom = 97.0
-rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = ExtResource( 2 )
-text = "Try to fit all the plugs on the outlets!
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 0.297
+margin_bottom = -0.240051
+mouse_filter = 2
 
-Left Click - Move
-Right Click | Space - Rotate"
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/CenterContainer"]
+material = SubResource( 2 )
+margin_left = 40.0
+margin_top = 153.0
+margin_right = 1040.0
+margin_bottom = 416.0
+theme = ExtResource( 5 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer"]
+margin_right = 1000.0
+margin_bottom = 263.0
+custom_constants/margin_top = 50
+custom_constants/margin_bottom = 50
+
+[node name="Intruction" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer"]
+margin_top = 50.0
+margin_right = 1000.0
+margin_bottom = 213.0
+rect_min_size = Vector2( 1000, 0 )
+theme = ExtResource( 5 )
+text = "Left Click - Move
+Right Click or Space - Rotate"
 align = 1
 valign = 1
+autowrap = true
 
-[node name="Tag" type="Label" parent="CanvasLayer/Control"]
+[node name="OverScreen" type="CenterContainer" parent="CanvasLayer/Control"]
 visible = false
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -400.0
-margin_top = 930.0
-margin_right = -167.0
-margin_bottom = 961.0
-rect_scale = Vector2( 3.42883, 3.40738 )
-text = "PUZZLE COMPLETE!"
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/OverScreen"]
+material = SubResource( 2 )
+margin_left = 540.0
+margin_top = 960.0
+margin_right = 540.0
+margin_bottom = 960.0
+theme = ExtResource( 5 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/OverScreen/PanelContainer"]
+margin_right = 653.0
+margin_bottom = 423.0
+custom_constants/margin_right = 30
+custom_constants/margin_top = 30
+custom_constants/margin_left = 30
+custom_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer"]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 623.0
+margin_bottom = 393.0
+alignment = 1
+
+[node name="Tag" type="Label" parent="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 593.0
+margin_bottom = 246.0
+size_flags_vertical = 6
+theme = ExtResource( 5 )
+text = "
+Puzzle Completed!
+"
 align = 1
 valign = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/Tag"]
-margin_left = 191.319
-margin_top = 3.81525
-margin_right = 235.319
-margin_bottom = 23.8152
-text = "NEXT"
+[node name="Button" type="Button" parent="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 250.0
+margin_right = 593.0
+margin_bottom = 363.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 5 )
+enabled_focus_mode = 0
+text = "Next"
 
 [node name="Level" type="Label" parent="CanvasLayer/Control"]
 anchor_top = 1.0
@@ -60,8 +111,8 @@ margin_left = 41.0
 margin_top = -115.0
 margin_right = 97.0
 margin_bottom = -101.0
-rect_scale = Vector2( 4.9508, 5.53508 )
-text = "LEVEL : 1"
+theme = ExtResource( 5 )
+text = "Level 1"
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -70,9 +121,4 @@ current = true
 
 [node name="OutletGrid" parent="Node2D" instance=ExtResource( 4 )]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
-volume_db = -12.235
-bus = "Music"
-
-[connection signal="pressed" from="CanvasLayer/Control/Tag/Button" to="Console" method="next_level"]
+[connection signal="pressed" from="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer/Button" to="Console" method="next_level"]
