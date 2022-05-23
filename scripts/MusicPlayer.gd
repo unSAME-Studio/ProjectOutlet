@@ -22,7 +22,7 @@ func _ready():
 
 
 func _on_finished():
-	pass
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
 
 
 func fade_in():

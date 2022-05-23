@@ -77,6 +77,19 @@ func _on_Plug_input_event(viewport, event, shape_idx):
 		
 		set_modulate(Color(1,1,1,0.5))
 		cable.set_modulate(Color(1,1,1,0.5))
+		
+	# rotating
+	if event is InputEventMouseButton:
+		event as InputEventMouseButton
+		if event.pressed:
+			match event.button_index:
+				BUTTON_WHEEL_UP:
+					spin_clockwise()
+				BUTTON_WHEEL_DOWN:
+					spin_counterclockwise()
+	
+	if Input.is_action_just_pressed("rotate"):
+		spin_clockwise()
 
 
 func _process(delta):
@@ -115,6 +128,7 @@ func _process(delta):
 		else:
 			set_global_position(lerp(get_global_position(), original_point, 10 * delta))
 	
+	# constantly rotate the plug
 	set_rotation(lerp_angle(get_rotation(), direction * PI / 2, 0.3))
 
 
@@ -177,13 +191,9 @@ func _input(event):
 					print(Global.console.avaliable_plugs)
 					print("Attached")
 					print(Global.console.attached_plugs)
-	
-		# rotating
-		if Input.is_action_just_pressed("rotate"):
-			spin()
 
 
-func spin():
+func spin_clockwise():
 	direction += 1
 	if direction >= 4:
 		direction = 0
@@ -200,8 +210,6 @@ func spin():
 	size.x = temp_size.y
 	size.y = temp_size.x
 	
-	print(size)
-	
 	#set_rotation(get_rotation() + PI / 2)
 	
 	#var tween = get_node("Tween")
@@ -210,5 +218,25 @@ func spin():
 	#		get_rotation(), target_rotation, 0.15,
 	#		Tween.TRANS_CIRC, Tween.EASE_OUT)
 	#tween.start()
+	
+	$AnimationPlayer.play("head_hint")
+
+
+func spin_counterclockwise():
+	direction -= 1
+	if direction < 0:
+		direction = 3
+		
+	print("!! current direction %d" % [direction])
+	
+	# move head position
+	# MAGIC
+	head_position = Vector2(head_position.y, size.x - 1 - head_position.x)
+	print("New head position %s" % [head_position])
+	
+	# swap size x and y
+	var temp_size = size
+	size.x = temp_size.y
+	size.y = temp_size.x
 	
 	$AnimationPlayer.play("head_hint")

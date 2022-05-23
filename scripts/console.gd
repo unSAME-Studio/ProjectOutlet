@@ -2,6 +2,9 @@ extends Node
 
 enum TYPE {ONE, TWO, ALL}
 
+# data structure
+# outlet is based on grid + rot
+# plug : [ Size.x, Size.y, Head.x, Head.y, Type, AdditionalOutlet ]
 
 var level = {
 	1: {
@@ -132,7 +135,7 @@ var attached_plugs = {}
 func _ready():
 	Global.console = self
 	
-	$"../CanvasLayer/Control/Level".set_text("Level %d" % Global.current_level)
+	#$"../CanvasLayer/Control/Level".set_text("Level %d" % Global.current_level)
 
 
 func detect_complete():
