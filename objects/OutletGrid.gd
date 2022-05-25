@@ -21,19 +21,18 @@ func _ready():
 				
 				# generate the grid
 				var o = outlet.instance()
-				o.grid_position = Vector2(c, r)
-				
-				# set outlet type from data
-				o.outlet_type = grid[r][c] - 1
 				
 				# set rotation from data
+				var direction = 0
 				if Global.current_level_data.has("rot"):
-					o.direction = Global.current_level_data["rot"][r][c]
+					direction = Global.current_level_data["rot"][r][c]
+					
+				o.initialize(Vector2(c, r), grid[r][c] - 1, direction)
 				
 				add_child(o)
 				
-				#o.set_position(Vector2(c, r) * GRID_SIZE)
 				o.set_position(Vector2(c - (float(grid[r].size()) / 2.0), r - (float(grid.size()) / 2.0)) * GRID_SIZE + Vector2(GRID_SIZE / 2, GRID_SIZE / 2))
+	
 	
 	# spawn all the plugs
 	var plugs_count = Global.current_level_data["plugs"].size()
@@ -47,6 +46,10 @@ func _ready():
 		# set outlet type from data
 		if info.size() >= 5:
 			p.outlet_type = info[4]
+		
+		# if additional outlet exist TEMP IMPLEMENT
+		if info.size() >= 6:
+			p.additional_outlets.append(info[5])
 		
 		p.original_point = Vector2(OS.get_real_window_size().x / plugs_count * i - OS.get_real_window_size().x / 2, OS.get_real_window_size().y - 200)
 		get_parent().call_deferred("add_child", p)

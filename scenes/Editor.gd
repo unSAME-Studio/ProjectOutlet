@@ -18,9 +18,10 @@ func _ready():
 
 
 func _input(event):
-	if Input.is_action_just_pressed("click"):
-		var position = $Node2D/TileMap.world_to_map(get_viewport().get_global_mouse_position())
-		print(position)
+	if event is InputEventMouseButton:
+		if event.pressed:
+			var position = $Node2D/TileMap.world_to_map(event.position)
+			print(position)
 
 
 func _on_SpawnPlug_pressed():

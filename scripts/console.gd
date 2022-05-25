@@ -4,7 +4,7 @@ enum TYPE {ONE, TWO, ALL}
 
 # data structure
 # outlet is based on grid + rot
-# plug : [ Size.x, Size.y, Head.x, Head.y, Type, AdditionalOutlet ]
+# plug : [ Size.x, Size.y, Head.x, Head.y, Type, AdditionalOutlet [Pos.x, Pos.y, Type, Rot] ]
 
 var level = {
 	1: {
@@ -15,17 +15,26 @@ var level = {
 		],
 		"plugs": [
 			[1, 2, 0, 0],
-		]
+		],
+		"hint": "[center]Tap to Rotate[/center]\n[center]Drag to Move[/center]"
 	},
 	2: {
 		"grid": [
-			[2],
-			[2],
+			[2, 0],
+			[2, 2],
+		],
+		"rot": [
+			[0, 0],
+			[0, 1],
 		],
 		"plugs": [
-			[1, 2, 0, 0],
+			[1, 1, 0, 0, TYPE.TWO, [0, 1, TYPE.TWO, 0]],
+			[1, 1, 0, 0, TYPE.TWO, [0, 1, TYPE.TWO, 0]],
+			[1, 1, 0, 0, TYPE.TWO, [0, 1, TYPE.TWO, 1]],
 			[1, 1, 0, 0],
-		]
+			[1, 1, 0, 0],
+		],
+		"hint": "[center]Some plugs have additional outlet[/center]"
 	},
 	3: {
 		"grid": [
@@ -134,8 +143,6 @@ var attached_plugs = {}
 
 func _ready():
 	Global.console = self
-	
-	#$"../CanvasLayer/Control/Level".set_text("Level %d" % Global.current_level)
 
 
 func detect_complete():
@@ -144,7 +151,7 @@ func detect_complete():
 
 
 func game_finished():
-	$"../CanvasLayer/Control/OverScreen".show()
+	Global.main.game_finished()
 
 
 func next_level():

@@ -2,7 +2,14 @@ extends Area2D
 
 export (PackedScene) var outlet
 export (PackedScene) var string
+
 var selected = false
+const HOLD_REQUIRED = 0.5
+var holding = false
+var hold_time = 0
+const DRAG_DISTANCE = 40
+var drag_point = Vector2.ZERO
+
 var original_point
 var rest_point
 var closest_point = null
@@ -16,6 +23,10 @@ var direction = 0
 
 enum TYPE {ONE, TWO, ALL}
 var outlet_type = TYPE.TWO
+
+var additional_outlets = [
+	
+]
 
 var cable
 
@@ -65,35 +76,103 @@ func _ready():
 	cable.plug = $"End"
 	get_parent().call_deferred("add_child", cable)
 	cable.set_global_position(Vector2(original_point.x, OS.get_real_window_size().y))
+	
+	# spawn additional outlets
+	for i in additional_outlets:
+		var o = outlet.instance()
+		
+		o.initialize(Vector2(0, 0), i[2], i[3])
+		o.offset_position = Vector2(i[0], i[1])
+		o.host_plug = self
+		o.enabled = false
+		
+		$Outlets.add_child(o)
+		
+		o.set_position((Vector2(i[0], i[1]) - head_position) * 200)
 
 
 # on drag
 func _on_Plug_input_event(viewport, event, shape_idx):
-	if Input.is_action_just_pressed("click") and not get_tree().is_input_handled():
-		selected = true
-		get_tree().set_input_as_handled()
+	if not get_tree().is_input_handled():
 		
-		get_node("In%d" % (randi() % 2)).play()
+		if Input.is_action_just_pressed("click"):
+			get_tree().set_input_as_handled()
+			holding = true
+			drag_point = get_global_mouse_position()
 		
-		set_modulate(Color(1,1,1,0.5))
-		cable.set_modulate(Color(1,1,1,0.5))
-		
-	# rotating
-	if event is InputEventMouseButton:
-		event as InputEventMouseButton
-		if event.pressed:
-			match event.button_index:
-				BUTTON_WHEEL_UP:
-					spin_clockwise()
-				BUTTON_WHEEL_DOWN:
-					spin_counterclockwise()
-	
-	if Input.is_action_just_pressed("rotate"):
-		spin_clockwise()
+		# rotating
+		if event is InputEventMouseButton:
+			if event.pressed:
+				get_tree().set_input_as_handled()
+				
+				match event.button_index:
+					BUTTON_WHEEL_UP:
+						if rest_point == null:
+							spin_clockwise()
+						else:
+							set_rotation_degrees(get_rotation_degrees() + 10)
+					BUTTON_WHEEL_DOWN:
+						if rest_point == null:
+							spin_counterclockwise()
+						else:
+							set_rotation_degrees(get_rotation_degrees() - 10)
 
 
 func _process(delta):
+	
+	# check for release event
+	if Input.is_action_just_released("click"):
+		hold_time = 0.0
+			
+		if holding:
+			holding = false
+			
+			if rest_point == null:
+				spin_clockwise()
+				print("Release with no hold")
+			else:
+				#play can't rotate animation
+				#$AnimationPlayer.stop()
+				#$AnimationPlayer.play("bad_rotate")
+				set_rotation_degrees(get_rotation_degrees() + 10)
+	
+	# check for holding
+	if not selected and holding:
+		
+		# check for timing
+		hold_time += delta
+		if hold_time >= HOLD_REQUIRED:
+			holding = false
+			hold_time = 0.0
+			
+			selected = true
+			get_node("In%d" % (randi() % 2)).play()
+			
+			set_modulate(Color(1,1,1,0.5))
+			cable.set_modulate(Color(1,1,1,0.5))
+			
+			unplug()
+		
+		# check for distance
+		#print(get_global_mouse_position().distance_to(drag_point))
+		if get_global_mouse_position().distance_to(drag_point) >= DRAG_DISTANCE:
+			holding = false
+			hold_time = 0.0
+			
+			selected = true
+			get_node("In%d" % (randi() % 2)).play()
+			
+			set_modulate(Color(1,1,1,0.5))
+			cable.set_modulate(Color(1,1,1,0.5))
+			
+			unplug()
+	
+	
 	if selected:
+		# rotating when selected
+		if Input.is_action_just_pressed("rotate"):
+			spin_clockwise()
+		
 		# continueous detection
 		closest_point = null
 		var shortest_dist = 100
@@ -101,7 +180,7 @@ func _process(delta):
 		# detect outlet
 		for child in get_tree().get_nodes_in_group("outlet"):
 			var distance = get_global_mouse_position().distance_to(child.get_global_position())
-			if distance < shortest_dist:
+			if distance < shortest_dist and child.check_enabled():
 				closest_point = child
 				shortest_dist = distance
 		
@@ -124,12 +203,12 @@ func _process(delta):
 	
 	else:
 		if rest_point:
-			set_global_position(lerp(get_global_position(), rest_point.get_global_position(), 10 * delta))
+			set_global_position(lerp(get_global_position(), rest_point.get_global_position(), 25 * delta))
 		else:
-			set_global_position(lerp(get_global_position(), original_point, 10 * delta))
+			set_global_position(lerp(get_global_position(), original_point, 25 * delta))
 	
 	# constantly rotate the plug
-	set_rotation(lerp_angle(get_rotation(), direction * PI / 2, 0.3))
+	set_rotation(lerp_angle(get_rotation(), direction * PI / 2, 25 * delta))
 
 
 # on drop
@@ -150,7 +229,7 @@ func _input(event):
 				# check for overlapping tiles (IMPORTANT)
 				if closest_point:
 					rest_point = closest_point
-					rest_point.select()
+					rest_point.select(self)
 					
 					Global.console.avaliable_plugs.erase(self)
 					Global.console.attached_plugs[self] = 0
@@ -166,37 +245,67 @@ func _input(event):
 					set_modulate(Color("44d29c"))
 					cable.set_modulate(Color("44d29c"))
 					
-					set_z_index(4)
+					set_z_index(rest_point.get_z_index() + 2)
 					
-					print("Avaliable")
-					print(Global.console.avaliable_plugs)
-					print("Attached")
-					print(Global.console.attached_plugs)
+					#print("Avaliable")
+					#print(Global.console.avaliable_plugs)
+					#print("Attached")
+					#print(Global.console.attached_plugs)
 					
+					# update all additional outlets
+					for i in $Outlets.get_children():
+						i.enabled = true
+						
+						# move the grid position
+						i.grid_position = rest_point.grid_position + i.offset_position
+						
+						# check if any outlet is already in bottom
+						# if yes then disable it
+						for child in get_tree().get_nodes_in_group("outlet"):
+							if i != child and i.grid_position == child.grid_position:
+								child.enabled = false
+						
 				else:
-					rest_point = null
-					
-					Global.console.avaliable_plugs[self] = 0
-					Global.console.attached_plugs.erase(self)
-					
-					#$Body.set_color(Color("939393"))
-					#$Head.set_modulate(Color("ffffff"))
-					#cable.get_node("Line2D").set_default_color(Color("939393"))
-					set_modulate(Color("ffffff"))
-					cable.set_modulate(Color("ffffff"))
-					
-					set_z_index(6)
-					
-					print("Avaliable")
-					print(Global.console.avaliable_plugs)
-					print("Attached")
-					print(Global.console.attached_plugs)
+					unplug()
+
+
+func unplug():
+	rest_point = null
+	
+	Global.console.avaliable_plugs[self] = 0
+	Global.console.attached_plugs.erase(self)
+	
+	#$Body.set_color(Color("939393"))
+	#$Head.set_modulate(Color("ffffff"))
+	#cable.get_node("Line2D").set_default_color(Color("939393"))
+	set_modulate(Color("ffffff"))
+	cable.set_modulate(Color("ffffff"))
+	
+	set_z_index(10)
+	
+	#print("Avaliable")
+	#print(Global.console.avaliable_plugs)
+	#print("Attached")
+	#print(Global.console.attached_plugs)
+	
+	# disable all additional outlet
+	for i in $Outlets.get_children():
+		i.enabled = false
+		
+		# restore additional outlet place
+		# by top z index [NEED FIX] It shouldn't enable all plugs
+		for child in get_tree().get_nodes_in_group("outlet"):
+			if i != child and i.grid_position == child.grid_position:
+				child.enabled = true
+		
+		# recursive unpluging
+		for p in Global.console.attached_plugs:
+			if p.rest_point == i:
+				p.unplug()
 
 
 func spin_clockwise():
-	direction += 1
-	if direction >= 4:
-		direction = 0
+	direction = wrapi(direction + 1, 0, 4)
 		
 	print("!! current direction %d" % [direction])
 	
@@ -220,12 +329,16 @@ func spin_clockwise():
 	#tween.start()
 	
 	$AnimationPlayer.play("head_hint")
+	
+	# rotate and move the additional outlet
+	for i in $Outlets.get_children():
+		i.direction = wrapi(i.direction + 1, 0, 4)
+		i.offset_position = Vector2(-i.offset_position.y, i.offset_position.x)
+		print("ADDITIONAL: NEW POS %s" % i.offset_position)
 
 
 func spin_counterclockwise():
-	direction -= 1
-	if direction < 0:
-		direction = 3
+	direction = wrapi(direction - 1, 0, 4)
 		
 	print("!! current direction %d" % [direction])
 	
@@ -240,3 +353,9 @@ func spin_counterclockwise():
 	size.y = temp_size.x
 	
 	$AnimationPlayer.play("head_hint")
+	
+	# rotate the additional outlet
+	for i in $Outlets.get_children():
+		i.direction = wrapi(i.direction - 1, 0, 4)
+		i.offset_position = Vector2(-i.offset_position.y, i.offset_position.x)
+		print("ADDITIONAL: NEW POS %s" % i.offset_position)

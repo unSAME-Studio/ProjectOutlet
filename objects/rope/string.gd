@@ -1,6 +1,5 @@
 extends Node2D
 
-
 export (float) var ropeLength = 30
 export (float) var constrain = 1	# distance between points
 export (Vector2) var gravity = Vector2(0, 0)
@@ -15,6 +14,8 @@ var posPrev: PoolVector2Array
 var pointCount: int
 
 var plug
+
+onready var curve = Curve2D.new()
 
 func _ready()->void:
 	pointCount = get_pointCount(ropeLength)

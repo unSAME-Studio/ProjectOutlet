@@ -4,14 +4,23 @@ signal select
 signal deselect
 
 var grid_position = Vector2(0, 0)
-#var accepted_direction = [0, 2] #ODD EVEN CHECK DECIMAL 0.12
 var direction = 0
+
+# for additional outlet
+var offset_position = Vector2(0, 0)
+var host_plug = null
 
 enum TYPE {ONE, TWO, ALL}
 var outlet_type = TYPE.TWO
 
+var enabled = true
 
-func _ready():
+
+func initialize(pos, type, rot):
+	grid_position = pos
+	
+	# set type from data
+	outlet_type = type
 	match outlet_type:
 		TYPE.ONE:
 			$Head.set_texture(load("res://arts/Temp_OutletAlt.png"))
@@ -21,6 +30,7 @@ func _ready():
 			$Head.set_texture(load("res://arts/Temp_OutletAll.png"))
 	
 	# rotate the outlet
+	direction = rot
 	$Head.set_rotation(direction * PI / 2)
 
 
@@ -41,6 +51,10 @@ func grid_aabb(a, b):
 		return true
 	
 	return false
+
+
+func check_enabled():
+	return enabled
 
 
 # return true if possible for pluging in
@@ -77,6 +91,10 @@ func check_fit(new_plug):
 		if new_plug == plug:
 			continue
 		
+		# don't check if the outlet is current on this plug (additional outlet)
+		if host_plug == plug:
+			continue
+		
 		# check collision
 		if grid_aabb(new_plug, plug):
 			fit = false
@@ -85,10 +103,13 @@ func check_fit(new_plug):
 	return fit
 
 
-func select():	
+func select(new_plug):	
 	emit_signal("select")
+	
 	$Head.modulate = Color("ffffff")
+
 
 func deselect():
 	emit_signal("deselect")
+	
 	$Head.modulate = Color("c4c4c4")
