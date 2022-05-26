@@ -23,11 +23,11 @@ func initialize(pos, type, rot):
 	outlet_type = type
 	match outlet_type:
 		TYPE.ONE:
-			$Head.set_texture(load("res://arts/Temp_OutletAlt.png"))
+			$Head.set_texture(load("res://arts/plug_one.png"))
 		TYPE.TWO:
 			pass
 		TYPE.ALL:
-			$Head.set_texture(load("res://arts/Temp_OutletAll.png"))
+			$Head.set_texture(load("res://arts/plug_multi.png"))
 	
 	# rotate the outlet
 	direction = rot

@@ -42,11 +42,11 @@ func _ready():
 	# change head sprite
 	match outlet_type:
 		TYPE.ONE:
-			$Head.set_texture(load("res://arts/Temp_OutletAlt.png"))
+			$Head.set_texture(load("res://arts/plug_one.png"))
 		TYPE.TWO:
 			pass
 		TYPE.ALL:
-			$Head.set_texture(load("res://arts/Temp_OutletAll.png"))
+			$Head.set_texture(load("res://arts/plug_multi.png"))
 	
 	# set up graphics
 	$Body.set_polygon(PoolVector2Array([

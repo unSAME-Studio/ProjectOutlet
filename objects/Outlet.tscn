@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://objects/Outlet.gd" type="Script" id=1]
-[ext_resource path="res://arts/Temp_Outlet.png" type="Texture" id=2]
+[ext_resource path="res://arts/plug_two.png" type="Texture" id=2]
 
 [node name="Outlet" type="Position2D" groups=["outlet"]]
 script = ExtResource( 1 )
@@ -13,5 +13,4 @@ antialiased = true
 polygon = PoolVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
 
 [node name="Head" type="Sprite" parent="."]
-scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 2 )

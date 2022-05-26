@@ -6,7 +6,7 @@
 [ext_resource path="res://sounds/small_plug_in.mp3" type="AudioStream" id=4]
 [ext_resource path="res://sounds/small_plug_out.mp3" type="AudioStream" id=5]
 [ext_resource path="res://scripts/AudioRandomizer.gd" type="Script" id=6]
-[ext_resource path="res://arts/Temp_Outlet.png" type="Texture" id=7]
+[ext_resource path="res://arts/plug_two.png" type="Texture" id=7]
 [ext_resource path="res://arts/Texture.png" type="Texture" id=8]
 [ext_resource path="res://sounds/medium_plug_out.mp3" type="AudioStream" id=9]
 [ext_resource path="res://sounds/medium_plug_in.mp3" type="AudioStream" id=10]
@@ -71,10 +71,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.02, 0.07, 0.2 ),
-"transitions": PoolRealArray( 2, 0.5, 1 ),
+"times": PoolRealArray( 0, 0.02, 0.07, 0.2 ),
+"transitions": PoolRealArray( 2, 2, 0.5, 1 ),
 "update": 0,
-"values": [ Vector2( 0.6, 0.6 ), Vector2( 0.8, 0.8 ), Vector2( 0.6, 0.6 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -91,7 +91,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.02, 0.15 ),
 "transitions": PoolRealArray( 0.5, 2, 1 ),
 "update": 0,
-"values": [ Vector2( 0.6, 0.6 ), Vector2( 0.8, 0.8 ), Vector2( 0.6, 0.6 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
 }
 
 [node name="Plug" type="Area2D"]
@@ -118,7 +118,6 @@ texture = ExtResource( 8 )
 polygon = PoolVector2Array( -32, -32, -32, 96, 96, 96, 96, -32 )
 
 [node name="Head" type="Sprite" parent="."]
-scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 7 )
 
 [node name="End" type="Position2D" parent="."]
@@ -163,7 +162,6 @@ volume_high = 2
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "complete"
 method_call_mode = 1
 anims/bad_rotate = SubResource( 4 )
 anims/body_hint = SubResource( 3 )
