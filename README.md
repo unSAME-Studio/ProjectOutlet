@@ -1,2 +1,2 @@
 # ProjectOutlet
- (c) 2022 120 Werewolf
+ (c) 2022 Sam Feng Jose Salas
