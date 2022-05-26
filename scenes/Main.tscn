@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://ui/ui_blur.gdshader" type="Shader" id=2]
@@ -11,6 +11,9 @@ shader = ExtResource( 2 )
 shader_param/blur_amount = 5.0
 shader_param/mix_amount = 0.4
 shader_param/color_over = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "hint"
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -65,6 +68,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/OverScreen"]
+visible = false
 material = SubResource( 2 )
 margin_left = 540.0
 margin_top = 960.0
@@ -118,6 +122,9 @@ margin_right = 97.0
 margin_bottom = -101.0
 theme = ExtResource( 5 )
 text = "Level 1"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
+anims/hint = SubResource( 3 )
 
 [node name="Node2D" type="Node2D" parent="."]
 

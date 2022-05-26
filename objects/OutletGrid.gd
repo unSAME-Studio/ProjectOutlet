@@ -33,6 +33,8 @@ func _ready():
 				
 				o.set_position(Vector2(c - (float(grid[r].size()) / 2.0), r - (float(grid.size()) / 2.0)) * GRID_SIZE + Vector2(GRID_SIZE / 2, GRID_SIZE / 2))
 				
+				o.set_modulate(ColorManager.color.main_dark)
+				
 				yield(get_tree().create_timer(0.1), "timeout")
 	
 	

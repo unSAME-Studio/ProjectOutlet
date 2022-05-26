@@ -120,11 +120,11 @@ func check_fit(new_plug):
 func select(new_plug):	
 	emit_signal("select")
 	
-	$Head.modulate = Color("ffffff")
+	set_modulate(ColorManager.color.main_light)
 
 
 func deselect():
 	emit_signal("deselect")
 	
-	$Head.modulate = Color("c4c4c4")
+	set_modulate(ColorManager.color.main_dark)
 	

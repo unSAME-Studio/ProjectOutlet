@@ -3,6 +3,7 @@ extends Area2D
 export (PackedScene) var outlet
 export (PackedScene) var string
 
+var hovering = false
 var selected = false
 const HOLD_REQUIRED = 0.5
 var holding = false
@@ -60,8 +61,13 @@ func _ready():
 		Vector2(501.0, 501.0),
 		Vector2(501.0, 0.0),
 	])
-	$Body.set_offset(size * GRID_SIZE / 2)
-	$Body.set_position(((-head_position * GRID_SIZE) - Vector2(GRID_SIZE / 2, GRID_SIZE / 2)) - (size * GRID_SIZE / 2))
+	$Body.set_offset(-size * GRID_SIZE / 2)
+	$Body.set_position(((-head_position * GRID_SIZE) - Vector2(GRID_SIZE / 2, GRID_SIZE / 2)) + (size * GRID_SIZE / 2))
+	
+	$Outline.set_polygon($Body.get_polygon())
+	$Outline.uv = $Body.uv
+	$Outline.set_offset($Body.get_offset())
+	$Outline.set_position($Body.get_position())
 	
 	var shape = RectangleShape2D.new()
 	shape.set_extents(size * GRID_SIZE / 2)
@@ -81,6 +87,12 @@ func _ready():
 	get_parent().add_child(cable)
 	#cable.set_global_position(Vector2(original_point.x, OS.get_real_window_size().y))
 	
+	# initialize color
+	set_modulate(ColorManager.color.main_light)
+	cable.set_modulate(ColorManager.color.main_light)
+	$Outline.set_color(ColorManager.color.main_dark)
+	$Outlets.set_modulate(ColorManager.color.second)
+	
 	# spawn additional outlets
 	for i in additional_outlets:
 		var o = outlet.instance()
@@ -98,17 +110,17 @@ func _ready():
 # on drag
 func _on_Plug_input_event(viewport, event, shape_idx):
 	if not get_tree().is_input_handled():
+		get_tree().set_input_as_handled()
 		
 		if Input.is_action_just_pressed("click"):
 			get_tree().set_input_as_handled()
 			holding = true
 			drag_point = get_global_mouse_position()
+			print("Grabbing -> %s" % name)
 		
 		# rotating
 		if event is InputEventMouseButton:
 			if event.pressed:
-				get_tree().set_input_as_handled()
-				
 				match event.button_index:
 					BUTTON_WHEEL_UP:
 						if rest_point == null:
@@ -152,8 +164,8 @@ func _process(delta):
 			get_node("In%d" % (randi() % 2)).play()
 			$AnimationPlayer.play("body_hint")
 			
-			set_modulate(Color(1,1,1,0.5))
-			cable.set_modulate(Color(1,1,1,0.5))
+			modulate.a = 0.5
+			cable.modulate.a = 0.5
 			
 			unplug()
 		
@@ -167,8 +179,8 @@ func _process(delta):
 			get_node("In%d" % (randi() % 2)).play()
 			$AnimationPlayer.play("body_hint")
 			
-			set_modulate(Color(1,1,1,0.5))
-			cable.set_modulate(Color(1,1,1,0.5))
+			modulate.a = 0.5
+			cable.modulate.a = 0.5
 			
 			unplug()
 	
@@ -193,18 +205,23 @@ func _process(delta):
 			set_global_position(lerp(get_global_position(), closest_point.get_global_position(), 20 * delta))
 			
 			if closest_point.check_fit(self):
-				set_modulate(Color(0,0.5,0.5,0.5))
-				cable.set_modulate(Color(0,0.5,0.5,0.5))
+				set_modulate(ColorManager.color.good)
+				cable.set_modulate(ColorManager.color.good)
 			else:
 				closest_point = null
 				
-				set_modulate(Color(1,0.5,0.5,0.5))
-				cable.set_modulate(Color(1,0.5,0.5,0.5))
+				set_modulate(ColorManager.color.bad)
+				cable.set_modulate(ColorManager.color.bad)
+		
 		else:
 			set_global_position(lerp(get_global_position(), get_global_mouse_position(), 20 * delta))
 			
-			set_modulate(Color(1,1,1,0.5))
-			cable.set_modulate(Color(1,1,1,0.5))
+			set_modulate(ColorManager.color.main_light)
+			cable.set_modulate(ColorManager.color.main_light)
+		
+		# half transparency
+		modulate.a = 0.5
+		cable.modulate.a = 0.5
 	
 	else:
 		if rest_point:
@@ -219,6 +236,18 @@ func _process(delta):
 	var cable_distance = (cable.head_end.distance_to(get_global_position()) / 2)
 	$End2.set_position($End.get_position() + Vector2(0, cable_distance))
 	cable.get_node("P0/P1").set_position(Vector2(0, -cable_distance))
+	
+	# enlarge outline
+	if hovering:
+		#$Outline.set_scale(lerp($Outline.get_scale(), Vector2(1.2, 1.2), 25 * delta))
+		#$Outline.set_global_position(lerp($Outline.get_global_position(), $Body.get_global_position() + Vector2(0, 30), 25 * delta))
+		$Outline.set_global_position($Body.get_global_position() + Vector2(0, 30))
+		set_scale(lerp(get_scale(), Vector2(1.1, 1.1), 25 * delta))
+	else:
+		#$Outline.set_global_position(lerp($Outline.get_global_position(), $Body.get_global_position() + Vector2(0, 20), 25 * delta))
+		$Outline.set_global_position($Body.get_global_position() + Vector2(0, 20))
+		set_scale(lerp(get_scale(), Vector2(1, 1), 25 * delta))
+
 
 # on drop
 func _input(event):
@@ -229,9 +258,6 @@ func _input(event):
 				
 				set_modulate(Color(1,1,1,1))
 				cable.set_modulate(Color(1,1,1,1))
-				
-				if rest_point:
-					rest_point.deselect()
 				
 				# if found another close point, select it
 				# else send back to original point
@@ -246,13 +272,11 @@ func _input(event):
 					Global.console.detect_complete()
 					
 					get_node("Out%d" % (randi() % 2)).play()
+					$AnimationPlayer.stop()
 					$AnimationPlayer.play("body_hint")
 					
-					#$Body.set_color(Color("2f936d"))
-					#$Head.set_modulate(Color("2f936d"))
-					#cable.get_node("Line2D").set_default_color(Color("2f936d"))
-					set_modulate(Color("44d29c"))
-					cable.set_modulate(Color("44d29c"))
+					set_modulate(ColorManager.color.main)
+					cable.set_modulate(ColorManager.color.main)
 					
 					set_z_index(rest_point.check_z_index() + 2)
 					print("This plug is at %d Z INDEX" % get_z_index())
@@ -280,16 +304,15 @@ func _input(event):
 
 
 func unplug():
-	rest_point = null
+	if rest_point != null:
+		rest_point.deselect()
+		rest_point = null
 	
 	Global.console.avaliable_plugs[self] = 0
 	Global.console.attached_plugs.erase(self)
 	
-	#$Body.set_color(Color("939393"))
-	#$Head.set_modulate(Color("ffffff"))
-	#cable.get_node("Line2D").set_default_color(Color("939393"))
-	set_modulate(Color("ffffff"))
-	cable.set_modulate(Color("ffffff"))
+	set_modulate(ColorManager.color.main_light)
+	cable.set_modulate(ColorManager.color.main_light)
 	
 	set_z_index(20)
 	print("This plug is at %d Z INDEX" % get_z_index())
@@ -346,6 +369,7 @@ func spin_clockwise():
 	#		Tween.TRANS_CIRC, Tween.EASE_OUT)
 	#tween.start()
 	
+	$AnimationPlayer.stop()
 	$AnimationPlayer.play("head_hint")
 	
 	# rotate and move the additional outlet
@@ -370,6 +394,7 @@ func spin_counterclockwise():
 	size.x = temp_size.y
 	size.y = temp_size.x
 	
+	$AnimationPlayer.stop()
 	$AnimationPlayer.play("head_hint")
 	
 	# rotate the additional outlet
@@ -377,3 +402,11 @@ func spin_counterclockwise():
 		i.direction = wrapi(i.direction - 1, 0, 4)
 		i.offset_position = Vector2(-i.offset_position.y, i.offset_position.x)
 		print("ADDITIONAL: NEW POS %s" % i.offset_position)
+
+
+func _on_Plug_mouse_entered():
+	hovering = true
+
+
+func _on_Plug_mouse_exited():
+	hovering = false

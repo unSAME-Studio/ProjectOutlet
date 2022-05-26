@@ -20,22 +20,14 @@ var level = {
 	},
 	2: {
 		"grid": [
-			[2, 0],
-			[2, 2],
-		],
-		"rot": [
-			[1, 0],
-			[1, 1],
+			[2],
+			[2]
 		],
 		"plugs": [
-			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
-			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
-			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
-			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
-			[1, 1, 0, 0],
+			[1, 2, 0, 0],
 			[1, 1, 0, 0],
 		],
-		"hint": "[center]Some plugs have additional outlet[/center]"
+		"hint": "[center]Tap to Rotate[/center]\n[center]Drag to Move[/center]"
 	},
 	3: {
 		"grid": [
@@ -128,6 +120,25 @@ var level = {
 	},
 	8: {
 		"grid": [
+			[2, 0],
+			[2, 2],
+		],
+		"rot": [
+			[1, 0],
+			[1, 1],
+		],
+		"plugs": [
+			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
+			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
+			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
+			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
+			[1, 1, 0, 0],
+			[1, 1, 0, 0],
+		],
+		"hint": "[center]Some plugs have additional outlet[/center]"
+	},
+	9: {
+		"grid": [
 			[1, 1, 0, 1, 0, 1, 0, 0, 1],
 			[1, 0, 0, 1, 0, 1, 1, 0, 1],
 			[1, 1, 0, 1, 0, 1, 0, 1, 1],
@@ -144,6 +155,9 @@ var attached_plugs = {}
 
 func _ready():
 	Global.console = self
+	
+	ColorManager.generate_color()
+	ColorManager.apply_color()
 
 
 func detect_complete():

@@ -13,3 +13,14 @@ func _ready():
 
 func game_finished():
 	$"CanvasLayer/Control/OverScreen".show()
+	
+	yield(get_tree().create_timer(0.2), "timeout")
+	
+	for p in Global.console.attached_plugs:
+		p.set_modulate(ColorManager.color.good)
+		p.cable.set_modulate(ColorManager.color.good)
+		p.get_node("AnimationPlayer").play("complete")
+		
+		yield(get_tree().create_timer(0.2), "timeout")
+		
+	$"CanvasLayer/Control/OverScreen/PanelContainer".show()
