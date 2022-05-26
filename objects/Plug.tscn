@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://objects/Plug.gd" type="Script" id=1]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=2]
@@ -14,6 +14,17 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 64 )
+
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+
+void fragment(){
+	vec4 color = texture(TEXTURE, UV);
+	COLOR = vec4(1.0 - color.rgb, color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "bad_rotate"
@@ -118,6 +129,7 @@ texture = ExtResource( 8 )
 polygon = PoolVector2Array( -32, -32, -32, 96, 96, 96, 96, -32 )
 
 [node name="Head" type="Sprite" parent="."]
+material = SubResource( 7 )
 texture = ExtResource( 7 )
 
 [node name="End" type="Position2D" parent="."]

@@ -71,6 +71,10 @@ func check_fit(new_plug):
 	if new_plug.outlet_type == TYPE.ALL and outlet_type != TYPE.ALL:
 		return false
 	
+	# new ALL is only for itself
+	if new_plug.outlet_type != TYPE.ALL and outlet_type == TYPE.ALL:
+		return false
+	
 	if new_plug.outlet_type == TYPE.ONE and outlet_type == TYPE.TWO:
 		return false
 	
@@ -120,11 +124,11 @@ func check_fit(new_plug):
 func select(new_plug):	
 	emit_signal("select")
 	
-	set_modulate(ColorManager.color.main_light)
+	#set_modulate(ColorManager.color.main_light)
 
 
 func deselect():
 	emit_signal("deselect")
 	
-	set_modulate(ColorManager.color.main_dark)
+	#set_modulate(ColorManager.color.main_dark)
 	

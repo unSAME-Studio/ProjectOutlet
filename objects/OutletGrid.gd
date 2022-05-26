@@ -37,6 +37,7 @@ func _ready():
 				
 				yield(get_tree().create_timer(0.1), "timeout")
 	
+	yield(get_tree().create_timer(0.3), "timeout")
 	
 	# spawn all the plugs
 	var plugs_count = Global.current_level_data["plugs"].size()
@@ -57,7 +58,8 @@ func _ready():
 				p.additional_outlets.append(add)
 		
 		p.original_point = Vector2(OS.get_real_window_size().x / plugs_count * i - OS.get_real_window_size().x / 2, OS.get_real_window_size().y / 2)
-		get_parent().call_deferred("add_child", p)
+		get_parent().add_child(p)
+		#p.set_global_position(Vector2(0, OS.get_real_window_size().y))
 		
 		yield(get_tree().create_timer(0.1), "timeout")
 	

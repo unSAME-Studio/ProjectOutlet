@@ -15,6 +15,8 @@ var color = {
 
 
 func generate_color():
+	previous_color = color
+	
 	var hue = randf()
 	color.background = Color.from_hsv(hue, 0.3, 0.9, 1)
 	color.main = Color.from_hsv(wrapf(hue + 0.01, 0.0, 1.0), 0.43, 0.8, 1)

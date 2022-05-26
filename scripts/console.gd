@@ -27,7 +27,7 @@ var level = {
 			[1, 2, 0, 0],
 			[1, 1, 0, 0],
 		],
-		"hint": "[center]Tap to Rotate[/center]\n[center]Drag to Move[/center]"
+		"hint": "[center]Fit all the plugs[/center][center]on the outlets[/center]"
 	},
 	3: {
 		"grid": [
@@ -68,9 +68,9 @@ var level = {
 	},
 	5: {
 		"grid": [
-			[0, 3, 0],
+			[0, 1, 0],
 			[2, 1, 2],
-			[0, 3, 0]
+			[0, 1, 0]
 		],
 		"plugs": [
 			[2, 2, 0, 0],
@@ -113,14 +113,39 @@ var level = {
 		"plugs": [
 			[1, 2, 0, 0],
 			[1, 2, 0, 0],
-			[1, 2, 0, 0],
-			[1, 2, 0, 0],
+			[1, 2, 0, 0, TYPE.ALL],
+			[1, 2, 0, 0, TYPE.ALL],
 			[1, 1, 0, 0, TYPE.ALL],
 		]
 	},
 	8: {
 		"grid": [
-			[2, 0],
+			[1],
+		],
+		"plugs": [
+			[1, 3, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
+			[1, 2, 0, 0],
+		],
+		"hint": "[center]Some plugs have additional outlet[/center]"
+	},
+	9: {
+		"grid": [
+			[0, 1],
+			[1, 0],
+		],
+		"rot": [
+			[0, 0],
+			[0, 0],
+		],
+		"plugs": [
+			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
+			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.ONE, 3]]],
+			[1, 2, 0, 0, TYPE.ONE],
+			[1, 2, 0, 0, TYPE.ONE],
+		],
+	},
+	10: {
+		"grid": [
 			[2, 2],
 		],
 		"rot": [
@@ -132,19 +157,23 @@ var level = {
 			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
 			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
 			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
+			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
+			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
+			[1, 2, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
 			[1, 1, 0, 0],
 			[1, 1, 0, 0],
 		],
-		"hint": "[center]Some plugs have additional outlet[/center]"
+		"hint": "[center]How far can you stack?[/center]"
 	},
-	9: {
+	11: {
 		"grid": [
 			[1, 1, 0, 1, 0, 1, 0, 0, 1],
 			[1, 0, 0, 1, 0, 1, 1, 0, 1],
 			[1, 1, 0, 1, 0, 1, 0, 1, 1],
 			[1, 0, 0, 1, 0, 1, 0, 0, 1]
 		],
-		"plugs": []
+		"plugs": [],
+		"hint": "[center]Thank you for playing![/center]"
 	}
 }
 
