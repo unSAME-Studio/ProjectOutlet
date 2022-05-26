@@ -53,6 +53,13 @@ func grid_aabb(a, b):
 	return false
 
 
+func check_z_index():
+	if host_plug:
+		return host_plug.get_z_index()
+	else:
+		return get_z_index()
+
+
 func check_enabled():
 	return enabled
 
@@ -95,12 +102,19 @@ func check_fit(new_plug):
 		if host_plug == plug:
 			continue
 		
+		#var island_plugs = []
+		#var additional_outlet = self
+		#while additional_outlet:
+		#	if additional_outlet.host_plug:
+		
 		# check collision
 		if grid_aabb(new_plug, plug):
 			fit = false
 			break
 	
 	return fit
+
+
 
 
 func select(new_plug):	
@@ -113,3 +127,4 @@ func deselect():
 	emit_signal("deselect")
 	
 	$Head.modulate = Color("c4c4c4")
+	

@@ -13,6 +13,9 @@ config_version=4
 config/name="ProjectOutlet"
 config/description="(c) 2022 unSAME Studio"
 run/main_scene="res://scenes/Menu.tscn"
+boot_splash/image="res://Logo White (Small).png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 0.364706, 0.764706, 0.682353, 1 )
 config/icon="res://icon.png"
 
 [autoload]
@@ -24,9 +27,8 @@ MusicPlayer="*res://scripts/MusicPlayer.gd"
 
 window/size/width=1080
 window/size/height=1920
-window/size/test_width=720
+window/size/test_width=1280
 window/size/test_height=720
-window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 

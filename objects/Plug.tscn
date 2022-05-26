@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://objects/Plug.gd" type="Script" id=1]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://arts/Texture.png" type="Texture" id=8]
 [ext_resource path="res://sounds/medium_plug_out.mp3" type="AudioStream" id=9]
 [ext_resource path="res://sounds/medium_plug_in.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Logo White (Small).png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 64 )
@@ -87,6 +88,14 @@ texture = ExtResource( 7 )
 
 [node name="End" type="Position2D" parent="."]
 position = Vector2( 0, 96 )
+
+[node name="End2" type="Position2D" parent="."]
+position = Vector2( 0, 296 )
+
+[node name="Test" type="Sprite" parent="End2"]
+visible = false
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 11 )
 
 [node name="In0" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )

@@ -13,14 +13,21 @@ var pos: PoolVector2Array
 var posPrev: PoolVector2Array
 var pointCount: int
 
-var plug
+var head_end
+var plug_end
+var plug_end_tan
 
 onready var curve = Curve2D.new()
 
 func _ready()->void:
-	pointCount = get_pointCount(ropeLength)
-	resize_arrays()
-	init_position()
+	#pointCount = get_pointCount(ropeLength)
+	#resize_arrays()
+	#init_position()
+	
+	# set P0 to end
+	$P0.set_global_position(head_end)
+	$P0/P1.set_global_position($P0.get_global_position() + Vector2(0, -200))
+	pass
 
 func get_pointCount(distance: float)->int:
 	return int(ceil(distance / constrain))
@@ -50,16 +57,33 @@ func _unhandled_input(event:InputEvent)->void:
 """
 
 func _process(delta)->void:
-	set_last(plug.get_global_position())
+	#if plug:
+	#	set_last(plug.get_global_position())
 	
-	update_points(delta)
-	update_constrain()
+	#update_points(delta)
+	#update_constrain()
 	
-	update_constrain()	#Repeat to get tighter rope
-	update_constrain()
+	#update_constrain()	#Repeat to get tighter rope
+	#update_constrain()
 	
 	# Send positions to Line2D for drawing
-	line2D.points = pos
+	#line2D.points = pos
+	
+	# calculate curve
+	#$P0.look_at(plug_end.get_global_position())
+	
+	var p0_in = Vector2.ZERO # This isn't used for the first curve
+	var p0_vertex = $P0.get_global_position() # First point of first line segment
+	var p0_out = $P0/P1.get_global_position() - $P0.get_global_position() # Second point of first line segment
+	var p1_in = plug_end_tan.get_global_position() - plug_end.get_global_position() # First point of second line segment
+	var p1_vertex = plug_end.get_global_position() # Second point of second line segment
+	var p1_out = Vector2.ZERO # Not used unless another curve is added
+	curve.add_point(p0_vertex, p0_in, p0_out)
+	curve.add_point(p1_vertex, p1_in, p1_out)
+	
+	line2D.points = curve.tessellate()
+	
+	curve.clear_points()
 
 func set_start(p:Vector2)->void:
 	pos[0] = p

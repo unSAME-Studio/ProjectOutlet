@@ -32,6 +32,8 @@ func _ready():
 				add_child(o)
 				
 				o.set_position(Vector2(c - (float(grid[r].size()) / 2.0), r - (float(grid.size()) / 2.0)) * GRID_SIZE + Vector2(GRID_SIZE / 2, GRID_SIZE / 2))
+				
+				yield(get_tree().create_timer(0.1), "timeout")
 	
 	
 	# spawn all the plugs
@@ -49,8 +51,11 @@ func _ready():
 		
 		# if additional outlet exist TEMP IMPLEMENT
 		if info.size() >= 6:
-			p.additional_outlets.append(info[5])
+			for add in info[5]:
+				p.additional_outlets.append(add)
 		
-		p.original_point = Vector2(OS.get_real_window_size().x / plugs_count * i - OS.get_real_window_size().x / 2, OS.get_real_window_size().y - 200)
+		p.original_point = Vector2(OS.get_real_window_size().x / plugs_count * i - OS.get_real_window_size().x / 2, OS.get_real_window_size().y / 2)
 		get_parent().call_deferred("add_child", p)
+		
+		yield(get_tree().create_timer(0.1), "timeout")
 	

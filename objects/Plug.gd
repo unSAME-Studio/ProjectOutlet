@@ -60,22 +60,26 @@ func _ready():
 		Vector2(501.0, 501.0),
 		Vector2(501.0, 0.0),
 	])
-	$Body.set_position((-head_position * GRID_SIZE) - Vector2(GRID_SIZE / 2, GRID_SIZE / 2))
+	$Body.set_offset(size * GRID_SIZE / 2)
+	$Body.set_position(((-head_position * GRID_SIZE) - Vector2(GRID_SIZE / 2, GRID_SIZE / 2)) - (size * GRID_SIZE / 2))
 	
 	var shape = RectangleShape2D.new()
 	shape.set_extents(size * GRID_SIZE / 2)
 	$CollisionShape2D.set_shape(shape)
-	$CollisionShape2D.set_position($Body.get_position() + size * GRID_SIZE / 2)
-	#$CollisionShape2D.set_position((-head_position * GRID_SIZE) + Vector2(0, GRID_SIZE / 2))
+	$CollisionShape2D.set_position($Body.get_position())
 	
 	# move attach point
 	$End.set_position(Vector2(0, (size.y - head_position.y) * GRID_SIZE - GRID_SIZE / 2 - MARGIN))
+	$End2.set_position($End.get_position() + Vector2(0, 200))
 	
 	# spawn the string
 	cable = string.instance()
-	cable.plug = $"End"
-	get_parent().call_deferred("add_child", cable)
-	cable.set_global_position(Vector2(original_point.x, OS.get_real_window_size().y))
+	cable.plug_end = $End
+	cable.plug_end_tan = $End2
+	cable.head_end = Vector2(original_point.x, get_viewport_rect().size.y / 2)
+	
+	get_parent().add_child(cable)
+	#cable.set_global_position(Vector2(original_point.x, OS.get_real_window_size().y))
 	
 	# spawn additional outlets
 	for i in additional_outlets:
@@ -110,16 +114,15 @@ func _on_Plug_input_event(viewport, event, shape_idx):
 						if rest_point == null:
 							spin_clockwise()
 						else:
-							set_rotation_degrees(get_rotation_degrees() + 10)
+							set_rotation_degrees(get_rotation_degrees() + 20)
 					BUTTON_WHEEL_DOWN:
 						if rest_point == null:
 							spin_counterclockwise()
 						else:
-							set_rotation_degrees(get_rotation_degrees() - 10)
+							set_rotation_degrees(get_rotation_degrees() - 20)
 
 
 func _process(delta):
-	
 	# check for release event
 	if Input.is_action_just_released("click"):
 		hold_time = 0.0
@@ -134,7 +137,7 @@ func _process(delta):
 				#play can't rotate animation
 				#$AnimationPlayer.stop()
 				#$AnimationPlayer.play("bad_rotate")
-				set_rotation_degrees(get_rotation_degrees() + 10)
+				set_rotation_degrees(get_rotation_degrees() + 20)
 	
 	# check for holding
 	if not selected and holding:
@@ -147,6 +150,7 @@ func _process(delta):
 			
 			selected = true
 			get_node("In%d" % (randi() % 2)).play()
+			$AnimationPlayer.play("body_hint")
 			
 			set_modulate(Color(1,1,1,0.5))
 			cable.set_modulate(Color(1,1,1,0.5))
@@ -161,6 +165,7 @@ func _process(delta):
 			
 			selected = true
 			get_node("In%d" % (randi() % 2)).play()
+			$AnimationPlayer.play("body_hint")
 			
 			set_modulate(Color(1,1,1,0.5))
 			cable.set_modulate(Color(1,1,1,0.5))
@@ -185,7 +190,7 @@ func _process(delta):
 				shortest_dist = distance
 		
 		if closest_point:
-			set_global_position(lerp(get_global_position(), closest_point.get_global_position(), 25 * delta))
+			set_global_position(lerp(get_global_position(), closest_point.get_global_position(), 20 * delta))
 			
 			if closest_point.check_fit(self):
 				set_modulate(Color(0,0.5,0.5,0.5))
@@ -196,20 +201,24 @@ func _process(delta):
 				set_modulate(Color(1,0.5,0.5,0.5))
 				cable.set_modulate(Color(1,0.5,0.5,0.5))
 		else:
-			set_global_position(lerp(get_global_position(), get_global_mouse_position(), 25 * delta))
+			set_global_position(lerp(get_global_position(), get_global_mouse_position(), 20 * delta))
 			
 			set_modulate(Color(1,1,1,0.5))
 			cable.set_modulate(Color(1,1,1,0.5))
 	
 	else:
 		if rest_point:
-			set_global_position(lerp(get_global_position(), rest_point.get_global_position(), 25 * delta))
+			set_global_position(lerp(get_global_position(), rest_point.get_global_position(), 10 * delta))
 		else:
-			set_global_position(lerp(get_global_position(), original_point, 25 * delta))
+			set_global_position(lerp(get_global_position(), original_point, 10 * delta))
 	
 	# constantly rotate the plug
 	set_rotation(lerp_angle(get_rotation(), direction * PI / 2, 25 * delta))
-
+	
+	# adjust end tangent base on cable distance
+	var cable_distance = (cable.head_end.distance_to(get_global_position()) / 2)
+	$End2.set_position($End.get_position() + Vector2(0, cable_distance))
+	cable.get_node("P0/P1").set_position(Vector2(0, -cable_distance))
 
 # on drop
 func _input(event):
@@ -245,7 +254,8 @@ func _input(event):
 					set_modulate(Color("44d29c"))
 					cable.set_modulate(Color("44d29c"))
 					
-					set_z_index(rest_point.get_z_index() + 2)
+					set_z_index(rest_point.check_z_index() + 2)
+					print("This plug is at %d Z INDEX" % get_z_index())
 					
 					#print("Avaliable")
 					#print(Global.console.avaliable_plugs)
@@ -281,7 +291,8 @@ func unplug():
 	set_modulate(Color("ffffff"))
 	cable.set_modulate(Color("ffffff"))
 	
-	set_z_index(10)
+	set_z_index(20)
+	print("This plug is at %d Z INDEX" % get_z_index())
 	
 	#print("Avaliable")
 	#print(Global.console.avaliable_plugs)
@@ -293,10 +304,17 @@ func unplug():
 		i.enabled = false
 		
 		# restore additional outlet place
-		# by top z index [NEED FIX] It shouldn't enable all plugs
+		# by finding the outlet with top z index
+		var max_z_index = -1
+		var top_outlet = null
 		for child in get_tree().get_nodes_in_group("outlet"):
 			if i != child and i.grid_position == child.grid_position:
-				child.enabled = true
+				if child.get_z_index() > max_z_index:
+					max_z_index = child.get_z_index()
+					top_outlet = child
+		
+		if top_outlet:
+			top_outlet.enabled = true
 		
 		# recursive unpluging
 		for p in Global.console.attached_plugs:

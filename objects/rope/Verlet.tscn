@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://objects/rope/string.gd" type="Script" id=1]
+[ext_resource path="res://Logo White (Small).png" type="Texture" id=2]
 
 [node name="String" type="Node2D"]
 script = ExtResource( 1 )
@@ -12,3 +13,17 @@ default_color = Color( 0.576471, 0.576471, 0.576471, 1 )
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="P0" type="Position2D" parent="."]
+
+[node name="Test" type="Sprite" parent="P0"]
+visible = false
+texture = ExtResource( 2 )
+
+[node name="P1" type="Position2D" parent="P0"]
+position = Vector2( 0, -200 )
+
+[node name="Test" type="Sprite" parent="P0/P1"]
+visible = false
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 2 )
