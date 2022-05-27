@@ -4,7 +4,7 @@ extends Node
 func _ready():
 	Global.main = self
 	
-	$"CanvasLayer/Control/Level".set_text("Level %d" % Global.current_level)
+	$"CanvasLayer/Control/UI/VBoxContainer/Level".set_text("Level %d" % Global.current_level)
 	
 	if Global.console.level[Global.current_level].has("hint"):
 		$CanvasLayer/Control/Hint.show()
