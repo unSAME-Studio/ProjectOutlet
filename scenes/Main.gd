@@ -12,6 +12,7 @@ func _ready():
 
 
 func game_finished():
+	$"CanvasLayer/Control/UI".hide()
 	$"CanvasLayer/Control/OverScreen".show()
 	
 	yield(get_tree().create_timer(0.2), "timeout")
@@ -28,3 +29,20 @@ func game_finished():
 	
 	yield(get_tree().create_timer(0.7), "timeout")
 	$"CanvasLayer/Control/OverScreen/PanelContainer".show()
+
+
+func _on_RestartButton_pressed():
+	for i in Global.console.attached_plugs:
+		i.unplug()
+
+
+func _on_SoundButton_toggled(mute):
+	if not mute:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
+	else:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
+
+
+func _on_HomeButton_pressed():
+	get_tree().change_scene("res://scenes/Menu.tscn")
+

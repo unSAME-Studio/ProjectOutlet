@@ -25,6 +25,3 @@ func next_level():
 	Global.current_level += 1
 	get_tree().reload_current_scene()
 
-
-func _on_Home_pressed():
-	get_tree().change_scene("res://scenes/Menu.tscn")
