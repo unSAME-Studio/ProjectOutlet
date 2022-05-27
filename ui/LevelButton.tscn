@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/LevelButton.gd" type="Script" id=2]
+
+[node name="LevelButton" type="MarginContainer"]
+margin_right = 200.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+script = ExtResource( 2 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 180.0
+margin_bottom = 180.0
+theme = ExtResource( 1 )
+text = "1"
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

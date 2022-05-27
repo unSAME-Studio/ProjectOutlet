@@ -12,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="SpinBox" type="SpinBox" parent="Control"]
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 60.0
@@ -35,18 +36,18 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="CenterContainer" type="CenterContainer" parent="Control"]
+[node name="Options" type="CenterContainer" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Options"]
 margin_left = 400.0
 margin_top = 845.0
 margin_right = 679.0
 margin_bottom = 1075.0
 
-[node name="Play" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+[node name="Play" type="Button" parent="Control/Options/VBoxContainer"]
 margin_right = 279.0
 margin_bottom = 113.0
 focus_mode = 0
@@ -55,7 +56,7 @@ theme = ExtResource( 3 )
 enabled_focus_mode = 0
 text = "Play"
 
-[node name="Editor" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+[node name="Editor" type="Button" parent="Control/Options/VBoxContainer"]
 margin_top = 117.0
 margin_right = 279.0
 margin_bottom = 230.0
@@ -65,5 +66,43 @@ theme = ExtResource( 3 )
 enabled_focus_mode = 0
 text = "Editor"
 
-[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Play" to="." method="_on_Play_pressed"]
-[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Editor" to="." method="_on_Editor_pressed"]
+[node name="Quit" type="Button" parent="Control/Options/VBoxContainer"]
+visible = false
+margin_top = 234.0
+margin_right = 279.0
+margin_bottom = 347.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 3 )
+enabled_focus_mode = 0
+text = "Quit"
+
+[node name="Levels" type="CenterContainer" parent="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Levels"]
+margin_left = 432.0
+margin_top = 901.0
+margin_right = 647.0
+margin_bottom = 1018.0
+
+[node name="GridContainer" type="GridContainer" parent="Control/Levels/VBoxContainer"]
+margin_right = 215.0
+columns = 4
+
+[node name="Back" type="Button" parent="Control/Levels/VBoxContainer"]
+margin_top = 4.0
+margin_right = 215.0
+margin_bottom = 117.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 3 )
+enabled_focus_mode = 0
+text = "Back"
+
+[connection signal="pressed" from="Control/Options/VBoxContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Control/Options/VBoxContainer/Editor" to="." method="_on_Editor_pressed"]
+[connection signal="pressed" from="Control/Options/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Control/Levels/VBoxContainer/Back" to="." method="_on_Back_pressed"]

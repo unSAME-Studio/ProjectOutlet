@@ -6,9 +6,9 @@ func _ready():
 	
 	$"CanvasLayer/Control/Level".set_text("Level %d" % Global.current_level)
 	
-	if Global.console.level[Global.current_level].has("hint"):
+	if Global.current_level_data.has("hint"):
 		$CanvasLayer/Control/Hint.show()
-		$CanvasLayer/Control/Hint/PanelContainer/MarginContainer/RichTextLabel.set_bbcode(Global.console.level[Global.current_level]["hint"])
+		$CanvasLayer/Control/Hint/PanelContainer/MarginContainer/RichTextLabel.set_bbcode(Global.current_level_data["hint"])
 
 
 func game_finished():
