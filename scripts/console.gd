@@ -20,8 +20,3 @@ func detect_complete():
 func game_finished():
 	Global.main.game_finished()
 
-
-func next_level():
-	Global.current_level += 1
-	get_tree().reload_current_scene()
-
