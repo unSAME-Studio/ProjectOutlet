@@ -56,3 +56,11 @@ func _on_SoundButton_toggled(mute):
 func _on_HomeButton_pressed():
 	get_tree().change_scene("res://scenes/Menu.tscn")
 
+
+func _on_Next_pressed():
+	Global.current_level += 1
+	
+	if Global.level.has(Global.current_level):
+		get_tree().reload_current_scene()
+	else:
+		get_tree().change_scene("res://scenes/Menu.tscn")

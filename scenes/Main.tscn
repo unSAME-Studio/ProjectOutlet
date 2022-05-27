@@ -238,7 +238,7 @@ current = true
 stream = ExtResource( 6 )
 
 [connection signal="pressed" from="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Home" to="." method="_on_HomeButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Next" to="Console" method="next_level"]
+[connection signal="pressed" from="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Next" to="." method="_on_Next_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/UI/VBoxContainer/MarginContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="toggled" from="CanvasLayer/Control/UI/VBoxContainer/MarginContainer2/SoundButton" to="." method="_on_SoundButton_toggled"]
 [connection signal="pressed" from="CanvasLayer/Control/UI/VBoxContainer/MarginContainer3/HomeButton" to="." method="_on_HomeButton_pressed"]
