@@ -38,6 +38,11 @@ var normal_texture = preload("res://arts/outlet_uv.png")
 # drag and drop code adapted from Youtube
 # https://www.youtube.com/watch?v=iSpWZzL2i1o
 
+# inverse vector helper
+# https://godotengine.org/qa/104140/trying-to-find-inverse-vector-using-two-other-vectors
+func get_negative_vector(origin_vector, destination_vector):
+	return (destination_vector - origin_vector).tangent().tangent() + origin_vector 
+
 
 func _ready():
 	# add this plug to the avaliable plugs
@@ -258,11 +263,21 @@ func _process(delta):
 		if rest_point:
 			set_global_position(lerp(get_global_position(), rest_point.get_global_position(), 10 * delta))
 		else:
+			# check if anything selected [NEED OPTIMIZE]
+			var anything_selected = false
+			for i in get_tree().get_nodes_in_group("plug"):
+				if i.selected == true:
+					anything_selected = true
+					break
+			
 			# add a offset push force
 			var force = original_point
 			var distance = get_global_mouse_position().distance_to(get_global_position())
 			if not selected and distance < size.length() * GRID_SIZE / 2:
-				force = force.linear_interpolate(get_global_mouse_position(), 1 - float(distance) / float(size.length() * GRID_SIZE / 2))
+				if anything_selected:
+					force = force.linear_interpolate(get_negative_vector(original_point, get_global_mouse_position()), 1 - float(distance) / float(size.length() * GRID_SIZE))
+				else:
+					force = force.linear_interpolate(get_global_mouse_position(), 1 - float(distance) / float(size.length() * GRID_SIZE / 2))
 			
 			set_global_position(lerp(get_global_position(), force, 10 * delta))
 	

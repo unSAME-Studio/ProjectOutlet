@@ -113,7 +113,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
 }
 
-[node name="Plug" type="Area2D"]
+[node name="Plug" type="Area2D" groups=["plug"]]
 z_index = 6
 script = ExtResource( 1 )
 outlet = ExtResource( 2 )
