@@ -6,10 +6,10 @@
 [ext_resource path="res://objects/OutletGrid.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/theme.tres" type="Theme" id=5]
 [ext_resource path="res://sounds/xylo_sfx.mp3" type="AudioStream" id=6]
-[ext_resource path="res://ui/restart_ui.png" type="Texture" id=7]
-[ext_resource path="res://ui/sound_ui.png" type="Texture" id=8]
-[ext_resource path="res://ui/home_ui.png" type="Texture" id=9]
-[ext_resource path="res://ui/no_sound_ui.png" type="Texture" id=10]
+[ext_resource path="res://ui/icons/restart_ui.png" type="Texture" id=7]
+[ext_resource path="res://ui/icons/sound_ui.png" type="Texture" id=8]
+[ext_resource path="res://ui/icons/home_ui.png" type="Texture" id=9]
+[ext_resource path="res://ui/icons/no_sound_ui.png" type="Texture" id=10]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
