@@ -30,8 +30,14 @@ func initialize(pos, type, rot):
 			$Head.set_texture(load("res://arts/plug_multi.png"))
 	
 	# rotate the outlet
+	rotate(rot)
+
+
+func rotate(rot):
 	direction = rot
 	$Head.set_rotation(direction * PI / 2)
+	
+	print("rotated the outlet to %d" % [direction])
 
 
 # code adapted from 
