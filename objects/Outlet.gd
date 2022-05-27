@@ -44,7 +44,6 @@ func hide_outline():
 	$BG.hide()
 	$BG2.hide()
 
-
 # code adapted from 
 # https://tutorialedge.net/gamedev/aabb-collision-detection-tutorial/#:~:text=AABB%20Collision%20Detection%20or%20%22Axis,is%20axis%2Daligned%2C%20ie.
 

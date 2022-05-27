@@ -16,7 +16,8 @@ var rest_point
 var closest_point = null
 
 const GRID_SIZE = 200
-const MARGIN = 20
+const MARGIN = 15
+const CORNER = 10
 var head_position = Vector2(0, 0)
 var size = Vector2(2, 3)
 
@@ -51,15 +52,31 @@ func _ready():
 	# set up graphics
 	$Body.set_polygon(PoolVector2Array([
 		Vector2(0 + MARGIN, 0 + MARGIN),
+		Vector2(0 + MARGIN + CORNER, 0 + MARGIN),
+		Vector2(size.x * GRID_SIZE - MARGIN - CORNER, 0 + MARGIN),
 		Vector2(size.x * GRID_SIZE - MARGIN, 0 + MARGIN),
+		Vector2(size.x * GRID_SIZE - MARGIN, 0 + MARGIN + CORNER),
+		Vector2(size.x * GRID_SIZE - MARGIN, size.y * GRID_SIZE - MARGIN - CORNER),
 		Vector2(size.x * GRID_SIZE - MARGIN, size.y * GRID_SIZE - MARGIN),
-		Vector2(0 + MARGIN, size.y * GRID_SIZE - MARGIN)
+		Vector2(size.x * GRID_SIZE - MARGIN - CORNER, size.y * GRID_SIZE - MARGIN),
+		Vector2(0 + MARGIN + CORNER, size.y * GRID_SIZE - MARGIN),
+		Vector2(0 + MARGIN, size.y * GRID_SIZE - MARGIN),
+		Vector2(0 + MARGIN, size.y * GRID_SIZE - MARGIN - CORNER),
+		Vector2(0 + MARGIN, 0 + MARGIN + CORNER),
 	]))
 	$Body.uv = PoolVector2Array([
 		Vector2(0.0, 0.0),
-		Vector2(0.0, 501.0),
-		Vector2(501.0, 501.0),
-		Vector2(501.0, 0.0),
+		Vector2(0.0 + CORNER, 0.0),
+		Vector2(200.0 - CORNER, 0.0),
+		Vector2(200.0, 0.0),
+		Vector2(200.0, 0.0 + CORNER),
+		Vector2(200.0, 200.0 - CORNER),
+		Vector2(200.0, 200.0),
+		Vector2(200.0 - CORNER, 200.0),
+		Vector2(0.0 + CORNER, 200.0),
+		Vector2(0.0, 200.0),
+		Vector2(0.0, 200.0 - CORNER),
+		Vector2(0.0, 0.0 + CORNER),
 	])
 	$Body.set_offset(-size * GRID_SIZE / 2)
 	$Body.set_position(((-head_position * GRID_SIZE) - Vector2(GRID_SIZE / 2, GRID_SIZE / 2)) + (size * GRID_SIZE / 2))
