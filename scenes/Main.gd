@@ -25,5 +25,6 @@ func game_finished():
 		$xylo.set_pitch_scale($xylo.get_pitch_scale() + 0.05)
 		
 		yield(get_tree().create_timer(0.2), "timeout")
-		
+	
+	yield(get_tree().create_timer(0.7), "timeout")
 	$"CanvasLayer/Control/OverScreen/PanelContainer".show()

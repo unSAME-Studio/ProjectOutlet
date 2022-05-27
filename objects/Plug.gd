@@ -109,7 +109,7 @@ func _ready():
 
 # on drag
 func _on_Plug_input_event(viewport, event, shape_idx):
-	if not get_tree().is_input_handled():
+	if hovering and not get_tree().is_input_handled():
 		get_tree().set_input_as_handled()
 		
 		if Input.is_action_just_pressed("click"):
@@ -406,7 +406,30 @@ func spin_counterclockwise():
 
 func _on_Plug_mouse_entered():
 	hovering = true
+	
+	if Global.hover_plugs.size() > 0:
+		# check the entire list, if z index is lower then ignore
+		for i in Global.hover_plugs:
+			if i.get_z_index() > get_z_index():
+				hovering = false
+				break
+			else:
+				i.hovering = false
+		
+	Global.hover_plugs.append(self)
 
 
 func _on_Plug_mouse_exited():
+	Global.hover_plugs.erase(self)
 	hovering = false
+	
+	# find the top by z index and hover
+	if Global.hover_plugs.size() > 0:
+		var top_plug = null
+		var top_z = -100
+		for i in Global.hover_plugs:
+			if i.get_z_index() > top_z:
+				top_plug = i
+				top_z = i.get_z_index()
+		
+		top_plug.hovering = true
