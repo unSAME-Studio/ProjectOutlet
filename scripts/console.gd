@@ -44,10 +44,11 @@ var level = {
 		],
 		"plugs": [
 			[1, 2, 0, 0],
-			[1, 1, 0, 0],
-			[1, 1, 0, 0],
+			[1, 1, 0, 0, TYPE.ONE],
+			[1, 1, 0, 0, TYPE.ONE],
 			[2, 3, 0, 0]
-		]
+		],
+		"hint": "[center]Match the plugs[/center][center]to their outlets[/center]"
 	},
 	4: {
 		"grid": [
@@ -126,7 +127,7 @@ var level = {
 			[1, 3, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
 			[1, 2, 0, 0],
 		],
-		"hint": "[center]Some plugs have additional outlet[/center]"
+		"hint": "[center]Some plugs have an additional outlet[/center]"
 	},
 	9: {
 		"grid": [
