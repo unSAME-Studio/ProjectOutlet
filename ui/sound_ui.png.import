@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/restart_ui.png-9f14eff50ae7bd99b817ed027603376c.stex"
+path="res://.import/sound_ui.png-8ea38786c0a7a30f335cf4bd75403edd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arts/restart_ui.png"
-dest_files=[ "res://.import/restart_ui.png-9f14eff50ae7bd99b817ed027603376c.stex" ]
+source_file="res://ui/sound_ui.png"
+dest_files=[ "res://.import/sound_ui.png-8ea38786c0a7a30f335cf4bd75403edd.stex" ]
 
 [params]
 
