@@ -177,6 +177,12 @@ script = ExtResource( 6 )
 volume_low = 2
 volume_high = 2
 
+[node name="Error" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+script = ExtResource( 6 )
+volume_low = 2
+volume_high = 2
+
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -189,9 +195,6 @@ anims/spawn = SubResource( 8 )
 
 [node name="Outlets" type="Node2D" parent="."]
 modulate = Color( 1, 0.819608, 0, 1 )
-
-[node name="Error" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 12 )
 
 [connection signal="input_event" from="." to="." method="_on_Plug_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_Plug_mouse_entered"]

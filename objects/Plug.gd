@@ -32,6 +32,9 @@ var additional_outlets = [
 
 var cable
 
+var error_texture = preload("res://arts/outlet_uv_error.png")
+var normal_texture = preload("res://arts/outlet_uv.png")
+
 # drag and drop code adapted from Youtube
 # https://www.youtube.com/watch?v=iSpWZzL2i1o
 
@@ -228,11 +231,15 @@ func _process(delta):
 			if closest_point.check_fit(self):
 				set_modulate(ColorManager.color.main)
 				cable.set_modulate(ColorManager.color.main)
+				
+				$Body.set_texture(normal_texture)
 			else:
 				closest_point = null
 				
 				set_modulate(ColorManager.color.bad)
 				cable.set_modulate(ColorManager.color.bad)
+				
+				$Body.set_texture(error_texture)
 		
 		else:
 			set_global_position(lerp(get_global_position(), get_global_mouse_position(), 20 * delta))
