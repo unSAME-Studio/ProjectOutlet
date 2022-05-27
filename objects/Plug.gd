@@ -234,18 +234,22 @@ func _process(delta):
 			if closest_point.check_fit(self):
 				set_modulate(ColorManager.color.main)
 				cable.set_modulate(ColorManager.color.main)
+				
+				#$Body.get_material().set_shader_param("Opacity", 0)
 			else:
 				closest_point = null
 				
 				set_modulate(ColorManager.color.bad)
 				cable.set_modulate(ColorManager.color.bad)
+				
+				#$Body.get_material().set_shader_param("Opacity", 1)
 		
 		else:
 			set_global_position(lerp(get_global_position(), get_global_mouse_position(), 20 * delta))
 			
 			set_modulate(ColorManager.color.main_light)
 			cable.set_modulate(ColorManager.color.main_light)
-		
+			
 		# half transparency
 		modulate.a = 0.5
 		cable.modulate.a = 0.5
