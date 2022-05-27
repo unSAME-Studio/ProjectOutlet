@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://ui/ui_blur.gdshader" type="Shader" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://objects/OutletGrid.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/theme.tres" type="Theme" id=5]
 [ext_resource path="res://sounds/xylo_sfx.mp3" type="AudioStream" id=6]
+[ext_resource path="res://ui/restart_ui.png" type="Texture" id=7]
+[ext_resource path="res://ui/sound_ui.png" type="Texture" id=8]
+[ext_resource path="res://ui/home_ui.png" type="Texture" id=9]
+[ext_resource path="res://ui/no_sound_ui.png" type="Texture" id=10]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
@@ -114,18 +118,79 @@ theme = ExtResource( 5 )
 enabled_focus_mode = 0
 text = "Next"
 
-[node name="Level" type="Label" parent="CanvasLayer/Control"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 41.0
-margin_top = -115.0
-margin_right = 97.0
-margin_bottom = -101.0
-theme = ExtResource( 5 )
-text = "Level 1"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
 anims/hint = SubResource( 3 )
+
+[node name="UI" type="MarginContainer" parent="CanvasLayer/Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -632.0
+margin_right = 323.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 0
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/UI"]
+margin_left = 100.0
+margin_right = 323.0
+margin_bottom = 532.0
+rect_min_size = Vector2( 0, 300 )
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/UI/VBoxContainer"]
+margin_top = 2.0
+margin_right = 223.0
+margin_bottom = 160.0
+custom_constants/margin_bottom = 40
+
+[node name="RestartButton" type="TextureButton" parent="CanvasLayer/Control/UI/VBoxContainer/MarginContainer"]
+margin_right = 118.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 118, 118 )
+size_flags_horizontal = 0
+texture_normal = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/UI/VBoxContainer"]
+margin_top = 164.0
+margin_right = 223.0
+margin_bottom = 304.0
+custom_constants/margin_bottom = 40
+
+[node name="SoundButton" type="TextureButton" parent="CanvasLayer/Control/UI/VBoxContainer/MarginContainer2"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 0
+toggle_mode = true
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 10 )
+expand = true
+stretch_mode = 5
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/Control/UI/VBoxContainer"]
+margin_top = 308.0
+margin_right = 223.0
+margin_bottom = 448.0
+custom_constants/margin_bottom = 40
+
+[node name="HomeButton" type="TextureButton" parent="CanvasLayer/Control/UI/VBoxContainer/MarginContainer3"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 0
+texture_normal = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="Level" type="Label" parent="CanvasLayer/Control/UI/VBoxContainer"]
+margin_top = 452.0
+margin_right = 223.0
+margin_bottom = 532.0
+theme = ExtResource( 5 )
+text = "Level 1"
 
 [node name="Node2D" type="Node2D" parent="."]
 
