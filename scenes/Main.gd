@@ -17,8 +17,8 @@ func game_finished():
 	yield(get_tree().create_timer(0.2), "timeout")
 	
 	for p in Global.console.attached_plugs:
-		p.set_modulate(ColorManager.color.good)
-		p.cable.set_modulate(ColorManager.color.good)
+		p.set_modulate(ColorManager.color.second)
+		p.cable.set_modulate(ColorManager.color.second)
 		p.get_node("AnimationPlayer").play("complete")
 		
 		$xylo.play()

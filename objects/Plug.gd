@@ -101,6 +101,7 @@ func _ready():
 		o.offset_position = Vector2(i[0], i[1])
 		o.host_plug = self
 		o.enabled = false
+		o.hide_outline()
 		
 		$Outlets.add_child(o)
 		
@@ -162,6 +163,7 @@ func _process(delta):
 			
 			selected = true
 			get_node("In%d" % (randi() % 2)).play()
+			$AnimationPlayer.stop()
 			$AnimationPlayer.play("body_hint")
 			
 			modulate.a = 0.5
@@ -177,6 +179,7 @@ func _process(delta):
 			
 			selected = true
 			get_node("In%d" % (randi() % 2)).play()
+			$AnimationPlayer.stop()
 			$AnimationPlayer.play("body_hint")
 			
 			modulate.a = 0.5
@@ -205,8 +208,8 @@ func _process(delta):
 			set_global_position(lerp(get_global_position(), closest_point.get_global_position(), 20 * delta))
 			
 			if closest_point.check_fit(self):
-				set_modulate(ColorManager.color.good)
-				cable.set_modulate(ColorManager.color.good)
+				set_modulate(ColorManager.color.main)
+				cable.set_modulate(ColorManager.color.main)
 			else:
 				closest_point = null
 				
@@ -240,13 +243,12 @@ func _process(delta):
 	# enlarge outline
 	if hovering:
 		#$Outline.set_scale(lerp($Outline.get_scale(), Vector2(1.2, 1.2), 25 * delta))
-		#$Outline.set_global_position(lerp($Outline.get_global_position(), $Body.get_global_position() + Vector2(0, 30), 25 * delta))
-		$Outline.set_global_position($Body.get_global_position() + Vector2(0, 30))
 		set_scale(lerp(get_scale(), Vector2(1.1, 1.1), 25 * delta))
 	else:
 		#$Outline.set_global_position(lerp($Outline.get_global_position(), $Body.get_global_position() + Vector2(0, 20), 25 * delta))
-		$Outline.set_global_position($Body.get_global_position() + Vector2(0, 20))
 		set_scale(lerp(get_scale(), Vector2(1, 1), 25 * delta))
+	
+	$Outline.set_global_position($Body.get_global_position() + Vector2(0, 20))
 
 
 # on drop
