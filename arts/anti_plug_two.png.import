@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/home_ui.png-083026b99cd340109b72c9fc408ff066.stex"
+path="res://.import/anti_plug_two.png-52abf1cc3a0c48ef5a6ad7967b34d2cd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arts/home_ui.png"
-dest_files=[ "res://.import/home_ui.png-083026b99cd340109b72c9fc408ff066.stex" ]
+source_file="res://arts/anti_plug_two.png"
+dest_files=[ "res://.import/anti_plug_two.png-52abf1cc3a0c48ef5a6ad7967b34d2cd.stex" ]
 
 [params]
 
