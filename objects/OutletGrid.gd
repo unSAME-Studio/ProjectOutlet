@@ -75,9 +75,9 @@ func _ready():
 			for add in info[5]:
 				p.additional_outlets.append(add)
 		
-		p.original_point = Vector2(OS.get_real_window_size().x / plugs_count * i - OS.get_real_window_size().x / 2, OS.get_real_window_size().y / 2)
+		p.original_point = Vector2(get_viewport_rect().size.x / 2 / plugs_count * i - get_viewport_rect().size.x / 4, get_viewport_rect().size.y / 2 - p.size.y * GRID_SIZE / 2)
 		get_parent().add_child(p)
-		#p.set_global_position(Vector2(0, OS.get_real_window_size().y))
+		p.set_global_position(Vector2(0, get_viewport_rect().size.y / 2))
 		
 		yield(get_tree().create_timer(0.1), "timeout")
 	

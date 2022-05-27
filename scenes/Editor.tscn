@@ -10,7 +10,6 @@
 
 [sub_resource type="StreamTexture" id=3]
 flags = 4
-load_path = "res://.import/Texture.png-29b56ce68b9bd97269d370282d5f5665.stex"
 
 [sub_resource type="TileSet" id=2]
 0/name = "Texture.png 0"

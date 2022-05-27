@@ -118,7 +118,7 @@ func spawn_plug(info):
 	
 	# reposition all plugs
 	for i in range(plug_scene.size()):
-		plug_scene[i].original_point = Vector2(get_viewport().size.x / plug_scene.size() * i - get_viewport().size.x / 2, get_viewport().size.y / 2)
+		plug_scene[i].original_point = Vector2($Node2D.get_viewport_rect().size.x / plug_scene.size() * i - $Node2D.get_viewport_rect().size.x / 2, $Node2D.get_viewport_rect().size.y / 2)
 
 
 func export_level():
@@ -146,7 +146,11 @@ func export_level():
 	for i in outlet_scene.values():
 		current_level.outlets.append([i.grid_position.x, i.grid_position.y, i.outlet_type, i.direction])
 	
-	print(current_level)
+	var new_level = String(current_level)
+	new_level.replace("outlets", "\"outlets\"")
+	new_level.replace("plugs", "\"plugs\"")
+	new_level.replace("size", "\"size\"")
+	print(new_level)
 
 
 func _on_Remove_pressed():
