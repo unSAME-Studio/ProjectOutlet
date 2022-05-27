@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/xylo_sfx.mp3-846fa10239c74fdd2c0436c2def67ef6.mp3str"
+
+[deps]
+
+source_file="res://sounds/xylo_sfx.mp3"
+dest_files=[ "res://.import/xylo_sfx.mp3-846fa10239c74fdd2c0436c2def67ef6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
