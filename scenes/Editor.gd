@@ -25,6 +25,11 @@ func _ready():
 	$CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Type.add_item("One")
 	$CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Type.add_item("TWO")
 	$CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Type.add_item("ALL")
+	
+	$"Node2D/TileMap/Line2D".set_default_color(ColorManager.color.main)
+	$"Node2D/TileMap/Line2D2".set_default_color(ColorManager.color.main)
+	$Node2D/TileMap.set_modulate(ColorManager.color.second)
+	$Node2D/TileMap.modulate.a = 0.3
 
 
 func game_finished():
@@ -32,11 +37,15 @@ func game_finished():
 
 
 func _unhandled_input(event):
-	if not $"CanvasLayer/Control/PanelContainer2/HBoxContainer3/PlayMode".is_pressed():
+	if $"CanvasLayer/Control/PanelContainer2/HBoxContainer3/PlayMode".is_pressed():
 		
 		if Input.is_action_just_pressed("click"):
 			var position = $Node2D/TileMap.world_to_map($Node2D/TileMap.to_local($Node2D.get_global_mouse_position()))
 			var key = "%d:%d" % [position.x, position.y]
+			
+			# check if key out of range
+			if position.x < 0 or position.y < 0:
+				return
 			
 			# check if outlet already exist, if so rotate
 			if outlet_scene.has(key):
@@ -66,6 +75,14 @@ func _unhandled_input(event):
 		
 	if Input.is_action_pressed("camera"):
 		$Node2D/Camera2D.set_global_position(lerp($Node2D/Camera2D.get_global_position(), $Node2D.get_global_mouse_position(), 0.1))
+	
+	if event is InputEventMouseButton:
+		if event.pressed:
+			match event.button_index:
+				BUTTON_WHEEL_UP:
+					$Node2D/Camera2D.set_zoom($Node2D/Camera2D.get_zoom() + Vector2(0.2, 0.2))
+				BUTTON_WHEEL_DOWN:
+					$Node2D/Camera2D.set_zoom($Node2D/Camera2D.get_zoom() - Vector2(0.2, 0.2))
 
 
 func _on_SpawnPlug_pressed():
@@ -150,7 +167,7 @@ func _on_Remove_pressed():
 		itemlist.remove_item(i)
 		
 		plug_scene[i].cable.queue_free()
-		plug_scene[i].queue_free()
+		plug_scene[i].call_deferred("queue_free")
 		plug_scene.remove(i)
 
 

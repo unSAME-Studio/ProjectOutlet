@@ -39,5 +39,6 @@ func generate_color():
 		color.bad = color.good
 		color.good = temp_bad 
 
+
 func apply_color():
 	VisualServer.set_default_clear_color(color.background)
