@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Menu.gd" type="Script" id=1]
 [ext_resource path="res://ui/fonts/Ubuntu_Reg.tres" type="DynamicFont" id=2]
 [ext_resource path="res://ui/theme.tres" type="Theme" id=3]
 [ext_resource path="res://objects/Plug_Texture.tscn" type="PackedScene" id=4]
+[ext_resource path="res://arts/outlet_uv.png" type="Texture" id=5]
 
 [node name="Menu" type="Node"]
 script = ExtResource( 1 )
@@ -67,8 +68,13 @@ custom_fonts/font = ExtResource( 2 )
 enabled_focus_mode = 0
 text = "Editor"
 
-[node name="NinePatchRect" parent="." instance=ExtResource( 4 )]
+[node name="Outlet UV" parent="." instance=ExtResource( 4 )]
 visible = false
+texture = ExtResource( 5 )
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
 
 [connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Editor" to="." method="_on_Play_pressed"]
