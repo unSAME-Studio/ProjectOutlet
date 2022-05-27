@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/error_sfx.mp3-7e6f33d71ed5da8b58f43602c101c9a6.mp3str"
+
+[deps]
+
+source_file="res://sounds/error_sfx.mp3"
+dest_files=[ "res://.import/error_sfx.mp3-7e6f33d71ed5da8b58f43602c101c9a6.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
