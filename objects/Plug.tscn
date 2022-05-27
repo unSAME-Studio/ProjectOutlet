@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://objects/Plug.gd" type="Script" id=1]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://sounds/medium_plug_in.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Logo White (Small).png" type="Texture" id=11]
 [ext_resource path="res://sounds/error_sfx.mp3" type="AudioStream" id=12]
+[ext_resource path="res://arts/electric_bolt.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 64 )
@@ -112,6 +113,23 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0, 0 ), 0.0, 3.30364, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+lifetime_randomness = 0.61
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 255.81
+initial_velocity_random = 0.78
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 11 )
+
 [node name="Plug" type="Area2D"]
 z_index = 6
 script = ExtResource( 1 )
@@ -195,6 +213,17 @@ anims/spawn = SubResource( 8 )
 
 [node name="Outlets" type="Node2D" parent="."]
 modulate = Color( 1, 0.819608, 0, 1 )
+
+[node name="Error" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+visible = false
+emitting = false
+explosiveness = 0.87
+randomness = 0.46
+process_material = SubResource( 9 )
+texture = ExtResource( 13 )
 
 [connection signal="input_event" from="." to="." method="_on_Plug_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_Plug_mouse_entered"]
