@@ -6,7 +6,6 @@
 [ext_resource path="res://objects/OutletGrid.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/theme.tres" type="Theme" id=5]
 [ext_resource path="res://sounds/xylo_sfx.mp3" type="AudioStream" id=6]
-[ext_resource path="res://ui/home_ui.png" type="Texture" id=7]
 [ext_resource path="res://ui/icons/restart_ui.png" type="Texture" id=8]
 [ext_resource path="res://ui/icons/sound_ui.png" type="Texture" id=9]
 [ext_resource path="res://ui/icons/home_ui.png" type="Texture" id=10]
@@ -20,7 +19,7 @@ shader_param/color_over = Color( 0, 0, 0, 1 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = ExtResource( 7 )
+atlas = ExtResource( 10 )
 region = Rect2( 0, 0, 190, 201 )
 margin = Rect2( 60, 60, 120, 120 )
 
@@ -177,7 +176,7 @@ margin_right = 118.0
 margin_bottom = 118.0
 rect_min_size = Vector2( 118, 118 )
 size_flags_horizontal = 0
-texture_normal = ExtResource( 7 )
+texture_normal = ExtResource( 8 )
 expand = true
 stretch_mode = 5
 
@@ -193,8 +192,8 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 0
 toggle_mode = true
-texture_normal = ExtResource( 8 )
-texture_pressed = ExtResource( 10 )
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 11 )
 expand = true
 stretch_mode = 5
 
@@ -209,7 +208,7 @@ margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 0
-texture_normal = ExtResource( 9 )
+texture_normal = ExtResource( 10 )
 expand = true
 stretch_mode = 5
 
