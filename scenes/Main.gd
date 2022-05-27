@@ -21,6 +21,9 @@ func game_finished():
 		p.cable.set_modulate(ColorManager.color.good)
 		p.get_node("AnimationPlayer").play("complete")
 		
+		$xylo.play()
+		$xylo.set_pitch_scale($xylo.get_pitch_scale() + 0.05)
+		
 		yield(get_tree().create_timer(0.2), "timeout")
 		
 	$"CanvasLayer/Control/OverScreen/PanelContainer".show()
