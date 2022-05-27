@@ -17,6 +17,11 @@ func _ready():
 		$Control/Options/VBoxContainer/Quit.show()
 
 
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("editor"):
+		_on_Editor_pressed()
+
+
 func _on_Play_pressed():
 	$Control/Options.hide()
 	$Control/Levels.show()
