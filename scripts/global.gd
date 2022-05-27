@@ -25,7 +25,7 @@ var level = {
 		"plugs": [
 			[1, 2, 0, 0],
 		],
-		"hint": "[center]Tap to Rotate[/center]\n[center]Drag to Move[/center]"
+		"hint": "[center]Click to Rotate[/center]\n[center]Drag to Move[/center]"
 	},
 	2: {
 		"grid": [
