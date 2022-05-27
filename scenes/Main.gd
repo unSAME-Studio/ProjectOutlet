@@ -18,6 +18,7 @@ func game_finished():
 	yield(get_tree().create_timer(0.2), "timeout")
 	
 	for p in Global.console.attached_plugs:
+		p.hovering = false
 		p.set_modulate(ColorManager.color.second)
 		p.cable.set_modulate(ColorManager.color.second)
 		p.get_node("AnimationPlayer").play("complete")
@@ -32,8 +33,17 @@ func game_finished():
 
 
 func _on_RestartButton_pressed():
+	if Global.console.attached_plugs.size() <= 0:
+		return
+	
 	for i in Global.console.attached_plugs:
 		i.unplug()
+	
+	var btn = get_node("CanvasLayer/Control/UI/VBoxContainer/MarginContainer/RestartButton")
+	btn.get_node("Tween").interpolate_property(btn, "rect_rotation",
+			0, 360, 1,
+			Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	btn.get_node("Tween").start()
 
 
 func _on_SoundButton_toggled(mute):

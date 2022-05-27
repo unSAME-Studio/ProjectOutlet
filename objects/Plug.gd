@@ -149,11 +149,13 @@ func _on_Plug_input_event(viewport, event, shape_idx):
 							spin_clockwise()
 						else:
 							set_rotation_degrees(get_rotation_degrees() + 20)
+							$Error.play()
 					BUTTON_WHEEL_DOWN:
 						if rest_point == null:
 							spin_counterclockwise()
 						else:
 							set_rotation_degrees(get_rotation_degrees() - 20)
+							$Error.play()
 
 
 func _process(delta):
@@ -172,6 +174,7 @@ func _process(delta):
 				#$AnimationPlayer.stop()
 				#$AnimationPlayer.play("bad_rotate")
 				set_rotation_degrees(get_rotation_degrees() + 20)
+				$Error.play()
 	
 	# check for holding
 	if not selected and holding:
@@ -231,15 +234,11 @@ func _process(delta):
 			if closest_point.check_fit(self):
 				set_modulate(ColorManager.color.main)
 				cable.set_modulate(ColorManager.color.main)
-				
-				$Body.set_texture(normal_texture)
 			else:
 				closest_point = null
 				
 				set_modulate(ColorManager.color.bad)
 				cable.set_modulate(ColorManager.color.bad)
-				
-				$Body.set_texture(error_texture)
 		
 		else:
 			set_global_position(lerp(get_global_position(), get_global_mouse_position(), 20 * delta))
@@ -255,7 +254,13 @@ func _process(delta):
 		if rest_point:
 			set_global_position(lerp(get_global_position(), rest_point.get_global_position(), 10 * delta))
 		else:
-			set_global_position(lerp(get_global_position(), original_point, 10 * delta))
+			# add a offset push force
+			var force = original_point
+			var distance = get_global_mouse_position().distance_to(get_global_position())
+			if not selected and distance < size.length() * GRID_SIZE / 2:
+				force = force.linear_interpolate(get_global_mouse_position(), 1 - float(distance) / float(size.length() * GRID_SIZE / 2))
+			
+			set_global_position(lerp(get_global_position(), force, 10 * delta))
 	
 	# constantly rotate the plug
 	set_rotation(lerp_angle(get_rotation(), direction * PI / 2, 25 * delta))

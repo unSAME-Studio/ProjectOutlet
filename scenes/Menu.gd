@@ -13,7 +13,7 @@ func _ready():
 		
 	
 	# show quit button only on PC build
-	if OS.get_name() in ["Windows", "OSX"]:
+	if OS.get_name() in ["Windows", "OSX", "X11"]:
 		$Control/Options/VBoxContainer/Quit.show()
 
 

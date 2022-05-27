@@ -210,11 +210,11 @@ margin_top = -150.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Control/PanelContainer2"]
 margin_right = 2352.0
-margin_bottom = 150.0
+margin_bottom = 151.0
 
 [node name="PlayMode" type="CheckButton" parent="CanvasLayer/Control/PanelContainer2/HBoxContainer3"]
 margin_right = 366.0
-margin_bottom = 150.0
+margin_bottom = 151.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 2 )
 pressed = true
@@ -223,7 +223,7 @@ text = "Outlet"
 [node name="0" type="CheckBox" parent="CanvasLayer/Control/PanelContainer2/HBoxContainer3"]
 margin_left = 370.0
 margin_right = 735.0
-margin_bottom = 150.0
+margin_bottom = 151.0
 mouse_default_cursor_shape = 2
 group = ExtResource( 9 )
 text = "One"
@@ -232,7 +232,7 @@ icon = ExtResource( 8 )
 [node name="1" type="CheckBox" parent="CanvasLayer/Control/PanelContainer2/HBoxContainer3"]
 margin_left = 739.0
 margin_right = 1108.0
-margin_bottom = 150.0
+margin_bottom = 151.0
 mouse_default_cursor_shape = 2
 pressed = true
 group = ExtResource( 9 )
@@ -242,7 +242,7 @@ icon = ExtResource( 5 )
 [node name="2" type="CheckBox" parent="CanvasLayer/Control/PanelContainer2/HBoxContainer3"]
 margin_left = 1112.0
 margin_right = 1407.0
-margin_bottom = 150.0
+margin_bottom = 151.0
 mouse_default_cursor_shape = 2
 group = ExtResource( 9 )
 text = "All"
@@ -251,7 +251,7 @@ icon = ExtResource( 6 )
 [node name="3" type="CheckBox" parent="CanvasLayer/Control/PanelContainer2/HBoxContainer3"]
 margin_left = 1411.0
 margin_right = 1676.0
-margin_bottom = 150.0
+margin_bottom = 151.0
 mouse_default_cursor_shape = 2
 group = ExtResource( 9 )
 text = "None"
@@ -259,7 +259,7 @@ text = "None"
 [node name="Export" type="Button" parent="CanvasLayer/Control/PanelContainer2/HBoxContainer3"]
 margin_left = 1680.0
 margin_right = 2352.0
-margin_bottom = 150.0
+margin_bottom = 151.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 10
 theme = ExtResource( 2 )
