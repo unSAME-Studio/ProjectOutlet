@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://ui/ui_blur.gdshader" type="Shader" id=2]
 [ext_resource path="res://scripts/console.gd" type="Script" id=3]
 [ext_resource path="res://objects/OutletGrid.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/theme.tres" type="Theme" id=5]
+[ext_resource path="res://sounds/xylo_sfx.mp3" type="AudioStream" id=6]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
@@ -132,5 +133,8 @@ anims/hint = SubResource( 3 )
 current = true
 
 [node name="OutletGrid" parent="Node2D" instance=ExtResource( 4 )]
+
+[node name="xylo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 
 [connection signal="pressed" from="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer/Button" to="Console" method="next_level"]
