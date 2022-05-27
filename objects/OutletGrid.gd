@@ -9,33 +9,51 @@ const GRID_SIZE = 200
 
 func _ready():
 	Global.grid = self
-	var grid = Global.current_level_data["grid"]
 	
-	for r in range(grid.size()):
-		for c in range(grid[r].size()):
-			
-			# check if slot is true
-			if grid[r][c] != 0:
-			
-				#print("Current at %d x %d" % [c, r])
+	# check if using the new format
+	if Global.current_level_data.has("grid"):
+		var grid = Global.current_level_data["grid"]
+		for r in range(grid.size()):
+			for c in range(grid[r].size()):
 				
-				# generate the grid
-				var o = outlet.instance()
+				# check if slot is true
+				if grid[r][c] != 0:
 				
-				# set rotation from data
-				var direction = 0
-				if Global.current_level_data.has("rot"):
-					direction = Global.current_level_data["rot"][r][c]
+					#print("Current at %d x %d" % [c, r])
 					
-				o.initialize(Vector2(c, r), grid[r][c] - 1, direction)
-				
-				add_child(o)
-				
-				o.set_position(Vector2(c - (float(grid[r].size()) / 2.0), r - (float(grid.size()) / 2.0)) * GRID_SIZE + Vector2(GRID_SIZE / 2, GRID_SIZE / 2))
-				
-				o.set_modulate(ColorManager.color.main_dark)
-				
-				yield(get_tree().create_timer(0.1), "timeout")
+					# generate the grid
+					var o = outlet.instance()
+					
+					# set rotation from data
+					var direction = 0
+					if Global.current_level_data.has("rot"):
+						direction = Global.current_level_data["rot"][r][c]
+						
+					o.initialize(Vector2(c, r), grid[r][c] - 1, direction)
+					
+					add_child(o)
+					
+					o.set_position(Vector2(c - (float(grid[r].size()) / 2.0), r - (float(grid.size()) / 2.0)) * GRID_SIZE + Vector2(GRID_SIZE / 2, GRID_SIZE / 2))
+					
+					o.set_modulate(ColorManager.color.main_dark)
+					
+					yield(get_tree().create_timer(0.1), "timeout")
+	
+	else:
+		for i in Global.current_level_data["outlets"]:
+			var o = outlet.instance()
+			o.initialize(Vector2(i[0], i[1]), i[2], i[3])
+			
+			add_child(o)
+			
+			#o.set_position(Vector2(c - (float(grid[r].size()) / 2.0), r - (float(grid.size()) / 2.0)) * GRID_SIZE + Vector2(GRID_SIZE / 2, GRID_SIZE / 2))
+			o.set_position(Vector2(i[0] - (float(Global.current_level_data["size"][0]) / 2.0), i[1] - (float(Global.current_level_data["size"][1]) / 2.0)) * GRID_SIZE + Vector2(GRID_SIZE / 2, GRID_SIZE / 2))
+			#o.set_position(Vector2(i[0], i[1]) * GRID_SIZE + Vector2(GRID_SIZE, GRID_SIZE) / 2)
+			
+			o.set_modulate(ColorManager.color.main_dark)
+			
+			yield(get_tree().create_timer(0.1), "timeout")
+		
 	
 	yield(get_tree().create_timer(0.3), "timeout")
 	

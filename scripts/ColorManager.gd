@@ -14,6 +14,10 @@ var color = {
 }
 
 
+func _ready():
+	randomize()
+
+
 func generate_color():
 	previous_color = color
 	
@@ -28,7 +32,12 @@ func generate_color():
 	
 	color.good = Color.from_hsv(wrapf(color.main.h + 0.25, 0.0, 1.0), 0.43, 0.8, 1)
 	color.bad = Color.from_hsv(wrapf(color.good.h + 0.5, 0.0, 1.0), 0.43, 0.8, 1)
-
+	
+	# swap the color if good is in range
+	if color.good.h > 0.75 or color.good.h < 0.25:
+		var temp_bad = color.bad
+		color.bad = color.good
+		color.good = temp_bad 
 
 func apply_color():
 	VisualServer.set_default_clear_color(color.background)
