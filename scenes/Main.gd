@@ -9,7 +9,8 @@ func _ready():
 	if Global.current_level_data.has("hint"):
 		$CanvasLayer/Control/Hint.show()
 		$CanvasLayer/Control/Hint/PanelContainer/MarginContainer/RichTextLabel.set_bbcode(Global.current_level_data["hint"])
-	
+		$CanvasLayer/Control/AnimationPlayer.play("hint")
+		
 	# set state of music btn
 	if AudioServer.is_bus_mute(AudioServer.get_bus_index("Music")):
 		$"CanvasLayer/Control/UI/VBoxContainer/MarginContainer2/SoundButton".set_pressed(true)
@@ -33,8 +34,9 @@ func game_finished():
 		
 		yield(get_tree().create_timer(0.2), "timeout")
 	
-	yield(get_tree().create_timer(0.7), "timeout")
+	yield(get_tree().create_timer(0.4), "timeout")
 	$"CanvasLayer/Control/OverScreen/PanelContainer".show()
+	$CanvasLayer/Control/AnimationPlayer.play("complete")
 
 
 func _on_RestartButton_pressed():
