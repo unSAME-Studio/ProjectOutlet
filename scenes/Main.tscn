@@ -143,7 +143,7 @@ theme = ExtResource( 5 )
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/OverScreen/PanelContainer"]
 margin_right = 660.0
-margin_bottom = 635.0
+margin_bottom = 554.0
 rect_pivot_offset = Vector2( 330, 317.5 )
 custom_constants/margin_right = 30
 custom_constants/margin_top = 30
@@ -154,28 +154,26 @@ custom_constants/margin_bottom = 30
 margin_left = 30.0
 margin_top = 30.0
 margin_right = 630.0
-margin_bottom = 605.0
+margin_bottom = 524.0
 alignment = 1
 
 [node name="Tag" type="RichTextLabel" parent="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer"]
 margin_right = 600.0
-margin_bottom = 458.0
+margin_bottom = 377.0
 rect_min_size = Vector2( 600, 0 )
 size_flags_vertical = 6
 theme = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "[center][img]res://arts/anti_plug_one.png[/img][/center]
-[wave amp=200 freq=1][center]everyone is happy![/center][/wave]
+bbcode_text = "[center][img]res://arts/anti_plug_one.png[/img][/center][wave amp=200 freq=1][center]everyone is happy![/center][/wave]
 "
-text = "
-everyone is happy!
+text = "everyone is happy!
 "
 fit_content_height = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 462.0
+margin_top = 381.0
 margin_right = 600.0
-margin_bottom = 575.0
+margin_bottom = 494.0
 
 [node name="Home" type="Button" parent="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 113.0
