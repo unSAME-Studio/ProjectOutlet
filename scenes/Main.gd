@@ -9,10 +9,15 @@ func _ready():
 	if Global.current_level_data.has("hint"):
 		$CanvasLayer/Control/Hint.show()
 		$CanvasLayer/Control/Hint/PanelContainer/MarginContainer/RichTextLabel.set_bbcode(Global.current_level_data["hint"])
+	
+	# set state of music btn
+	if AudioServer.is_bus_mute(AudioServer.get_bus_index("Music")):
+		$"CanvasLayer/Control/UI/VBoxContainer/MarginContainer2/SoundButton".set_pressed(true)
 
 
 func game_finished():
 	$"CanvasLayer/Control/UI".hide()
+	$CanvasLayer/Control/Hint.hide()
 	$"CanvasLayer/Control/OverScreen".show()
 	
 	yield(get_tree().create_timer(0.2), "timeout")
@@ -36,8 +41,8 @@ func _on_RestartButton_pressed():
 	if Global.console.attached_plugs.size() <= 0:
 		return
 	
-	for i in Global.console.attached_plugs:
-		i.unplug()
+	while Global.console.attached_plugs.size() > 0:
+		Global.console.attached_plugs.keys().back().unplug()
 	
 	var btn = get_node("CanvasLayer/Control/UI/VBoxContainer/MarginContainer/RestartButton")
 	btn.get_node("Tween").interpolate_property(btn, "rect_rotation",

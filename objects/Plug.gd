@@ -277,8 +277,7 @@ func _process(delta):
 				if anything_selected:
 					force = force.linear_interpolate(get_negative_vector(original_point, get_global_mouse_position()), 1 - float(distance) / float(size.length() * GRID_SIZE))
 				else:
-					pass
-					#force = force.linear_interpolate(get_global_mouse_position(), 1 - float(distance) / float(size.length() * GRID_SIZE / 2))
+					force = force.linear_interpolate(get_global_mouse_position(), 1 - float(distance) / float(size.length() * GRID_SIZE / 2))
 			
 			set_global_position(lerp(get_global_position(), force, 10 * delta))
 	
