@@ -5,10 +5,15 @@ var default_volume = -12
 var song1 = preload("res://sounds/Fixaproblem.ogg")
 var song2 = preload("res://sounds/Fixaproblem.ogg")
 var playlist = [song1, song2]
+var last_played 
 
 func _ready():
 	var a = AudioStreamPlayer.new()
-	a.set_stream(playlist[randi() % 2])
+	
+	# pick a random song
+	last_played = randi() % playlist.size()
+	a.set_stream(playlist[last_played])
+	
 	a.set_volume_db(-80)
 	a.set_bus("Music")
 	a.set_autoplay(true)
@@ -24,7 +29,12 @@ func _ready():
 
 
 func _on_finished():
-	$BGM.set_stream(playlist[randi() % 2])
+	# non repeating random playlist
+	var next = randi() % playlist.size()
+	while next == last_played:
+		next = randi() % playlist.size()
+	
+	$BGM.set_stream(playlist[next])
 	$BGM.play()
 
 
