@@ -301,7 +301,7 @@ func _process(delta):
 
 
 # on drop
-func _input(event):
+func _unhandled_input(event):
 	if selected:
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_LEFT and not event.pressed:
