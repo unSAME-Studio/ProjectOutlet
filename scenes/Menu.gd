@@ -24,7 +24,7 @@ func _ready():
 	
 	p.size = Vector2(1, 2)
 	p.head_position = Vector2(0, 0)
-	p.original_point = Vector2(0, 0 + 400)
+	p.original_point = Vector2(0, 0 + 300)
 	p.set_name("Plug")
 	$Node2D.add_child(p)
 

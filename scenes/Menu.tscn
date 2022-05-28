@@ -85,15 +85,16 @@ enabled_focus_mode = 0
 text = "Quit"
 
 [node name="Levels" type="CenterContainer" parent="CanvasLayer/Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Levels"]
 material = SubResource( 2 )
-margin_left = 432.0
-margin_top = 901.0
-margin_right = 647.0
-margin_bottom = 1018.0
+margin_left = 540.0
+margin_top = 960.0
+margin_right = 540.0
+margin_bottom = 960.0
 theme = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Levels/PanelContainer"]
