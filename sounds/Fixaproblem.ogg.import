@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Fixaproblem.ogg-946db235e310817231cd74cb987c8085.ogg
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

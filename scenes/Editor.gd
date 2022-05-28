@@ -210,7 +210,7 @@ func _on_AddOutlet_pressed():
 	var new_outlet = [
 		int($"CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer3/Headx".get_line_edit().get_text()),
 		int($"CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer3/Heady".get_line_edit().get_text()),
-		int($"CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Type".get_selected()),
+		int($"CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer3/Type".get_selected()),
 		int($"CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer3/Rot".get_line_edit().get_text()),
 	]
 	

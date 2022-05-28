@@ -3,10 +3,12 @@ extends Node
 var default_volume = -12
 
 var song1 = preload("res://sounds/Fixaproblem.ogg")
+var song2 = preload("res://sounds/Fixaproblem.ogg")
+var playlist = [song1, song2]
 
 func _ready():
 	var a = AudioStreamPlayer.new()
-	a.set_stream(song1)
+	a.set_stream(playlist[randi() % 2])
 	a.set_volume_db(-80)
 	a.set_bus("Music")
 	a.set_autoplay(true)
@@ -22,7 +24,8 @@ func _ready():
 
 
 func _on_finished():
-	pass
+	$BGM.set_stream(playlist[randi() % 2])
+	$BGM.play()
 
 
 func fade_in():

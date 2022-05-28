@@ -129,20 +129,16 @@ func check_fit(new_plug):
 	return fit
 
 
-
-
 func select(new_plug):	
 	emit_signal("select")
 	
-	#set_modulate(ColorManager.color.main_light)
-	
-	$AnimationPlayer.play("hint")
+	if not host_plug:
+		$AnimationPlayer.play("hint")
 
 
 func deselect():
 	emit_signal("deselect")
 	
-	#set_modulate(ColorManager.color.main_dark)
-	
-	$AnimationPlayer.play("hint_detach")
+	if not host_plug:
+		$AnimationPlayer.play("hint_detach")
 	
