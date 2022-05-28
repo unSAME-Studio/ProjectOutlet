@@ -144,3 +144,5 @@ func deselect():
 	
 	#set_modulate(ColorManager.color.main_dark)
 	
+	$AnimationPlayer.play("hint_detach")
+	
