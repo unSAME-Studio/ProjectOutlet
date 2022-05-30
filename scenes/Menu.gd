@@ -59,7 +59,9 @@ func _on_Quit_pressed():
 
 
 func _on_Back_pressed():
-	#$CanvasLayer/Control/Options.show()
+	$CanvasLayer/Control/AnimationPlayer.play_backwards("level")
+	yield($CanvasLayer/Control/AnimationPlayer, "animation_finished")
+	
 	$CanvasLayer/Control/Levels.hide()
 	
 	get_node("Node2D/Plug").unplug()
