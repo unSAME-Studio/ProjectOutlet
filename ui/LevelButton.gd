@@ -40,6 +40,7 @@ func _process(delta):
 
 func _on_Button_pressed():
 	Global.current_level = level
+	SoundPlayer.play("Next")
 	#get_tree().change_scene("res://scenes/Main.tscn")
 	TransitionManager.play_out("res://scenes/Main.tscn")
 

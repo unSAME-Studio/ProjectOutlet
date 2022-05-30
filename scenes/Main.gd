@@ -70,6 +70,7 @@ func _on_HomeButton_pressed():
 
 func _on_Next_pressed():
 	Global.current_level += 1
+	SoundPlayer.play("Next")
 	
 	if Global.level.has(Global.current_level):
 		#get_tree().reload_current_scene()
@@ -77,3 +78,4 @@ func _on_Next_pressed():
 	else:
 		#get_tree().change_scene("res://scenes/Menu.tscn")
 		TransitionManager.play_out("res://scenes/Menu.tscn")
+		

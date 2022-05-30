@@ -24,6 +24,7 @@ Global="*res://scripts/global.gd"
 MusicPlayer="*res://scripts/MusicPlayer.gd"
 ColorManager="*res://scripts/ColorManager.gd"
 TransitionManager="*res://scripts/TransitionManager.gd"
+SoundPlayer="*res://scripts/Sound_player.gd"
 
 [display]
 
