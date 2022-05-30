@@ -5,7 +5,7 @@ var level_size = Vector2.ZERO
 
 
 func _ready():
-	#$Button/Label.set_text(String(level))
+	$Button/Label.set_text(String(level))
 	
 	if OS.get_name() in ["Windows", "OSX", "HTML5","X11"]:
 		$Button.connect("mouse_entered", self, "_on_hover")
@@ -47,7 +47,11 @@ func _on_Button_pressed():
 
 func _on_hover():
 	$AnimationPlayer.play("hover")
+	
+	$Button/Label.show()
 
 
 func _on_mouse_exit():
 	$AnimationPlayer.play_backwards("hover")
+	
+	$Button/Label.hide()

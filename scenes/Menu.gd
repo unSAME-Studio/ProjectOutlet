@@ -13,7 +13,7 @@ func _ready():
 		var b = button.instance()
 		b.level = int(i)
 		
-		$"CanvasLayer/Control/Levels/PanelContainer/VBoxContainer/ScrollContainer/GridContainer".add_child(b)
+		$"CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/GridContainer".add_child(b)
 	
 	# show quit button only on PC build
 	if OS.get_name() in ["Windows", "OSX", "X11"]:

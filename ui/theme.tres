@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=2]
+[gd_resource type="Theme" load_steps=10 format=2]
 
 [ext_resource path="res://ui/fonts/Ubuntu-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/fonts/Ubuntu_Reg.tres" type="DynamicFont" id=2]
@@ -38,6 +38,15 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 15.0
+content_margin_right = 15.0
+bg_color = Color( 0, 0, 0, 0.423529 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [resource]
 Button/fonts/font = SubResource( 1 )
 Button/styles/hover = SubResource( 3 )
@@ -65,3 +74,5 @@ TextEdit/styles/normal = SubResource( 5 )
 VScrollBar/styles/grabber = SubResource( 5 )
 VScrollBar/styles/grabber_highlight = SubResource( 5 )
 VScrollBar/styles/grabber_pressed = SubResource( 5 )
+VScrollBar/styles/scroll = SubResource( 6 )
+VScrollBar/styles/scroll_focus = SubResource( 5 )
