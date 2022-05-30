@@ -152,6 +152,7 @@ func _on_Plug_input_event(viewport, event, shape_idx):
 					BUTTON_WHEEL_UP:
 						if rest_point == null:
 							spin_clockwise()
+							$Rotate.play()
 						else:
 							set_rotation_degrees(get_rotation_degrees() + 20)
 							$Error.play()
@@ -173,6 +174,7 @@ func _process(delta):
 			
 			if rest_point == null:
 				spin_clockwise()
+				$Rotate.play()
 				print("Release with no hold")
 			else:
 				#play can't rotate animation
