@@ -127,7 +127,6 @@ margin_right = 540.0
 margin_bottom = 960.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_scale = Vector2( 1e-05, 1e-05 )
 theme = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Levels/PanelContainer"]
