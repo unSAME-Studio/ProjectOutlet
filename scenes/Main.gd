@@ -64,7 +64,8 @@ func _on_SoundButton_toggled(mute):
 
 
 func _on_HomeButton_pressed():
-	get_tree().change_scene("res://scenes/Menu.tscn")
+	#get_tree().change_scene("res://scenes/Menu.tscn")
+	TransitionManager.play_out("res://scenes/Menu.tscn")
 
 
 func _on_Next_pressed():
@@ -75,4 +76,4 @@ func _on_Next_pressed():
 		TransitionManager.play_out("res://scenes/Main.tscn")
 	else:
 		#get_tree().change_scene("res://scenes/Menu.tscn")
-		TransitionManager.play_in("res://scenes/Menu.tscn")
+		TransitionManager.play_out("res://scenes/Menu.tscn")
