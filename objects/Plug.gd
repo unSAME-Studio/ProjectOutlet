@@ -105,6 +105,8 @@ func _ready():
 	# set drop shadow size and position
 	$DropShadow.set_scale(size)
 	$DropShadow.set_position($Body.get_position())
+	$DropShadow.set_modulate(ColorManager.color.main_dark)
+	$DropShadow.modulate.a = 0.2
 	
 	var shape = RectangleShape2D.new()
 	shape.set_extents(size * GRID_SIZE / 2)

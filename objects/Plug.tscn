@@ -146,7 +146,7 @@ position = Vector2( 0, 32 )
 shape = SubResource( 1 )
 
 [node name="DropShadow" type="Sprite" parent="."]
-modulate = Color( 0.27451, 0.27451, 0.27451, 0.12549 )
+modulate = Color( 0.494118, 0.494118, 0.494118, 0.12549 )
 texture = ExtResource( 14 )
 
 [node name="Outline" type="Polygon2D" parent="."]

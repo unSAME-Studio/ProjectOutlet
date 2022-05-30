@@ -134,6 +134,9 @@ func select(new_plug):
 	
 	if not host_plug:
 		$AnimationPlayer.play("hint")
+	
+	else:
+		set_global_position(get_global_position() - Vector2(0, 20))
 
 
 func deselect():
@@ -141,4 +144,7 @@ func deselect():
 	
 	if not host_plug:
 		$AnimationPlayer.play("hint_detach")
+	
+	else:
+		set_global_position(get_global_position() + Vector2(0, 20))
 	
