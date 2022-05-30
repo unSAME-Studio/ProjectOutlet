@@ -35,8 +35,8 @@ func game_finished():
 		yield(get_tree().create_timer(0.2), "timeout")
 	
 	yield(get_tree().create_timer(0.4), "timeout")
-	$"CanvasLayer/Control/OverScreen/PanelContainer".show()
 	$CanvasLayer/Control/AnimationPlayer.play("complete")
+	$"CanvasLayer/Control/OverScreen/PanelContainer".show()
 
 
 func _on_RestartButton_pressed():
