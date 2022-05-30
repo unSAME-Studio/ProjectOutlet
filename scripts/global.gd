@@ -4,6 +4,7 @@ var console
 var grid
 var main
 
+const GRID_SIZE = 200
 
 var hover_plugs = []
 

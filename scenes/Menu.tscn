@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/Menu.gd" type="Script" id=1]
 [ext_resource path="res://ui/fonts/Ubuntu_Reg.tres" type="DynamicFont" id=2]
@@ -12,6 +12,34 @@ shader = ExtResource( 6 )
 shader_param/blur_amount = 5.0
 shader_param/mix_amount = 0.4
 shader_param/color_over = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "level"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Levels/PanelContainer:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 0.5, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Levels/PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.02, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Menu" type="Node"]
 script = ExtResource( 1 )
@@ -27,6 +55,7 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Control"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -359.0
@@ -90,30 +119,45 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Levels"]
+modulate = Color( 1, 1, 1, 0 )
 material = SubResource( 2 )
 margin_left = 540.0
 margin_top = 960.0
 margin_right = 540.0
 margin_bottom = 960.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 1e-05, 1e-05 )
 theme = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Levels/PanelContainer"]
 margin_right = 215.0
-margin_bottom = 117.0
+margin_bottom = 1367.0
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/Levels/PanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/Levels/PanelContainer/VBoxContainer"]
 margin_right = 215.0
-columns = 4
+margin_bottom = 1250.0
+rect_min_size = Vector2( 0, 1250 )
+rect_pivot_offset = Vector2( 0, 625 )
+theme = ExtResource( 3 )
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/Levels/PanelContainer/VBoxContainer/ScrollContainer"]
+columns = 3
 
 [node name="Back" type="Button" parent="CanvasLayer/Control/Levels/PanelContainer/VBoxContainer"]
-margin_top = 4.0
+margin_top = 1254.0
 margin_right = 215.0
-margin_bottom = 117.0
+margin_bottom = 1367.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 enabled_focus_mode = 0
 text = "Back"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
+anims/level = SubResource( 3 )
 
 [node name="Node2D" type="Node2D" parent="."]
 

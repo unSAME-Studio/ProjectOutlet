@@ -12,7 +12,7 @@ func _ready():
 		var b = button.instance()
 		b.level = int(i)
 		
-		$CanvasLayer/Control/Levels/PanelContainer/VBoxContainer/GridContainer.add_child(b)
+		$"CanvasLayer/Control/Levels/PanelContainer/VBoxContainer/ScrollContainer/GridContainer".add_child(b)
 	
 	# show quit button only on PC build
 	if OS.get_name() in ["Windows", "OSX", "X11"]:
@@ -27,6 +27,9 @@ func _ready():
 	p.original_point = Vector2(0, 0 + 300)
 	p.set_name("Plug")
 	$Node2D.add_child(p)
+	
+	# set offset for panel containers
+	$CanvasLayer/Control/Levels/PanelContainer.set_pivot_offset($CanvasLayer/Control/Levels/PanelContainer.get_size() / 2)
 
 
 func game_finished():
@@ -41,6 +44,7 @@ func _unhandled_input(event):
 func _on_Play_pressed():
 	#$CanvasLayer/Control/Options.hide()
 	$CanvasLayer/Control/Levels.show()
+	$CanvasLayer/Control/AnimationPlayer.play("level")
 
 
 func _on_Editor_pressed():

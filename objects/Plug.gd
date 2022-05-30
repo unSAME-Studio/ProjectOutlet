@@ -44,6 +44,14 @@ func get_negative_vector(origin_vector, destination_vector):
 	return (destination_vector - origin_vector).tangent().tangent() + origin_vector 
 
 
+# calculate distance between box and a point
+# https://stackoverflow.com/questions/5254838/calculating-distance-between-a-point-and-a-rectangular-box-nearest-point
+func get_rect_distance(rect, p):
+	var dx = [rect.min.x - p.x, 0, p.x - rect.max.x].max()
+	var dy = [rect.min.y - p.y, 0, p.y - rect.max.y].max()
+	return sqrt(dx*dx + dy*dy)
+
+
 func _ready():
 	# add this plug to the avaliable plugs
 	Global.console.avaliable_plugs[self] = 0
