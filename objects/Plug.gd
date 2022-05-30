@@ -102,6 +102,10 @@ func _ready():
 	$Outline.set_offset($Body.get_offset())
 	$Outline.set_position($Body.get_position())
 	
+	# set drop shadow size and position
+	$DropShadow.set_scale(size)
+	$DropShadow.set_position($Body.get_position())
+	
 	var shape = RectangleShape2D.new()
 	shape.set_extents(size * GRID_SIZE / 2)
 	$CollisionShape2D.set_shape(shape)
@@ -470,7 +474,7 @@ func _on_Plug_mouse_entered():
 	hovering = true
 	
 	if Global.hover_plugs.size() > 0:
-		# check the entire list, if z index is lower then ignore
+		# check the entire list, if z index is lower then ignore [NEED OPTIMIZE]
 		for i in Global.hover_plugs:
 			if i.get_z_index() > get_z_index():
 				hovering = false
@@ -485,7 +489,7 @@ func _on_Plug_mouse_exited():
 	Global.hover_plugs.erase(self)
 	hovering = false
 	
-	# find the top by z index and hover
+	# find the top by z index and hover [NEED OPTIMIZE]
 	if Global.hover_plugs.size() > 0:
 		var top_plug = null
 		var top_z = -100

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://objects/Plug.gd" type="Script" id=1]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Logo White (Small).png" type="Texture" id=11]
 [ext_resource path="res://sounds/error_sfx.mp3" type="AudioStream" id=12]
 [ext_resource path="res://arts/electric_bolt.png" type="Texture" id=13]
+[ext_resource path="res://arts/Blur.png" type="Texture" id=14]
 [ext_resource path="res://sounds/rotation_sfx.mp3" type="AudioStream" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -144,15 +145,18 @@ string = ExtResource( 3 )
 position = Vector2( 0, 32 )
 shape = SubResource( 1 )
 
-[node name="Body" type="Polygon2D" parent="."]
+[node name="DropShadow" type="Sprite" parent="."]
+modulate = Color( 0.27451, 0.27451, 0.27451, 0.12549 )
+texture = ExtResource( 14 )
+
+[node name="Outline" type="Polygon2D" parent="."]
 position = Vector2( -32, -32 )
 antialiased = true
 texture = ExtResource( 8 )
 polygon = PoolVector2Array( -32, -32, -32, 96, 96, 96, 96, -32 )
 
-[node name="Outline" type="Polygon2D" parent="."]
+[node name="Body" type="Polygon2D" parent="."]
 position = Vector2( -32, -32 )
-z_index = -1
 antialiased = true
 texture = ExtResource( 8 )
 polygon = PoolVector2Array( -32, -32, -32, 96, 96, 96, 96, -32 )

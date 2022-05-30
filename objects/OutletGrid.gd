@@ -75,7 +75,9 @@ func _ready():
 			for add in info[5]:
 				p.additional_outlets.append(add)
 		
+		# evenly spreading each plug along the bottom
 		p.original_point = Vector2(get_viewport_rect().size.x / 2 / plugs_count * i - get_viewport_rect().size.x / 4, get_viewport_rect().size.y / 2 - p.size.y * GRID_SIZE / 2)
+		
 		get_parent().add_child(p)
 		p.set_global_position(Vector2(0, get_viewport_rect().size.y / 2))
 		

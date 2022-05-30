@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mouseRight.png-84d94277f414748324197ee2dfa612eb.stex"
+path="res://.import/Blur.png-9c15e0df826d3af1dd64a45b1233621f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/icons/mouseRight.png"
-dest_files=[ "res://.import/mouseRight.png-84d94277f414748324197ee2dfa612eb.stex" ]
+source_file="res://arts/Blur.png"
+dest_files=[ "res://.import/Blur.png-9c15e0df826d3af1dd64a45b1233621f.stex" ]
 
 [params]
 

@@ -2,23 +2,8 @@
 
 [ext_resource path="res://ui/theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/LevelButton.gd" type="Script" id=2]
-[ext_resource path="res://arts/outlet_uv.png" type="Texture" id=3]
-
-[sub_resource type="TileSet" id=1]
-0/name = "outlet_uv.png 0"
-0/texture = ExtResource( 3 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 80, 80, 80, 80 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
+[ext_resource path="res://arts/MiniOutlet.tres" type="TileSet" id=3]
+[ext_resource path="res://ui/icons/checkmark.png" type="Texture" id=4]
 
 [node name="LevelButton" type="MarginContainer"]
 margin_right = 200.0
@@ -51,11 +36,12 @@ custom_constants/margin_bottom = 5
 
 [node name="TileMap" type="TileMap" parent="Button/MarginContainer"]
 position = Vector2( 230, 230 )
-tile_set = SubResource( 1 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 80, 80 )
 format = 1
 
 [node name="Label" type="Label" parent="Button"]
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 17.0
@@ -64,6 +50,14 @@ margin_right = 201.0
 margin_bottom = -7.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "1"
+text = "X"
+
+[node name="TextureRect" type="TextureRect" parent="Button"]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -100.0
+margin_right = 100.0
+texture = ExtResource( 4 )
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
