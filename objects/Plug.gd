@@ -264,8 +264,7 @@ func _process(delta):
 				auto_rotate_timer = 0.0
 			else:
 				# Auto rotate and try to do it
-				if closest_point.check_all_fit(self):
-					auto_rotate_timer += delta
+				auto_rotate_timer += delta
 				
 				closest_point = null
 				
