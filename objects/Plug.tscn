@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://objects/Plug.gd" type="Script" id=1]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://arts/electric_bolt.png" type="Texture" id=13]
 [ext_resource path="res://arts/Blur.png" type="Texture" id=14]
 [ext_resource path="res://sounds/rotation_sfx.mp3" type="AudioStream" id=15]
+[ext_resource path="res://objects/ProjectPlug.gd" type="Script" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 64 )
@@ -140,6 +141,7 @@ z_index = 6
 script = ExtResource( 1 )
 outlet = ExtResource( 2 )
 string = ExtResource( 3 )
+projection = ExtResource( 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 32 )

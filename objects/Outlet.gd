@@ -74,6 +74,22 @@ func check_enabled():
 	return enabled
 
 
+func check_all_fit(new_plug):
+	# check if type competable
+	# (check for if ONE can't go in TWO && ALL only for ALL)
+	if new_plug.outlet_type == TYPE.ALL and outlet_type != TYPE.ALL:
+		return false
+	
+	# new ALL is only for itself
+	if new_plug.outlet_type != TYPE.ALL and outlet_type == TYPE.ALL:
+		return false
+	
+	if new_plug.outlet_type == TYPE.ONE and outlet_type == TYPE.TWO:
+		return false
+	
+	return true
+
+
 # return true if possible for pluging in
 func check_fit(new_plug):
 	# check if type competable

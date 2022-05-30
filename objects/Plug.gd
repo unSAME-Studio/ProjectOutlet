@@ -2,6 +2,7 @@ extends Area2D
 
 export (PackedScene) var outlet
 export (PackedScene) var string
+export (Script) var projection
 
 var hovering = false
 var selected = false
@@ -22,6 +23,7 @@ var head_position = Vector2(0, 0)
 var size = Vector2(2, 3)
 
 var direction = 0
+var auto_rotate_timer = 0.0
 
 enum TYPE {ONE, TWO, ALL}
 var outlet_type = TYPE.TWO
@@ -258,19 +260,28 @@ func _process(delta):
 				cable.set_modulate(ColorManager.color.main)
 				
 				#$Body.get_material().set_shader_param("Opacity", 0)
+				
+				auto_rotate_timer = 0.0
 			else:
+				# Auto rotate and try to do it
+				if closest_point.check_all_fit(self):
+					auto_rotate_timer += delta
+				
 				closest_point = null
 				
 				set_modulate(ColorManager.color.bad)
 				cable.set_modulate(ColorManager.color.bad)
 				
 				#$Body.get_material().set_shader_param("Opacity", 1)
+				
 		
 		else:
 			set_global_position(lerp(get_global_position(), get_global_mouse_position(), 20 * delta))
 			
 			set_modulate(ColorManager.color.main_light)
 			cable.set_modulate(ColorManager.color.main_light)
+			
+			auto_rotate_timer = 0.0
 			
 		# half transparency
 		modulate.a = 0.5
@@ -300,6 +311,11 @@ func _process(delta):
 	
 	# constantly rotate the plug
 	set_rotation(lerp_angle(get_rotation(), direction * PI / 2, 25 * delta))
+	
+	# if auto rotate timer over limite, rotate the plug
+	if auto_rotate_timer >= 0.5:
+		auto_rotate_timer = 0.0
+		spin_clockwise()
 	
 	# adjust end tangent base on cable distance
 	var cable_distance = (cable.head_end.distance_to(get_global_position()) / 2)
@@ -470,6 +486,16 @@ func spin_counterclockwise():
 		i.direction = wrapi(i.direction - 1, 0, 4)
 		i.offset_position = Vector2(-i.offset_position.y, i.offset_position.x)
 		print("ADDITIONAL: NEW POS %s" % i.offset_position)
+
+
+func create_projection() -> Script:
+	var p = projection.new()
+	p.head_position = head_position
+	p.size = size
+	p.direction = direction
+	p.outlet_type = outlet_type
+	
+	return p
 
 
 func _on_Plug_mouse_entered():
