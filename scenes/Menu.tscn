@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Menu.gd" type="Script" id=1]
 [ext_resource path="res://ui/fonts/Ubuntu_Reg.tres" type="DynamicFont" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scripts/console.gd" type="Script" id=4]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/ui_blur.gdshader" type="Shader" id=6]
+[ext_resource path="res://ui/LevelButton.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 6 )
@@ -114,27 +115,26 @@ enabled_focus_mode = 0
 text = "Quit"
 
 [node name="Levels" type="CenterContainer" parent="CanvasLayer/Control"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Levels"]
-modulate = Color( 1, 1, 1, 0 )
 material = SubResource( 2 )
-margin_left = 540.0
-margin_top = 960.0
-margin_right = 540.0
-margin_bottom = 960.0
+margin_top = 234.0
+margin_right = 1508.0
+margin_bottom = 1685.0
 grow_horizontal = 2
 grow_vertical = 2
+rect_pivot_offset = Vector2( 754, 725.5 )
 theme = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Levels/PanelContainer"]
-margin_right = 368.0
+margin_right = 1508.0
 margin_bottom = 1451.0
 
 [node name="Title" type="Label" parent="CanvasLayer/Control/Levels/PanelContainer/VBoxContainer"]
-margin_right = 368.0
+margin_right = 1508.0
 margin_bottom = 80.0
 custom_fonts/font = ExtResource( 2 )
 text = "Pick a Level"
@@ -143,7 +143,7 @@ valign = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/Levels/PanelContainer/VBoxContainer"]
 margin_top = 84.0
-margin_right = 368.0
+margin_right = 1508.0
 margin_bottom = 1334.0
 rect_min_size = Vector2( 0, 1250 )
 rect_pivot_offset = Vector2( 0, 625 )
@@ -152,11 +152,27 @@ follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/Levels/PanelContainer/VBoxContainer/ScrollContainer"]
+margin_right = 1508.0
+margin_bottom = 500.0
 columns = 3
+
+[node name="LevelButton" parent="CanvasLayer/Control/Levels/PanelContainer/VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource( 7 )]
+margin_right = 500.0
+margin_bottom = 500.0
+
+[node name="LevelButton2" parent="CanvasLayer/Control/Levels/PanelContainer/VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource( 7 )]
+margin_left = 504.0
+margin_right = 1004.0
+margin_bottom = 500.0
+
+[node name="LevelButton3" parent="CanvasLayer/Control/Levels/PanelContainer/VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource( 7 )]
+margin_left = 1008.0
+margin_right = 1508.0
+margin_bottom = 500.0
 
 [node name="Back" type="Button" parent="CanvasLayer/Control/Levels/PanelContainer/VBoxContainer"]
 margin_top = 1338.0
-margin_right = 368.0
+margin_right = 1508.0
 margin_bottom = 1451.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
