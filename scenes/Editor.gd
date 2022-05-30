@@ -44,6 +44,10 @@ func game_finished():
 
 
 func _unhandled_input(event):
+	# go back to menu
+	if Input.is_action_just_pressed("editor"):
+		TransitionManager.play_out("res://scenes/Menu.tscn")
+	
 	if $"CanvasLayer/Control/PanelContainer2/HBoxContainer3/PlayMode".is_pressed():
 		
 		if Input.is_action_just_pressed("click"):

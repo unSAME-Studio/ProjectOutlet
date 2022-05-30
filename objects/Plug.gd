@@ -109,11 +109,11 @@ func _ready():
 	$Outline.set_polygon($Body.get_polygon())
 	$Outline.uv = $Body.uv
 	$Outline.set_offset($Body.get_offset())
-	$Outline.set_position($Body.get_position())
+	$Outline.set_position($Body.get_position() + Vector2(0, 20))
 	
 	# set drop shadow size and position
 	$DropShadow.set_scale(size)
-	$DropShadow.set_position($Body.get_position())
+	$DropShadow.set_position($Outline.get_position())
 	$DropShadow.set_modulate(ColorManager.color.main_dark)
 	$DropShadow.modulate.a = 0.2
 	
@@ -335,11 +335,20 @@ func _process(delta):
 	if hovering:
 		#$Outline.set_scale(lerp($Outline.get_scale(), Vector2(1.2, 1.2), 25 * delta))
 		set_scale(lerp(get_scale(), Vector2(1.1, 1.1), 25 * delta))
+		
+		# set drop shadow
+		$DropShadow.set_modulate(ColorManager.color.second)
+		$DropShadow.modulate.a = 0.5
 	else:
 		#$Outline.set_global_position(lerp($Outline.get_global_position(), $Body.get_global_position() + Vector2(0, 20), 25 * delta))
 		set_scale(lerp(get_scale(), Vector2(1, 1), 25 * delta))
+		
+		# set drop shadow
+		$DropShadow.set_modulate(ColorManager.color.main_dark)
+		$DropShadow.modulate.a = 0.2
 	
 	$Outline.set_global_position($Body.get_global_position() + Vector2(0, 20))
+	$DropShadow.set_position($Outline.get_position())
 
 
 # on drop
