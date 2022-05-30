@@ -319,7 +319,7 @@ func _process(delta):
 		$Rotate.play()
 	
 	# adjust end tangent base on cable distance
-	var cable_distance = (cable.head_end.distance_to(get_global_position()) / 2)
+	var cable_distance = (cable.head_end.distance_to($End.get_global_position()) / 2)
 	$End2.set_position($End.get_position() + Vector2(0, cable_distance))
 	cable.get_node("P0/P1").set_position(Vector2(0, -cable_distance))
 	
