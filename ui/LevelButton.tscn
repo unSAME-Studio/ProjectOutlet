@@ -38,6 +38,7 @@ margin_right = 480.0
 margin_bottom = 480.0
 rect_pivot_offset = Vector2( 230, 230 )
 focus_mode = 0
+mouse_default_cursor_shape = 2
 theme = ExtResource( 1 )
 enabled_focus_mode = 0
 
