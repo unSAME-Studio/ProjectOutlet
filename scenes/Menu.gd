@@ -4,6 +4,7 @@ extends Node
 var button = preload("res://ui/LevelButton.tscn")
 var plug = preload("res://objects/Plug.tscn")
 
+
 func _ready():
 	Global.main = self
 	
@@ -30,6 +31,8 @@ func _ready():
 	
 	# set offset for panel containers
 	$CanvasLayer/Control/Levels/PanelContainer.set_pivot_offset($CanvasLayer/Control/Levels/PanelContainer.get_size() / 2)
+	
+	TransitionManager.play_in()
 
 
 func game_finished():

@@ -16,10 +16,12 @@ var color = {
 
 func _ready():
 	randomize()
+	
+	previous_color["background"] = color["background"]
 
 
 func generate_color():
-	previous_color = color
+	previous_color["background"] = color["background"]
 	
 	var hue = randf()
 	color.background = Color.from_hsv(hue, 0.3, 0.9, 1)

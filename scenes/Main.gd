@@ -14,6 +14,9 @@ func _ready():
 	# set state of music btn
 	if AudioServer.is_bus_mute(AudioServer.get_bus_index("Music")):
 		$"CanvasLayer/Control/UI/VBoxContainer/MarginContainer2/SoundButton".set_pressed(true)
+	
+	
+	TransitionManager.play_in()
 
 
 func game_finished():
@@ -68,6 +71,8 @@ func _on_Next_pressed():
 	Global.current_level += 1
 	
 	if Global.level.has(Global.current_level):
-		get_tree().reload_current_scene()
+		#get_tree().reload_current_scene()
+		TransitionManager.play_out("res://scenes/Main.tscn")
 	else:
-		get_tree().change_scene("res://scenes/Menu.tscn")
+		#get_tree().change_scene("res://scenes/Menu.tscn")
+		TransitionManager.play_in("res://scenes/Menu.tscn")

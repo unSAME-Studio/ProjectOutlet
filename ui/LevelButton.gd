@@ -25,4 +25,5 @@ func _ready():
 
 func _on_Button_pressed():
 	Global.current_level = level
-	get_tree().change_scene("res://scenes/Main.tscn")
+	#get_tree().change_scene("res://scenes/Main.tscn")
+	TransitionManager.play_out("res://scenes/Main.tscn")
