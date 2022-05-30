@@ -159,6 +159,7 @@ func _on_Plug_input_event(viewport, event, shape_idx):
 					BUTTON_WHEEL_DOWN:
 						if rest_point == null:
 							spin_counterclockwise()
+							$Rotate.play()
 						else:
 							set_rotation_degrees(get_rotation_degrees() - 20)
 							$Error.play()
