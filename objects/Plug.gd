@@ -240,6 +240,7 @@ func _process(delta):
 		# rotating when selected
 		if Input.is_action_just_pressed("rotate"):
 			spin_clockwise()
+			$Rotate.play()
 		
 		# continueous detection
 		closest_point = null
@@ -316,6 +317,7 @@ func _process(delta):
 	if auto_rotate_timer >= 0.5:
 		auto_rotate_timer = 0.0
 		spin_clockwise()
+		$Rotate.play()
 	
 	# adjust end tangent base on cable distance
 	var cable_distance = (cable.head_end.distance_to(get_global_position()) / 2)
