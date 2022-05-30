@@ -18,7 +18,7 @@ func _ready():
 func _on_button_down():
 	var tween = get_node("Tween")
 	tween.interpolate_property(self, "rect_scale",
-			Vector2(1, 1), Vector2(0.8, 0.8), 0.5,
+			get_scale(), Vector2(0.8, 0.8), 0.5,
 			Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	tween.start()
 
@@ -26,22 +26,28 @@ func _on_button_down():
 func _on_button_up():
 	var tween = get_node("Tween")
 	tween.interpolate_property(self, "rect_scale",
-			Vector2(0.8, 0.8), Vector2(1.2, 1.2), 0.5,
+			get_scale(), Vector2(1.2, 1.2), 0.5,
 			Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	tween.start()
 
 
 func _on_hover():
+	if is_disabled():
+		return
+	
 	var tween = get_node("Tween")
 	tween.interpolate_property(self, "rect_scale",
-			Vector2(1, 1), Vector2(1.2, 1.2), 0.5,
+			get_scale(), Vector2(1.2, 1.2), 0.5,
 			Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	tween.start()
 
 
 func _on_mouse_exit():
+	if is_disabled():
+		return
+	
 	var tween = get_node("Tween")
 	tween.interpolate_property(self, "rect_scale",
-			Vector2(1.2, 1.2), Vector2(1, 1), 0.5,
+			get_scale(), Vector2(1, 1), 0.5,
 			Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	tween.start()

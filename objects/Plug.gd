@@ -4,12 +4,14 @@ export (PackedScene) var outlet
 export (PackedScene) var string
 export (Script) var projection
 
+const HOLD_REQUIRED = 0.5
+const DRAG_DISTANCE = 40
+const MAGNET_DISTANCE = 200
+
 var hovering = false
 var selected = false
-const HOLD_REQUIRED = 0.5
 var holding = false
 var hold_time = 0
-const DRAG_DISTANCE = 40
 var drag_point = Vector2.ZERO
 
 var original_point
@@ -48,7 +50,12 @@ func get_negative_vector(origin_vector, destination_vector):
 
 # calculate distance between box and a point
 # https://stackoverflow.com/questions/5254838/calculating-distance-between-a-point-and-a-rectangular-box-nearest-point
-func get_rect_distance(rect, p):
+func get_rect_distance(p):
+	var body_rest = original_point + $Body.get_position()
+	var rect = {
+		"min": body_rest - size * GRID_SIZE / 2,
+		"max": body_rest + size * GRID_SIZE / 2,
+	}
 	var dx = [rect.min.x - p.x, 0, p.x - rect.max.x].max()
 	var dy = [rect.min.y - p.y, 0, p.y - rect.max.y].max()
 	return sqrt(dx*dx + dy*dy)
@@ -300,12 +307,13 @@ func _process(delta):
 			
 			# add a offset push force
 			var force = original_point
-			var distance = get_global_mouse_position().distance_to(get_global_position())
-			if not selected and distance < size.length() * GRID_SIZE / 2:
+			#var distance = get_global_mouse_position().distance_to(get_global_position())
+			var distance = get_rect_distance(get_global_mouse_position())
+			if not selected and distance < MAGNET_DISTANCE:
 				if anything_selected:
-					force = force.linear_interpolate(get_negative_vector(original_point, get_global_mouse_position()), 1 - float(distance) / float(size.length() * GRID_SIZE))
+					force = force.linear_interpolate(get_negative_vector(original_point, get_global_mouse_position()), 1 - distance / MAGNET_DISTANCE)
 				else:
-					force = force.linear_interpolate(get_global_mouse_position(), 1 - float(distance) / float(size.length() * GRID_SIZE / 2))
+					force = force.linear_interpolate(get_global_mouse_position(), 1 - distance / MAGNET_DISTANCE)
 			
 			set_global_position(lerp(get_global_position(), force, 10 * delta))
 	

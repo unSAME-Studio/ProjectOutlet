@@ -1,6 +1,9 @@
 extends Node
 
 
+var anything_attached
+
+
 func _ready():
 	Global.main = self
 	
@@ -18,6 +21,15 @@ func _ready():
 	
 	TransitionManager.play_in()
 
+
+func _process(delta):
+	if Global.console.attached_plugs.size() > 0:
+		$CanvasLayer/Control/UI/VBoxContainer/MarginContainer/RestartButton.set_disabled(false)
+		$CanvasLayer/Control/UI/VBoxContainer/MarginContainer/RestartButton.set_modulate(Color("ffffff"))
+	else:
+		$CanvasLayer/Control/UI/VBoxContainer/MarginContainer/RestartButton.set_disabled(true)
+		$CanvasLayer/Control/UI/VBoxContainer/MarginContainer/RestartButton.set_modulate(Color("50000000"))
+		
 
 func game_finished():
 	$"CanvasLayer/Control/UI".hide()
