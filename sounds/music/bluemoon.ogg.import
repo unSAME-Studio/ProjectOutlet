@@ -11,5 +11,5 @@ dest_files=[ "res://.import/bluemoon.ogg-ed017889fbbe1f7ddbc3f1872e7606af.oggstr
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

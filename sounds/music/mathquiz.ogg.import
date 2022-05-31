@@ -11,5 +11,5 @@ dest_files=[ "res://.import/mathquiz.ogg-bfc0535b040f73a2a9977481ef5bc323.oggstr
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
