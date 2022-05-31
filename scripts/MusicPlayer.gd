@@ -2,15 +2,17 @@ extends Node
 
 var default_volume = -12
 
-var song1 = preload("res://sounds/Fixaproblem.ogg")
-var song2 = preload("res://sounds/Fixaproblem.ogg")
-var playlist = [song1, song2]
+var song1 = preload("res://sounds/music/Fixaproblem.ogg")
+var song2 = preload("res://sounds/music/mathquiz.ogg")
+var song3 = preload("res://sounds/music/bluemoon.ogg")
+var playlist = [song1, song2, song3]
 var last_played 
 
 func _ready():
 	var a = AudioStreamPlayer.new()
 	
 	# pick a random song
+	randomize()
 	last_played = randi() % playlist.size()
 	a.set_stream(playlist[last_played])
 	

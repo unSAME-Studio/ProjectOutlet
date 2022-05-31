@@ -10,6 +10,7 @@ func _ready():
 	for i in sounds.keys():
 		var s = AudioStreamPlayer.new()
 		s.set_stream(load("res://sounds/%s" % sounds[i]))
+		s.set_bus("Sound")
 		s.name = i
 		add_child(s)
 
