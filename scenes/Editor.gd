@@ -6,11 +6,10 @@ var outlet = preload("res://objects/Outlet.tscn")
 export (ButtonGroup) var outlet_options
 
 var current_level = {
-	"outlets": [
-	],
+	"outlets": [],
 	"size": [],
-	"plugs": [
-	]
+	"plugs": [],
+	"completed": "false"
 }
 var additional_outlets = [
 	
@@ -103,7 +102,7 @@ func _on_SpawnPlug_pressed():
 	int($"CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Headx".get_line_edit().get_text()),
 	int($"CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Heady".get_line_edit().get_text()),
 	$"CanvasLayer/Control/PanelContainer/VBoxContainer/HBoxContainer/Type".get_selected(),
-	additional_outlets	
+	additional_outlets.duplicate(true),
 	]
 	
 	current_level.plugs.append(info)
@@ -130,6 +129,7 @@ func spawn_plug(info):
 	
 	# if additional outlet exist TEMP IMPLEMENT
 	if info.size() >= 6:
+		print(info[5])
 		for add in info[5]:
 			p.additional_outlets.append(add)
 	
@@ -173,7 +173,7 @@ func export_level():
 	new_level.replace("outlets", "\"outlets\"")
 	new_level.replace("plugs", "\"plugs\"")
 	new_level.replace("size", "\"size\"")
-	print(new_level)
+	print(new_level + ",")
 
 
 func _on_Remove_pressed():
@@ -194,6 +194,9 @@ func _on_Remove_pressed():
 		itemlist.remove_item(i)
 		
 		plug_scene[i].cable.queue_free()
+		Global.console.avaliable_plugs.erase(plug_scene[i])
+		Global.console.attached_plugs.erase(plug_scene[i])
+		Global.hover_plugs.erase(plug_scene[i])
 		plug_scene[i].call_deferred("queue_free")
 		plug_scene.remove(i)
 
