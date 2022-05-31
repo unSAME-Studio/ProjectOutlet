@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://ui/ui_blur.gdshader" type="Shader" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://ui/icons/home_ui.png" type="Texture" id=10]
 [ext_resource path="res://ui/icons/no_sound_ui.png" type="Texture" id=11]
 [ext_resource path="res://sounds/next_sfx.mp3" type="AudioStream" id=12]
+[ext_resource path="res://ui/Confetti.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
@@ -349,6 +350,9 @@ text = "Level 1"
 current = true
 
 [node name="OutletGrid" parent="Node2D" instance=ExtResource( 4 )]
+
+[node name="Confetti" parent="Node2D" instance=ExtResource( 13 )]
+z_index = 50
 
 [node name="xylo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )

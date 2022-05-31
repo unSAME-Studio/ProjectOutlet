@@ -27,8 +27,6 @@ _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.983696, 0.00454545 ), -2.5
 curve = SubResource( 9 )
 
 [sub_resource type="ParticlesMaterial" id=11]
-emission_shape = 1
-emission_sphere_radius = 5.0
 flag_disable_z = true
 direction = Vector3( 0, 0, 0 )
 spread = 180.0
@@ -38,6 +36,11 @@ initial_velocity = 350.0
 initial_velocity_random = 0.16
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+damping = 400.0
+damping_random = 0.56
+angle = 28.2
+angle_random = 1.0
+scale = 2.0
 scale_curve = SubResource( 10 )
 
 [sub_resource type="Animation" id=4]
