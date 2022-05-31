@@ -131,7 +131,6 @@ func _ready():
 	cable.plug_end = $End
 	cable.plug_end_tan = $End2
 	cable.head_end = Vector2(original_point.x, get_viewport_rect().size.y / 2)
-	
 	get_parent().add_child(cable)
 	#cable.set_global_position(Vector2(original_point.x, OS.get_real_window_size().y))
 	
@@ -141,6 +140,9 @@ func _ready():
 	$Outline.set_color(ColorManager.color.main_dark)
 	$Outlets.set_modulate(ColorManager.color.second)
 	$Head.set_modulate(ColorManager.color.main_dark)
+	
+	# spawn particles
+	$ElectricBolts.set_emitting(true)
 	
 	# spawn additional outlets
 	for i in additional_outlets:
@@ -374,6 +376,9 @@ func _unhandled_input(event):
 					Global.console.detect_complete()
 					
 					get_node("Out%d" % (randi() % 2)).play()
+					$ElectricBolts.set_emitting(true)
+					$ElectricBolts.restart()
+					
 					$AnimationPlayer.stop()
 					$AnimationPlayer.play("body_hint")
 					
