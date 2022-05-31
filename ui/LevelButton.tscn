@@ -65,13 +65,13 @@ format = 1
 
 [node name="Label" type="Label" parent="Button"]
 visible = false
-modulate = Color( 1, 1, 1, 0.588235 )
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 17.0
-margin_top = -91.0
-margin_right = 201.0
-margin_bottom = -11.0
+margin_left = 16.0
+margin_top = -78.0
+margin_right = 200.0
+margin_bottom = 2.0
+rect_scale = Vector2( 0.8, 0.8 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "13"
