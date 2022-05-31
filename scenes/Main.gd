@@ -78,6 +78,7 @@ func _on_SoundButton_toggled(mute):
 func _on_HomeButton_pressed():
 	#get_tree().change_scene("res://scenes/Menu.tscn")
 	TransitionManager.play_out("res://scenes/Menu.tscn")
+	SoundPlayer.play("Home")
 
 
 func _on_Next_pressed():

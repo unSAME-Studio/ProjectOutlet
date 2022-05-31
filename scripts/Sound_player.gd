@@ -3,6 +3,8 @@ extends Node
 
 var sounds = {
 	"Next": "next_sfx.mp3",
+	"Home": "home.mp3",
+	"Back": "back.mp3",
 }
 
 
