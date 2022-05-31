@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://objects/Plug.gd" type="Script" id=1]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=2]
@@ -19,6 +19,38 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 64 )
+
+[sub_resource type="Gradient" id=12]
+offsets = PoolRealArray( 0.534162, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.341176 )
+
+[sub_resource type="GradientTexture" id=13]
+gradient = SubResource( 12 )
+
+[sub_resource type="Curve" id=9]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.983696, 0.00454545 ), -2.50909, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+emission_shape = 1
+emission_sphere_radius = 5.0
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 586.5
+initial_velocity_random = 0.16
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 800.0
+damping_random = 0.29
+angle = 19.1
+angle_random = 0.77
+scale = 2.0
+scale_curve = SubResource( 10 )
+color_ramp = SubResource( 13 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "bad_rotate"
@@ -116,26 +148,6 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Curve" id=9]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.983696, 0.00454545 ), -2.50909, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=10]
-curve = SubResource( 9 )
-
-[sub_resource type="ParticlesMaterial" id=11]
-emission_shape = 1
-emission_sphere_radius = 5.0
-flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
-spread = 180.0
-flatness = 1.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 350.0
-initial_velocity_random = 0.16
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale_curve = SubResource( 10 )
-
 [node name="Plug" type="Area2D" groups=["plug"]]
 z_index = 6
 script = ExtResource( 1 )
@@ -146,6 +158,15 @@ projection = ExtResource( 16 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 32 )
 shape = SubResource( 1 )
+
+[node name="ElectricBolts" type="Particles2D" parent="."]
+emitting = false
+amount = 5
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="DropShadow" type="Sprite" parent="."]
 modulate = Color( 0.494118, 0.494118, 0.494118, 0.12549 )
@@ -228,14 +249,6 @@ anims/spawn = SubResource( 8 )
 
 [node name="Outlets" type="Node2D" parent="."]
 modulate = Color( 1, 0.819608, 0, 1 )
-
-[node name="Electric Bolts" type="Particles2D" parent="."]
-emitting = false
-amount = 10
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource( 11 )
-texture = ExtResource( 13 )
 
 [connection signal="input_event" from="." to="." method="_on_Plug_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_Plug_mouse_entered"]
