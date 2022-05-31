@@ -25,6 +25,7 @@ MusicPlayer="*res://scripts/MusicPlayer.gd"
 ColorManager="*res://scripts/ColorManager.gd"
 TransitionManager="*res://scripts/TransitionManager.gd"
 SoundPlayer="*res://scripts/Sound_player.gd"
+SaveSystem="*res://scripts/SaveSystem.gd"
 
 [display]
 

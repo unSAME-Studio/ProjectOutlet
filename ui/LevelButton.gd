@@ -7,6 +7,10 @@ var level_size = Vector2.ZERO
 func _ready():
 	$Button/Label.set_text(String(level))
 	
+	# check mark
+	if Global.level[level]["completed"]:
+		$Button/Completed.show()
+	
 	if OS.get_name() in ["Windows", "OSX", "HTML5","X11"]:
 		$Button.connect("mouse_entered", self, "_on_hover")
 		$Button.connect("mouse_exited", self, "_on_mouse_exit")

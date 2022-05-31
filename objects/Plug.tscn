@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://objects/Plug.gd" type="Script" id=1]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=2]
@@ -20,13 +20,6 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 64 )
 
-[sub_resource type="Gradient" id=12]
-offsets = PoolRealArray( 0.534162, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.341176 )
-
-[sub_resource type="GradientTexture" id=13]
-gradient = SubResource( 12 )
-
 [sub_resource type="Curve" id=9]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.983696, 0.00454545 ), -2.50909, 0.0, 0, 0 ]
 
@@ -39,18 +32,13 @@ emission_sphere_radius = 5.0
 flag_disable_z = true
 direction = Vector3( 0, 0, 0 )
 spread = 180.0
+flatness = 1.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 586.5
+initial_velocity = 350.0
 initial_velocity_random = 0.16
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-damping = 800.0
-damping_random = 0.29
-angle = 19.1
-angle_random = 0.77
-scale = 2.0
 scale_curve = SubResource( 10 )
-color_ramp = SubResource( 13 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "bad_rotate"

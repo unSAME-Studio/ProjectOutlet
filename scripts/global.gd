@@ -26,7 +26,8 @@ var level = {
 		"plugs": [
 			[1, 2, 0, 0],
 		],
-		"hint": "[center]Click to Rotate[/center]\n[center]Drag to Move[/center]"
+		"hint": "[center]Click to Rotate[/center]\n[center]Drag to Move[/center]",
+		"completed": false,
 	},
 	2: {
 		"grid": [
@@ -37,7 +38,8 @@ var level = {
 			[1, 2, 0, 0],
 			[1, 1, 0, 0],
 		],
-		"hint": "[center]Fit all the plugs[/center][center]on the outlets[/center]"
+		"hint": "[center]Fit all the plugs[/center][center]on the outlets[/center]",
+		"completed": false,
 	},
 	3: {
 		"grid": [
@@ -58,7 +60,8 @@ var level = {
 			[1, 1, 0, 0, TYPE.ONE],
 			[2, 3, 0, 0]
 		],
-		"hint": "[center]Match the plugs[/center][center]to their outlets[/center]"
+		"hint": "[center]Match the plugs[/center][center]to their outlets[/center]",
+		"completed": false,
 	},
 	4: {
 		"grid": [
@@ -75,7 +78,8 @@ var level = {
 			[1, 3, 0, 1],
 			[2, 3, 1, 0],
 			[2, 2, 1, 1, TYPE.ONE],
-		]
+		],
+		"completed": false,
 	},
 	5: {
 		"grid": [
@@ -89,7 +93,8 @@ var level = {
 			[3, 1, 1, 0],
 			[1, 3, 0, 0],
 			[1, 1, 0, 0],
-		]
+		],
+		"completed": false,
 	},
 	6: {
 		"grid": [
@@ -108,7 +113,8 @@ var level = {
 			[3, 2, 0, 0],
 			[1, 2, 0, 0, TYPE.ONE],
 			[1, 1, 0, 0, TYPE.ONE],
-		]
+		],
+		"completed": false,
 	},
 	7: {
 		"grid": [
@@ -127,7 +133,8 @@ var level = {
 			[1, 2, 0, 0, TYPE.ALL],
 			[1, 2, 0, 0, TYPE.ALL],
 			[1, 1, 0, 0, TYPE.ALL],
-		]
+		],
+		"completed": false,
 	},
 	8: {
 		"grid": [
@@ -137,7 +144,8 @@ var level = {
 			[1, 3, 0, 0, TYPE.TWO, [[0, 1, TYPE.TWO, 1]]],
 			[1, 2, 0, 0],
 		],
-		"hint": "[center]Some plugs have an additional outlet[/center]"
+		"hint": "[center]Some plugs have an additional outlet[/center]",
+		"completed": false,
 	},
 	9: {
 		"grid": [
@@ -154,6 +162,7 @@ var level = {
 			[1, 2, 0, 0, TYPE.ONE],
 			[1, 2, 0, 0, TYPE.ONE],
 		],
+		"completed": false,
 	},
 	10: {
 		"grid": [
@@ -174,9 +183,10 @@ var level = {
 			[1, 1, 0, 0],
 			[1, 1, 0, 0],
 		],
-		"hint": "[center]How far can you stack?[/center]"
+		"hint": "[center]How far can you stack?[/center]",
+		"completed": false,
 	},
-	11: {"outlets":[[0, 0, 1, 0], [1, 0, 1, 3], [1, 1, 1, 0], [0, 1, 1, 1]], "plugs":[[1, 4, 0, 0, 1], [1, 4, 0, 0, 1], [1, 4, 0, 0, 1], [1, 4, 0, 0, 1]], "size":[2, 2]},
+	11: {"outlets":[[0, 0, 1, 0], [1, 0, 1, 3], [1, 1, 1, 0], [0, 1, 1, 1]], "plugs":[[1, 4, 0, 0, 1], [1, 4, 0, 0, 1], [1, 4, 0, 0, 1], [1, 4, 0, 0, 1]], "size":[2, 2], "completed": false},
 	12: {
 		"grid": [
 			[1, 1, 0, 1, 0, 1, 0, 0, 1],
@@ -194,7 +204,8 @@ var level = {
 			[1, 1, 0, 0],
 			[1, 1, 0, 0],
 		],
-		"hint": "[center]Thank you for playing![/center]"
+		"hint": "[center]Thank you for playing![/center]",
+		"completed": false,
 	}
 }
 

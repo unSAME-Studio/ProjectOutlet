@@ -18,5 +18,8 @@ func detect_complete():
 
 
 func game_finished():
+	Global.level[Global.current_level]["completed"] = true
+	SaveSystem.save_game()
+	
 	Global.main.game_finished()
 
