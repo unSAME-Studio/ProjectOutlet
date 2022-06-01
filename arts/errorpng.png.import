@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cross.png-06c1c7ea30233a1412bc826850484035.stex"
+path="res://.import/errorpng.png-38e2a53369dd6e85d896596cdb46c241.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/icons/cross.png"
-dest_files=[ "res://.import/cross.png-06c1c7ea30233a1412bc826850484035.stex" ]
+source_file="res://arts/errorpng.png"
+dest_files=[ "res://.import/errorpng.png-38e2a53369dd6e85d896596cdb46c241.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false

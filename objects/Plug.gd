@@ -269,7 +269,7 @@ func _process(delta):
 				set_modulate(ColorManager.color.main)
 				cable.set_modulate(ColorManager.color.main)
 				
-				#$Body.get_material().set_shader_param("Opacity", 0)
+				$Body.get_material().set_shader_param("Visible", false)
 				
 				auto_rotate_timer = 0.0
 			else:
@@ -281,7 +281,7 @@ func _process(delta):
 				set_modulate(ColorManager.color.bad)
 				cable.set_modulate(ColorManager.color.bad)
 				
-				#$Body.get_material().set_shader_param("Opacity", 1)
+				$Body.get_material().set_shader_param("Visible", true)
 				
 		
 		else:
@@ -289,6 +289,8 @@ func _process(delta):
 			
 			set_modulate(ColorManager.color.main_light)
 			cable.set_modulate(ColorManager.color.main_light)
+			
+			$Body.get_material().set_shader_param("Visible", false)
 			
 			auto_rotate_timer = 0.0
 			
@@ -360,8 +362,8 @@ func _unhandled_input(event):
 			if event.button_index == BUTTON_LEFT and not event.pressed:
 				selected = false
 				
-				set_modulate(Color(1,1,1,1))
-				cable.set_modulate(Color(1,1,1,1))
+				modulate.a = 1
+				cable.modulate.a = 1
 				
 				# if found another close point, select it
 				# else send back to original point
@@ -420,6 +422,8 @@ func unplug():
 	
 	set_modulate(ColorManager.color.main_light)
 	cable.set_modulate(ColorManager.color.main_light)
+	
+	$Body.get_material().set_shader_param("Visible", false)
 	
 	set_z_index(20)
 	print("This plug is at %d Z INDEX" % get_z_index())
