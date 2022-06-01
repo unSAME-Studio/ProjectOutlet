@@ -24,18 +24,27 @@ func _ready():
 	var p = plug.instance()
 	
 	p.size = Vector2(1, 2)
-	p.head_position = Vector2(0, 0)
-	p.original_point = Vector2(0, 0 + 300)
+	p.head_position = Vector2(0, 1)
+	p.original_point = Vector2(0, 600)
 	p.set_name("Plug")
 	$Node2D.add_child(p)
 	
 	# set offset for panel containers
 	$CanvasLayer/Control/Levels/PanelContainer.set_pivot_offset($CanvasLayer/Control/Levels/PanelContainer.get_size() / 2)
 	
+	# change icon color
+	$Node2D/GameTitle.set_modulate(ColorManager.color.main_dark)
+	$Node2D/GameTitle2.set_modulate(ColorManager.color.main_dark)
+	$Node2D/Outlet.get_node("BG").set_self_modulate(Color.white)
+	
 	TransitionManager.play_in()
 
 
 func game_finished():
+	#$Node2D/GameTitle.set_modulate(Color.white)
+	#$Node2D/Outlet.set_modulate(Color.white)
+	
+	yield(get_tree().create_timer(0.5), "timeout")
 	_on_Play_pressed()
 
 
