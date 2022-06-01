@@ -10,7 +10,7 @@ var direction = 0
 var offset_position = Vector2(0, 0)
 var host_plug = null
 
-enum TYPE {ONE, TWO, ALL}
+enum TYPE {ONE, TWO, ALL, NONE}
 var outlet_type = TYPE.TWO
 
 var enabled = true
@@ -28,6 +28,9 @@ func initialize(pos, type, rot):
 			pass
 		TYPE.ALL:
 			$Head.set_texture(load("res://arts/plug_multi.png"))
+		TYPE.NONE:
+			$Head.hide()
+			remove_from_group("outlet")
 	
 	# rotate the outlet
 	rotate(rot)
@@ -150,10 +153,9 @@ func select(new_plug):
 	
 	if not host_plug:
 		$AnimationPlayer.play("hint")
+		
+	set_global_position(get_global_position() - Vector2(0, 20))
 	
-	else:
-		set_global_position(get_global_position() - Vector2(0, 20))
-
 
 func deselect():
 	emit_signal("deselect")
@@ -161,6 +163,5 @@ func deselect():
 	if not host_plug:
 		$AnimationPlayer.play("hint_detach")
 	
-	else:
-		set_global_position(get_global_position() + Vector2(0, 20))
+	set_global_position(get_global_position() + Vector2(0, 20))
 	

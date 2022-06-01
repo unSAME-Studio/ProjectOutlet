@@ -21,6 +21,9 @@ var outlet_scene = {
 	
 }
 
+var plug_start_position = Vector2.ZERO
+
+
 func _ready():
 	Global.main = self
 	
@@ -82,7 +85,35 @@ func _unhandled_input(event):
 				outlet_scene[key].call_deferred("queue_free")
 				outlet_scene.erase(key)
 				return
-		
+	
+	else:
+		# drawing plug
+		if Input.is_action_just_pressed("click"):
+			var position = $Node2D/TileMap.world_to_map($Node2D/TileMap.to_local($Node2D.get_global_mouse_position()))
+			var key = "%d:%d" % [position.x, position.y]
+			
+			plug_start_position = position
+			
+		if Input.is_action_just_released("click"):
+			var position = $Node2D/TileMap.world_to_map($Node2D/TileMap.to_local($Node2D.get_global_mouse_position()))
+			var size = (position - plug_start_position).abs() + Vector2.ONE
+			
+			var info = [
+				size.x,
+				size.y,
+				0,
+				0,
+				0,
+				[]
+			]
+			
+			current_level.plugs.append(info)
+			$"CanvasLayer/Control/PanelContainer/VBoxContainer/ItemList".add_item("Size (%d, %d), Head (%d, %d), Type %d, Outlet: %s" % info)
+			
+			var p = spawn_plug(info)
+			p.original_point = $Node2D/TileMap.map_to_world(plug_start_position) + (Vector2(GRID_SIZE, GRID_SIZE) / 2)
+	
+	
 	if Input.is_action_pressed("camera"):
 		$Node2D/Camera2D.set_global_position(lerp($Node2D/Camera2D.get_global_position(), $Node2D.get_global_mouse_position(), 0.1))
 	
@@ -114,7 +145,10 @@ func _on_SpawnPlug_pressed():
 	# clear additional outlets
 	#additional_outlets.clear()
 	#$CanvasLayer/Control/PanelContainer/VBoxContainer/OutletList.clear()
-	
+		
+	# reposition all plugs
+	for i in range(plug_scene.size()):
+		plug_scene[i].original_point = Vector2($Node2D.get_viewport_rect().size.x / plug_scene.size() * i - $Node2D.get_viewport_rect().size.x / 2, $Node2D.get_viewport_rect().size.y / 2)
 
 
 func spawn_plug(info):
@@ -138,9 +172,7 @@ func spawn_plug(info):
 	
 	plug_scene.append(p)
 	
-	# reposition all plugs
-	for i in range(plug_scene.size()):
-		plug_scene[i].original_point = Vector2($Node2D.get_viewport_rect().size.x / plug_scene.size() * i - $Node2D.get_viewport_rect().size.x / 2, $Node2D.get_viewport_rect().size.y / 2)
+	return p
 
 
 func export_level():
