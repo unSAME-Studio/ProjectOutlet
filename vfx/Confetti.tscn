@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [sub_resource type="Curve" id=1]
 min_value = -360.0
@@ -15,7 +15,12 @@ colors = PoolColorArray( 1, 1, 1, 1, 0.753906, 0.753906, 0.753906, 1, 0.460938, 
 [sub_resource type="GradientTexture" id=4]
 gradient = SubResource( 3 )
 
+[sub_resource type="Curve" id=15]
+max_value = 100.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
 [sub_resource type="CurveTexture" id=6]
+curve = SubResource( 15 )
 
 [sub_resource type="Curve" id=14]
 _data = [ Vector2( 0, 0.0272727 ), 0.0, 1.92054, 0, 0, Vector2( 0.98913, 1 ), 0.0, 0.0, 0, 0 ]
@@ -32,7 +37,7 @@ _data = [ Vector2( 0, -200 ), 0.0, 496.749, 0, 0, Vector2( 1, -200 ), -1061.82, 
 curve = SubResource( 12 )
 
 [sub_resource type="Curve" id=9]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.59123, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0 ), 0.0, 21.7404, 0, 0, Vector2( 0.102804, 0.996591 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.59123, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=10]
 curve = SubResource( 9 )

@@ -25,7 +25,7 @@ func _ready():
 	
 	p.size = Vector2(3, 1)
 	p.head_position = Vector2(1, 0)
-	p.original_point = Vector2(0, 600)
+	p.original_point = Vector2(0, 400)
 	p.set_name("Plug")
 	$Node2D.add_child(p)
 	
@@ -41,9 +41,7 @@ func _ready():
 
 
 func game_finished():
-	#$Node2D/GameTitle.set_modulate(Color.white)
-	#$Node2D/Outlet.set_modulate(Color.white)
-	
+	$CanvasLayer/Control/AnimationPlayer.play("title")
 	yield(get_tree().create_timer(0.5), "timeout")
 	_on_Play_pressed()
 
