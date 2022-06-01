@@ -65,7 +65,7 @@ func _unhandled_input(event):
 				outlet_scene[key].rotate(wrapi(outlet_scene[key].direction + 1, 0, 4))
 				return
 			
-			var type = int(outlet_options.get_pressed_button().name)Global.hover_plugs
+			var type = int(outlet_options.get_pressed_button().name)
 			
 			var o = outlet.instance()
 			o.initialize(position, type, 0)
