@@ -46,9 +46,7 @@ func _ready():
 			
 			add_child(o)
 			
-			#o.set_position(Vector2(c - (float(grid[r].size()) / 2.0), r - (float(grid.size()) / 2.0)) * GRID_SIZE + Vector2(GRID_SIZE / 2, GRID_SIZE / 2))
 			o.set_position(Vector2(i[0] - (float(Global.current_level_data["size"][0]) / 2.0), i[1] - (float(Global.current_level_data["size"][1]) / 2.0)) * GRID_SIZE + Vector2(GRID_SIZE / 2, GRID_SIZE / 2))
-			#o.set_position(Vector2(i[0], i[1]) * GRID_SIZE + Vector2(GRID_SIZE, GRID_SIZE) / 2)
 			
 			o.set_modulate(ColorManager.color.main_dark)
 			
@@ -76,7 +74,8 @@ func _ready():
 				p.additional_outlets.append(add)
 		
 		# evenly spreading each plug along the bottom
-		p.original_point = Vector2(get_viewport_rect().size.x / 2 / plugs_count * i - get_viewport_rect().size.x / 4, get_viewport_rect().size.y / 2 - p.size.y * GRID_SIZE / 2)
+		#p.original_point = Vector2(get_viewport_rect().size.x / 2 / plugs_count * i - get_viewport_rect().size.x / 4, get_viewport_rect().size.y / 2 - p.size.y * GRID_SIZE / 2)
+		p.original_point = Vector2(get_viewport_rect().size.x * 0.7 / plugs_count * i - get_viewport_rect().size.x * 0.35, get_viewport_rect().size.y / 2 - p.size.y * GRID_SIZE / 2 + GRID_SIZE / 2)
 		
 		get_parent().add_child(p)
 		p.set_global_position(Vector2(0, get_viewport_rect().size.y / 2))

@@ -253,7 +253,7 @@ func _process(delta):
 		
 		# continueous detection
 		closest_point = null
-		var shortest_dist = 100
+		var shortest_dist = MAGNET_DISTANCE
 		
 		# detect outlet
 		for child in get_tree().get_nodes_in_group("outlet"):

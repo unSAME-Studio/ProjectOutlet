@@ -8,7 +8,3 @@
 script = ExtResource( 1 )
 outlet = ExtResource( 2 )
 plug = ExtResource( 3 )
-
-[node name="TileMap" type="TileMap" parent="."]
-cell_size = Vector2( 128, 128 )
-format = 1
