@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [sub_resource type="Curve" id=1]
 min_value = -360.0
@@ -9,25 +9,19 @@ _data = [ Vector2( 0, -320.727 ), 0.0, 1093.22, 0, 0, Vector2( 0.98913, 360 ), -
 curve = SubResource( 1 )
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.534162, 1 )
+offsets = PoolRealArray( 0, 0.52795, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0.753906, 0.753906, 0.753906, 1, 0.460938, 0.460938, 0.460938, 0.207843 )
 
 [sub_resource type="GradientTexture" id=4]
 gradient = SubResource( 3 )
 
-[sub_resource type="Curve" id=5]
-max_value = 100.0
-_data = [ Vector2( 0, 0 ), 0.0, 273.61, 0, 0, Vector2( 1, 10.4545 ), -254.545, 0.0, 0, 0 ]
-
 [sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
 
-[sub_resource type="Curve" id=7]
-min_value = -1.0
-_data = [ Vector2( 0.0108696, -1 ), 0.0, 4.77107, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id=14]
+_data = [ Vector2( 0, 0.0272727 ), 0.0, 1.92054, 0, 0, Vector2( 0.98913, 1 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=8]
-curve = SubResource( 7 )
+curve = SubResource( 14 )
 
 [sub_resource type="Curve" id=12]
 min_value = -200.0
@@ -45,18 +39,22 @@ curve = SubResource( 9 )
 
 [sub_resource type="ParticlesMaterial" id=11]
 lifetime_randomness = 0.24
+emission_shape = 1
+emission_sphere_radius = 500.0
 flag_disable_z = true
 direction = Vector3( 0, 0, 0 )
 spread = 180.0
 gravity = Vector3( 0, 98, 0 )
-initial_velocity = 120.0
+initial_velocity = 800.0
 initial_velocity_random = 0.15
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel_curve = SubResource( 13 )
+damping = 300.0
+damping_random = 1.0
 damping_curve = SubResource( 6 )
 angle_curve = SubResource( 2 )
-scale = 40.0
+scale = 100.0
 scale_random = 0.71
 scale_curve = SubResource( 10 )
 color_ramp = SubResource( 4 )
@@ -69,4 +67,5 @@ emitting = false
 amount = 30
 one_shot = true
 explosiveness = 0.74
+local_coords = false
 process_material = SubResource( 11 )
