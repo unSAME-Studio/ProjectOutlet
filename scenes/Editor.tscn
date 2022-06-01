@@ -43,6 +43,7 @@ mouse_filter = 2
 theme = ExtResource( 2 )
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
+visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -1385.0
@@ -321,7 +322,6 @@ mouse_default_cursor_shape = 2
 size_flags_horizontal = 10
 theme = ExtResource( 2 )
 toggle_mode = true
-pressed = true
 text = "Plugs Menu"
 
 [node name="Label5" type="Label" parent="CanvasLayer/Control"]
