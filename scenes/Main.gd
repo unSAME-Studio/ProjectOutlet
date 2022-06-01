@@ -49,10 +49,12 @@ func game_finished():
 		
 		yield(get_tree().create_timer(0.2), "timeout")
 	
-	$Node2D/Confetti.set_emitting(true)
 	yield(get_tree().create_timer(0.4), "timeout")
 	$CanvasLayer/Control/AnimationPlayer.play("complete")
 	$"CanvasLayer/Control/OverScreen/PanelContainer".show()
+	
+	yield(get_tree().create_timer(0.3), "timeout")
+	$Node2D/Confetti.set_emitting(true)
 
 
 func _on_RestartButton_pressed():
