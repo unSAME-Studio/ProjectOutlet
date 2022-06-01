@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Menu.gd" type="Script" id=1]
 [ext_resource path="res://ui/fonts/Ubuntu_Reg.tres" type="DynamicFont" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scripts/console.gd" type="Script" id=4]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/ui_blur.gdshader" type="Shader" id=6]
+[ext_resource path="res://ui/game_title.png" type="Texture" id=7]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 6 )
@@ -75,6 +76,7 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Options"]
+visible = false
 margin_left = 340.0
 margin_top = 960.0
 margin_right = 740.0
@@ -112,6 +114,12 @@ mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
 enabled_focus_mode = 0
 text = "Quit"
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Control/Options"]
+visible = false
+position = Vector2( 1585, 958 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 7 )
 
 [node name="Levels" type="CenterContainer" parent="CanvasLayer/Control"]
 visible = false
