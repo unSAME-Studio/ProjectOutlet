@@ -25,6 +25,7 @@ tracks/0/keys = {
 margin_right = 200.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 500, 500 )
+mouse_filter = 1
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
@@ -38,6 +39,7 @@ margin_right = 480.0
 margin_bottom = 480.0
 rect_pivot_offset = Vector2( 230, 230 )
 focus_mode = 0
+mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource( 1 )
 enabled_focus_mode = 0
@@ -84,6 +86,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -100.0
 margin_top = -100.0
+mouse_filter = 2
 texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
