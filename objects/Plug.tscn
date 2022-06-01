@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://objects/Plug.gd" type="Script" id=1]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=2]
@@ -59,10 +59,10 @@ scale = 2.0
 scale_curve = SubResource( 10 )
 color_ramp = SubResource( 15 )
 
-[sub_resource type="ShaderMaterial" id=12]
+[sub_resource type="ShaderMaterial" id=16]
 resource_local_to_scene = true
 shader = ExtResource( 17 )
-shader_param/Visible = false
+shader_param/Visible = null
 shader_param/UVSize = 20.0
 shader_param/Speed = 0.2
 
@@ -192,7 +192,7 @@ texture = ExtResource( 8 )
 polygon = PoolVector2Array( -32, -32, -32, 96, 96, 96, 96, -32 )
 
 [node name="Body" type="Polygon2D" parent="."]
-material = SubResource( 12 )
+material = SubResource( 16 )
 position = Vector2( -32, -32 )
 antialiased = true
 texture = ExtResource( 8 )
