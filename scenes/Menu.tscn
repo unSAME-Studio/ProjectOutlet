@@ -6,7 +6,7 @@
 [ext_resource path="res://scripts/console.gd" type="Script" id=4]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/ui_blur.gdshader" type="Shader" id=6]
-[ext_resource path="res://ui/game_title.png" type="Texture" id=7]
+[ext_resource path="res://ui/title.png" type="Texture" id=8]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 6 )
@@ -115,12 +115,6 @@ theme = ExtResource( 3 )
 enabled_focus_mode = 0
 text = "Quit"
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/Control/Options"]
-visible = false
-position = Vector2( 1585, 958 )
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 7 )
-
 [node name="Levels" type="CenterContainer" parent="CanvasLayer/Control"]
 visible = false
 anchor_right = 1.0
@@ -128,6 +122,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Levels"]
+modulate = Color( 1, 1, 1, 0 )
 material = SubResource( 2 )
 margin_top = 174.0
 margin_right = 1658.0
@@ -135,6 +130,7 @@ margin_bottom = 1745.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 1658, 1571 )
+rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 829, 785.5 )
 theme = ExtResource( 3 )
 
@@ -205,14 +201,14 @@ current = true
 self_modulate = Color( 0.623529, 0.623529, 0.623529, 1 )
 position = Vector2( 0, 20 )
 scale = Vector2( 1.1, 1.1 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="GameTitle" type="Sprite" parent="Node2D"]
 scale = Vector2( 1.1, 1.1 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="Outlet" parent="Node2D" instance=ExtResource( 5 )]
-position = Vector2( 62, -134 )
+position = Vector2( 1, -379 )
 
 [connection signal="pressed" from="CanvasLayer/Control/Options/VBoxContainer/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Options/VBoxContainer/Editor" to="." method="_on_Editor_pressed"]
