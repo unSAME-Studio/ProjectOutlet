@@ -75,7 +75,7 @@ func _ready():
 		
 		# evenly spreading each plug along the bottom
 		#p.original_point = Vector2(get_viewport_rect().size.x / 2 / plugs_count * i - get_viewport_rect().size.x / 4, get_viewport_rect().size.y / 2 - p.size.y * GRID_SIZE / 2)
-		p.original_point = Vector2(get_viewport_rect().size.x * 0.7 / plugs_count * i - get_viewport_rect().size.x * 0.35, get_viewport_rect().size.y / 2 - p.size.y * GRID_SIZE / 2 + GRID_SIZE / 2)
+		p.original_point = Vector2(get_viewport_rect().size.x * 0.7 / plugs_count * i + p.size.x * GRID_SIZE / 2 - get_viewport_rect().size.x * 0.35, get_viewport_rect().size.y / 2 - p.size.y * GRID_SIZE / 2 + GRID_SIZE / 2)
 		
 		get_parent().add_child(p)
 		p.set_global_position(Vector2(0, get_viewport_rect().size.y / 2))
