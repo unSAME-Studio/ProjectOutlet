@@ -12,7 +12,7 @@
 [ext_resource path="res://ui/icons/home_ui.png" type="Texture" id=10]
 [ext_resource path="res://ui/icons/no_sound_ui.png" type="Texture" id=11]
 [ext_resource path="res://sounds/next_sfx.mp3" type="AudioStream" id=12]
-[ext_resource path="res://ui/Confetti.tscn" type="PackedScene" id=13]
+[ext_resource path="res://vfx/Confetti.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
