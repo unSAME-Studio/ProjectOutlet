@@ -545,6 +545,8 @@ func create_projection() -> Script:
 func _on_Plug_mouse_entered():
 	hovering = true
 	
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	
 	if Global.hover_plugs.size() > 0:
 		# check the entire list, if z index is lower then ignore [NEED OPTIMIZE]
 		for i in Global.hover_plugs:
@@ -561,6 +563,8 @@ func _on_Plug_mouse_exited():
 	Global.hover_plugs.erase(self)
 	hovering = false
 	
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	
 	# find the top by z index and hover [NEED OPTIMIZE]
 	if Global.hover_plugs.size() > 0:
 		var top_plug = null
@@ -571,3 +575,10 @@ func _on_Plug_mouse_exited():
 				top_z = i.get_z_index()
 		
 		top_plug.hovering = true
+
+
+# clean self from array when exit the tree
+func _on_Plug_tree_exited():
+	Global.hover_plugs.erase(self)
+	Global.console.avaliable_plugs.erase(self)
+	Global.console.attached_plugs.erase(self)
