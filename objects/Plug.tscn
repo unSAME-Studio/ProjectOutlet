@@ -266,11 +266,19 @@ anims/spawn = SubResource( 8 )
 modulate = Color( 1, 0.819608, 0, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
 
 [node name="RotationHint" type="TextureProgress" parent="CanvasLayer"]
 visible = false
-margin_right = 200.0
-margin_bottom = 200.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
+rect_scale = Vector2( 0.7, 0.7 )
 texture_under = ExtResource( 18 )
 texture_progress = ExtResource( 18 )
 fill_mode = 4

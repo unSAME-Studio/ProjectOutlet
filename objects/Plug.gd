@@ -140,6 +140,7 @@ func _ready():
 	$Outline.set_color(ColorManager.color.main_dark)
 	$Outlets.set_modulate(ColorManager.color.second)
 	$Head.set_modulate(ColorManager.color.main_dark)
+	$CanvasLayer/RotationHint.set_tint_progress(ColorManager.color.main_light)
 	
 	# spawn particles
 	$ElectricBolts.set_emitting(true)
@@ -262,6 +263,10 @@ func _process(delta):
 		
 		# detect outlet
 		for child in get_tree().get_nodes_in_group("outlet"):
+			# don't compare if the outlet is a child of this plug
+			if child in $Outlets.get_children():
+				continue
+			
 			var distance = get_global_mouse_position().distance_to(child.get_global_position())
 			if distance < shortest_dist and child.check_enabled():
 				closest_point = child
@@ -332,10 +337,15 @@ func _process(delta):
 	set_rotation(lerp_angle(get_rotation(), direction * PI / 2, 25 * delta))
 	
 	# if auto rotate timer over limite, rotate the plug
-	if auto_rotate_timer >= 0.4:
+	if auto_rotate_timer >= 0.5:
 		auto_rotate_timer = 0.0
 		spin_clockwise()
 		$Rotate.play()
+	
+	# set the position of the rotation hint
+	$CanvasLayer/RotationHint.set_value(auto_rotate_timer * 200)
+	$CanvasLayer/RotationHint.set_visible(not auto_rotate_timer <= 0.0)
+	$CanvasLayer/RotationHint.set_global_position(get_global_mouse_position() + Vector2(20, 20))
 	
 	# adjust end tangent base on cable distance
 	var cable_distance = (cable.head_end.distance_to($End.get_global_position()) / 2)
