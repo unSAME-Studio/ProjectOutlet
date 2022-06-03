@@ -249,7 +249,7 @@ scale = Vector2( 1.1, 1.1 )
 texture = ExtResource( 8 )
 
 [node name="Outlet" parent="Node2D" instance=ExtResource( 5 )]
-position = Vector2( 1, -500 )
+position = Vector2( 64, -117 )
 
 [connection signal="pressed" from="CanvasLayer/Control/Options/VBoxContainer/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Options/VBoxContainer/Editor" to="." method="_on_Editor_pressed"]
