@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://objects/Plug.gd" type="Script" id=1]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://sounds/rotation_sfx.mp3" type="AudioStream" id=15]
 [ext_resource path="res://objects/ProjectPlug.gd" type="Script" id=16]
 [ext_resource path="res://arts/ScrollingXShader.tres" type="Shader" id=17]
+[ext_resource path="res://ui/icons/restart_ui.png" type="Texture" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 64 )
@@ -263,6 +264,18 @@ anims/spawn = SubResource( 8 )
 
 [node name="Outlets" type="Node2D" parent="."]
 modulate = Color( 1, 0.819608, 0, 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RotationHint" type="TextureProgress" parent="CanvasLayer"]
+visible = false
+margin_right = 200.0
+margin_bottom = 200.0
+texture_under = ExtResource( 18 )
+texture_progress = ExtResource( 18 )
+fill_mode = 4
+tint_under = Color( 0.184314, 0.184314, 0.184314, 0.341176 )
+radial_initial_angle = 90.0
 
 [connection signal="input_event" from="." to="." method="_on_Plug_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_Plug_mouse_entered"]

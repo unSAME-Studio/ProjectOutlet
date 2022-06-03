@@ -4,7 +4,7 @@ export (PackedScene) var outlet
 export (PackedScene) var string
 export (Script) var projection
 
-const HOLD_REQUIRED = 0.5
+const HOLD_REQUIRED = 0.3
 const DRAG_DISTANCE = 40
 const MAGNET_DISTANCE = 200
 
@@ -178,6 +178,8 @@ func _on_Plug_input_event(viewport, event, shape_idx):
 						if rest_point == null:
 							spin_clockwise()
 							$Rotate.play()
+							
+							auto_rotate_timer = 0.0
 						else:
 							set_rotation_degrees(get_rotation_degrees() + 20)
 							$Error.play()
@@ -185,6 +187,8 @@ func _on_Plug_input_event(viewport, event, shape_idx):
 						if rest_point == null:
 							spin_counterclockwise()
 							$Rotate.play()
+							
+							auto_rotate_timer = 0.0
 						else:
 							set_rotation_degrees(get_rotation_degrees() - 20)
 							$Error.play()
@@ -250,6 +254,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("rotate"):
 			spin_clockwise()
 			$Rotate.play()
+			auto_rotate_timer = 0.0
 		
 		# continueous detection
 		closest_point = null
@@ -299,6 +304,8 @@ func _process(delta):
 		cable.modulate.a = 0.5
 	
 	else:
+		auto_rotate_timer = 0.0
+		
 		if rest_point:
 			set_global_position(lerp(get_global_position(), rest_point.get_global_position(), 10 * delta))
 		else:
@@ -325,7 +332,7 @@ func _process(delta):
 	set_rotation(lerp_angle(get_rotation(), direction * PI / 2, 25 * delta))
 	
 	# if auto rotate timer over limite, rotate the plug
-	if auto_rotate_timer >= 0.5:
+	if auto_rotate_timer >= 0.4:
 		auto_rotate_timer = 0.0
 		spin_clockwise()
 		$Rotate.play()
