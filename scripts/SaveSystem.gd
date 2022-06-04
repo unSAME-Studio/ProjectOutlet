@@ -6,6 +6,10 @@ func _ready():
 
 
 func save_game():
+	# HTML5 Cookie bug fixes
+	if not OS.is_userfs_persistent():
+		return 
+	
 	var save_game = File.new()
 	save_game.open("user://savegame.save", File.WRITE)
 	
@@ -19,6 +23,10 @@ func save_game():
 
 
 func load_game():
+	# HTML5 Cookie bug fixes
+	if not OS.is_userfs_persistent():
+		return 
+	
 	var save_game = File.new()
 	
 	# create a new save file then open
