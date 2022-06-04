@@ -37,6 +37,9 @@ func _ready():
 	$Node2D/GameTitle2.set_modulate(ColorManager.color.main_dark)
 	$Node2D/Outlet.get_node("BG").set_self_modulate(Color.white)
 	
+	# change blur shader color
+	$"CanvasLayer/Control/Levels/PanelContainer".get_material().set_shader_param("color_main", ColorManager.color.background)
+	
 	TransitionManager.play_in()
 
 

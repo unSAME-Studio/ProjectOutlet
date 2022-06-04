@@ -18,6 +18,8 @@ func _ready():
 	if AudioServer.is_bus_mute(AudioServer.get_bus_index("Music")):
 		$"CanvasLayer/Control/UI/VBoxContainer/MarginContainer2/SoundButton".set_pressed(true)
 	
+	# change blur shader color
+	$"CanvasLayer/Control/Hint/PanelContainer".get_material().set_shader_param("color_main", ColorManager.color.background)
 	
 	TransitionManager.play_in()
 
