@@ -23,8 +23,8 @@ func _ready():
 	$Node2D/Outlet.set_modulate(ColorManager.color.main_dark)
 	var p = plug.instance()
 	
-	p.size = Vector2(1, 2)
-	p.head_position = Vector2(0, 1)
+	p.size = Vector2(3, 1)
+	p.head_position = Vector2(1, 0)
 	p.original_point = Vector2(0, 500)
 	p.set_name("Plug")
 	$Node2D.add_child(p)
@@ -36,9 +36,6 @@ func _ready():
 	$Node2D/GameTitle.set_modulate(ColorManager.color.main_dark)
 	$Node2D/GameTitle2.set_modulate(ColorManager.color.main_dark)
 	$Node2D/Outlet.get_node("BG").set_self_modulate(Color.white)
-	
-	$Node2D/Outlet.get_node("BG").hide()
-	$Node2D/Outlet.get_node("BG2").hide()
 	
 	TransitionManager.play_in()
 
