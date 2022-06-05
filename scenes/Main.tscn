@@ -16,7 +16,7 @@
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 2 )
-shader_param/blur_amount = 0.5
+shader_param/blur_amount = 0.3
 shader_param/mix_amount = 0.447
 shader_param/color_main = Color( 0.364706, 0.764706, 0.682353, 1 )
 shader_param/color_over = Color( 0, 0, 0, 1 )

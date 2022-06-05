@@ -172,7 +172,6 @@ margin_bottom = 1745.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 1658, 1571 )
-rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 829, 785.5 )
 theme = ExtResource( 3 )
 
