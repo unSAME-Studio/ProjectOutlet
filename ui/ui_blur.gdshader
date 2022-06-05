@@ -37,7 +37,7 @@ vec4 blur9sampleFunc(sampler2D _samp_b1ur, vec2 _uv_b1ur, float _lod_b1ur, float
 // Blurs the screen in the X-direction.
 void fragment() {
     vec4 blurred = blur9sampleFunc(SCREEN_TEXTURE, SCREEN_UV, blur_amount, blur_amount);
-	vec4 fin = mix(blurred, color_main, 0.8);
+	vec4 fin = mix(blurred, color_main, 0.89);
 	fin = mix(fin, color_over, mix_amount);
 	COLOR = fin;
 }
