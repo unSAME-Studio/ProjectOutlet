@@ -8,7 +8,10 @@ var song3 = preload("res://sounds/music/bluemoon.ogg")
 var playlist = [song1, song2, song3]
 var last_played 
 
+
 func _ready():
+	# dynamically download music for HTML5
+	
 	var a = AudioStreamPlayer.new()
 	
 	# pick a random song
