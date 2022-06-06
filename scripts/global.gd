@@ -4,6 +4,12 @@ var console
 var grid
 var main
 
+var settings = {
+	"random_color": false,
+	"hue": Color.aquamarine,
+	"high_contrast": false,
+}
+
 const GRID_SIZE = 200
 
 var hover_plugs = []

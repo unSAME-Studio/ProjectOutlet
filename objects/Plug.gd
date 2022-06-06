@@ -6,7 +6,7 @@ export (Script) var projection
 
 const HOLD_REQUIRED = 0.3
 const DRAG_DISTANCE = 40
-const MAGNET_DISTANCE = 200
+const MAGNET_DISTANCE = 150
 
 var hovering = false
 var selected = false
@@ -423,7 +423,7 @@ func _unhandled_input(event):
 						
 				else:
 					# make the current location the new origin point
-					original_point = get_global_mouse_position()
+					#original_point = get_global_mouse_position()
 					
 					get_node("In%d" % (randi() % 2)).play()
 					$AnimationPlayer.stop()
