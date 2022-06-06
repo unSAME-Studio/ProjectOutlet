@@ -2,10 +2,11 @@ extends Node
 
 
 func _input(event):
-	if event is InputEventKey or event is InputEventMouseButton or event is InputEventScreenTouch:
-		if event.pressed:
-			$Timer.stop()
-			TransitionManager.play_out("res://scenes/Menu.tscn")
+	if not $Timer.is_stopped():
+		if event is InputEventKey or event is InputEventMouseButton or event is InputEventScreenTouch:
+			if event.pressed:
+				$Timer.stop()
+				TransitionManager.play_out("res://scenes/Menu.tscn")
 
 
 func _on_Timer_timeout():

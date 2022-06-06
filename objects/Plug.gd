@@ -323,7 +323,7 @@ func _process(delta):
 			var distance = get_rect_distance(get_global_mouse_position())
 			if not selected and distance < MAGNET_DISTANCE:
 				if anything_selected:
-					force = force.linear_interpolate(get_negative_vector(original_point, get_global_mouse_position()), 1 - distance / MAGNET_DISTANCE)
+					force = force.linear_interpolate(get_negative_vector(original_point, get_global_mouse_position()), (1 - distance / MAGNET_DISTANCE) * 2)
 				else:
 					force = force.linear_interpolate(get_global_mouse_position(), 1 - distance / MAGNET_DISTANCE)
 			
@@ -422,6 +422,13 @@ func _unhandled_input(event):
 								child.enabled = false
 						
 				else:
+					# make the current location the new origin point
+					original_point = get_global_mouse_position()
+					
+					get_node("In%d" % (randi() % 2)).play()
+					$AnimationPlayer.stop()
+					$AnimationPlayer.play("drop_hint")
+					
 					unplug()
 
 
