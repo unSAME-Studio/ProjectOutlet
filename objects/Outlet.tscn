@@ -42,7 +42,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.08, 0.35 ),
 "transitions": PoolRealArray( 0.5, 2, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 20 ), Vector2( 0, 60 ), Vector2( 0, 40 ) ]
+"values": [ Vector2( 0, 40 ), Vector2( 0, 80 ), Vector2( 0, 40 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("BG:position")
@@ -54,7 +54,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.35 ),
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 20 ) ]
+"values": [ Vector2( 0, 20 ), Vector2( 0, 20 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Head:position")
@@ -107,7 +107,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.08, 0.35 ),
 "transitions": PoolRealArray( 0.5, 2, 2 ),
 "update": 0,
-"values": [ Vector2( 0, 40 ), Vector2( 0, 20 ), Vector2( 0, 20 ) ]
+"values": [ Vector2( 0, 20 ), Vector2( 0, 0 ), Vector2( 0, 20 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("BG:position")
@@ -117,9 +117,9 @@ tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
 "times": PoolRealArray( 0, 0.35 ),
-"transitions": PoolRealArray( 0.5, 0.5 ),
+"transitions": PoolRealArray( 0.5, 0 ),
 "update": 0,
-"values": [ Vector2( 0, 20 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Head:position")

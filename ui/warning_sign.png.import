@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/title7.png-ca3c4d349b432746949e367de833da01.stex"
+path="res://.import/warning_sign.png-55f26446fb4f65e1af4f2995e9e5a9da.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arts/title7.png"
-dest_files=[ "res://.import/title7.png-ca3c4d349b432746949e367de833da01.stex" ]
+source_file="res://ui/warning_sign.png"
+dest_files=[ "res://.import/warning_sign.png-55f26446fb4f65e1af4f2995e9e5a9da.stex" ]
 
 [params]
 

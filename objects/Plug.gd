@@ -36,9 +36,6 @@ var additional_outlets = [
 
 var cable
 
-var error_texture = preload("res://arts/outlet_uv_error.png")
-var normal_texture = preload("res://arts/outlet_uv.png")
-
 # drag and drop code adapted from Youtube
 # https://www.youtube.com/watch?v=iSpWZzL2i1o
 
@@ -169,7 +166,7 @@ func _on_Plug_input_event(viewport, event, shape_idx):
 			get_tree().set_input_as_handled()
 			holding = true
 			drag_point = get_global_mouse_position()
-			print("Grabbing -> %s" % name)
+			#print("Grabbing -> %s" % name)
 		
 		# rotating
 		if event is InputEventMouseButton:
@@ -206,7 +203,7 @@ func _process(delta):
 			if rest_point == null:
 				spin_clockwise()
 				$Rotate.play()
-				print("Release with no hold")
+				#print("Release with no hold")
 			else:
 				#play can't rotate animation
 				#$AnimationPlayer.stop()
@@ -323,7 +320,6 @@ func _process(delta):
 			
 			# add a offset push force
 			var force = original_point
-			#var distance = get_global_mouse_position().distance_to(get_global_position())
 			var distance = get_rect_distance(get_global_mouse_position())
 			if not selected and distance < MAGNET_DISTANCE:
 				if anything_selected:
@@ -405,7 +401,7 @@ func _unhandled_input(event):
 					cable.set_modulate(ColorManager.color.main)
 					
 					set_z_index(rest_point.check_z_index() + 2)
-					print("This plug is at %d Z INDEX" % get_z_index())
+					#print("This plug is at %d Z INDEX" % get_z_index())
 					
 					#print("Avaliable")
 					#print(Global.console.avaliable_plugs)
@@ -442,8 +438,8 @@ func unplug():
 	
 	$Body.get_material().set_shader_param("Visible", false)
 	
-	set_z_index(20)
-	print("This plug is at %d Z INDEX" % get_z_index())
+	set_z_index(30)
+	#print("This plug is at %d Z INDEX" % get_z_index())
 	
 	#print("Avaliable")
 	#print(Global.console.avaliable_plugs)
@@ -476,12 +472,12 @@ func unplug():
 func spin_clockwise():
 	direction = wrapi(direction + 1, 0, 4)
 		
-	print("!! current direction %d" % [direction])
+	#print("!! current direction %d" % [direction])
 	
 	# move head position
 	# MAGIC
 	head_position = Vector2(size.y - 1 - head_position.y, head_position.x)
-	print("New head position %s" % [head_position])
+	#print("New head position %s" % [head_position])
 	
 	# swap size x and y
 	var temp_size = size
@@ -504,18 +500,18 @@ func spin_clockwise():
 	for i in $Outlets.get_children():
 		i.direction = wrapi(i.direction + 1, 0, 4)
 		i.offset_position = Vector2(-i.offset_position.y, i.offset_position.x)
-		print("ADDITIONAL: NEW POS %s" % i.offset_position)
+		#print("ADDITIONAL: NEW POS %s" % i.offset_position)
 
 
 func spin_counterclockwise():
 	direction = wrapi(direction - 1, 0, 4)
 		
-	print("!! current direction %d" % [direction])
+	#print("!! current direction %d" % [direction])
 	
 	# move head position
 	# MAGIC
 	head_position = Vector2(head_position.y, size.x - 1 - head_position.x)
-	print("New head position %s" % [head_position])
+	#print("New head position %s" % [head_position])
 	
 	# swap size x and y
 	var temp_size = size
@@ -529,7 +525,7 @@ func spin_counterclockwise():
 	for i in $Outlets.get_children():
 		i.direction = wrapi(i.direction - 1, 0, 4)
 		i.offset_position = Vector2(-i.offset_position.y, i.offset_position.x)
-		print("ADDITIONAL: NEW POS %s" % i.offset_position)
+		#print("ADDITIONAL: NEW POS %s" % i.offset_position)
 
 
 func create_projection() -> Script:
