@@ -328,7 +328,7 @@ func _process(delta):
 				if anything_selected:
 					force = force.linear_interpolate(get_negative_vector(original_point, get_global_mouse_position()), (1 - distance / MAGNET_DISTANCE) * 2)
 				else:
-					force = force.linear_interpolate(get_global_mouse_position(), 1 - distance / MAGNET_DISTANCE)
+					force = force.linear_interpolate(get_global_mouse_position(), (1 - distance / MAGNET_DISTANCE) / 2)
 			
 			set_global_position(lerp(get_global_position(), force, 10 * delta))
 	
@@ -550,26 +550,30 @@ func create_projection() -> Script:
 
 func _on_Plug_mouse_entered():
 	hovering = true
-	
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	set_z_index(32)
 	
 	if Global.hover_plugs.size() > 0:
 		# check the entire list, if z index is lower then ignore [NEED OPTIMIZE]
 		for i in Global.hover_plugs:
 			if i.get_z_index() > get_z_index():
 				hovering = false
+				set_z_index(30)
 				break
 			else:
 				i.hovering = false
+				i.set_z_index(30)
 		
 	Global.hover_plugs.append(self)
+	
+	if hovering:
+		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+		
 
 
 func _on_Plug_mouse_exited():
 	Global.hover_plugs.erase(self)
 	hovering = false
-	
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	set_z_index(30)
 	
 	# find the top by z index and hover [NEED OPTIMIZE]
 	if Global.hover_plugs.size() > 0:
@@ -581,6 +585,9 @@ func _on_Plug_mouse_exited():
 				top_z = i.get_z_index()
 		
 		top_plug.hovering = true
+	
+	else:
+		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 
 # clean self from array when exit the tree
