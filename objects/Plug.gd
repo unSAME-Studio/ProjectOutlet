@@ -120,14 +120,17 @@ func _ready():
 	$CollisionShape2D.set_position($Body.get_position())
 	
 	# move attach point
-	$End.set_position(Vector2(0, (size.y - head_position.y) * GRID_SIZE - GRID_SIZE / 2 - MARGIN))
+	$End.set_position(Vector2(
+		$Body.get_position().x,
+		(size.y - head_position.y) * GRID_SIZE - GRID_SIZE / 2 - MARGIN)
+	)
 	$End2.set_position($End.get_position() + Vector2(0, 200))
 	
 	# spawn the string
 	cable = string.instance()
 	cable.plug_end = $End
 	cable.plug_end_tan = $End2
-	cable.head_end = Vector2(original_point.x, get_viewport_rect().size.y / 2)
+	cable.head_end = Vector2($Body.get_position().x + original_point.x, get_viewport_rect().size.y / 2)
 	get_parent().add_child(cable)
 	#cable.set_global_position(Vector2(original_point.x, OS.get_real_window_size().y))
 	

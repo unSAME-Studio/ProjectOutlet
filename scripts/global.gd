@@ -82,8 +82,8 @@ var level = {
 		],
 		"plugs": [
 			[1, 3, 0, 1],
-			[2, 3, 1, 0],
 			[2, 2, 1, 1, TYPE.ONE],
+			[2, 3, 1, 0],
 		],
 		"completed": false,
 	},
