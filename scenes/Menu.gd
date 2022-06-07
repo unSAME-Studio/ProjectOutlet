@@ -52,6 +52,9 @@ func _ready():
 func game_finished():
 	$CanvasLayer/Control/AnimationPlayer.play("title")
 	
+	$Timer.stop()
+	$Node2D/Hint.hide()
+	
 	yield(get_tree().create_timer(0.5), "timeout")
 	_on_Play_pressed()
 
@@ -100,3 +103,9 @@ func _on_Settings_toggled(button_pressed):
 func _on_ColorSlider_value_changed(value):
 	ColorManager.generate_color(float(value) / 255.0)
 	ColorManager.apply_color()
+
+
+func _on_Timer_timeout():
+	#when time is up, show hint
+	$Node2D/AnimationPlayer.play("hint")
+	$Node2D/Hint.show()
