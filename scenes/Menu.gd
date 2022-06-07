@@ -8,16 +8,25 @@ var plug = preload("res://objects/Plug.tscn")
 func _ready():
 	Global.main = self
 	
+	# show quit button only on PC build
+	if OS.get_name() in ["Windows", "OSX", "X11"]:
+		$CanvasLayer/Control/Options/VBoxContainer/Quit.show()
+	
+	# set offset for panel containers
+	$CanvasLayer/Control/Levels/PanelContainer.set_custom_minimum_size(Vector2(min($Node2D.get_viewport_rect().size.x - 50, 1658), 1571))
+	$CanvasLayer/Control/Levels/PanelContainer.set_size(Vector2(min($Node2D.get_viewport_rect().size.x - 50, 1658), 1571))
+	$CanvasLayer/Control/Levels/PanelContainer.set_pivot_offset($CanvasLayer/Control/Levels/PanelContainer.get_size() / 2)
+	
+	# adjust grid columns
+	if $Node2D.get_viewport_rect().size.x >= 1658:
+		$CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/GridContainer.set_columns(3)
+	
 	# generate levels
 	for i in Global.level.keys():
 		var b = button.instance()
 		b.level = int(i)
 		
 		$"CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/GridContainer".add_child(b)
-	
-	# show quit button only on PC build
-	if OS.get_name() in ["Windows", "OSX", "X11"]:
-		$CanvasLayer/Control/Options/VBoxContainer/Quit.show()
 	
 	# spawn the interactives
 	$Node2D/Outlet.set_modulate(ColorManager.color.main_dark)
@@ -28,9 +37,6 @@ func _ready():
 	p.original_point = Vector2(0, 500)
 	p.set_name("Plug")
 	$Node2D.add_child(p)
-	
-	# set offset for panel containers
-	$CanvasLayer/Control/Levels/PanelContainer.set_pivot_offset($CanvasLayer/Control/Levels/PanelContainer.get_size() / 2)
 	
 	# change icon color
 	$Node2D/GameTitle.set_modulate(ColorManager.color.main_dark)
