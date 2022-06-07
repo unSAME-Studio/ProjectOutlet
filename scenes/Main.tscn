@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://ui/ui_blur.gdshader" type="Shader" id=2]
@@ -20,12 +20,6 @@ shader_param/blur_amount = 0.3
 shader_param/mix_amount = 0.5
 shader_param/color_main = Color( 0.364706, 0.764706, 0.682353, 1 )
 shader_param/color_over = Color( 0, 0, 0, 1 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 10 )
-region = Rect2( 0, 0, 190, 201 )
-margin = Rect2( 60, 60, 120, 120 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -198,7 +192,7 @@ theme = ExtResource( 5 )
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/OverScreen/PanelContainer"]
 margin_right = 660.0
-margin_bottom = 554.0
+margin_bottom = 635.0
 rect_pivot_offset = Vector2( 330, 317.5 )
 custom_constants/margin_right = 30
 custom_constants/margin_top = 30
@@ -214,7 +208,7 @@ alignment = 1
 
 [node name="Tag" type="RichTextLabel" parent="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer"]
 margin_right = 600.0
-margin_bottom = 377.0
+margin_bottom = 458.0
 rect_min_size = Vector2( 600, 0 )
 size_flags_vertical = 6
 theme = ExtResource( 5 )
@@ -228,9 +222,9 @@ text = "everyone is happy!
 fit_content_height = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 381.0
+margin_top = 462.0
 margin_right = 600.0
-margin_bottom = 494.0
+margin_bottom = 575.0
 
 [node name="Home" type="Button" parent="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 113.0
@@ -242,8 +236,24 @@ size_flags_horizontal = 13
 size_flags_vertical = 13
 theme = ExtResource( 5 )
 enabled_focus_mode = 0
-icon = SubResource( 4 )
 expand_icon = true
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Home"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Home/CenterContainer"]
+margin_left = 21.0
+margin_top = 21.0
+margin_right = 91.0
+margin_bottom = 91.0
+rect_min_size = Vector2( 70, 70 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 10 )
+expand = true
 
 [node name="Next" type="Button" parent="CanvasLayer/Control/OverScreen/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 117.0

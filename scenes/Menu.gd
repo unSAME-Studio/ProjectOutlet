@@ -19,14 +19,14 @@ func _ready():
 	
 	# adjust grid columns
 	if $Node2D.get_viewport_rect().size.x >= 1658:
-		$CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/GridContainer.set_columns(3)
+		$CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Levels/VBoxContainer/MarginContainer/ScrollContainer/GridContainer.set_columns(3)
 	
 	# generate levels
 	for i in Global.level.keys():
 		var b = button.instance()
 		b.level = int(i)
 		
-		$"CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/GridContainer".add_child(b)
+		$CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Levels/VBoxContainer/MarginContainer/ScrollContainer/GridContainer.add_child(b)
 	
 	# spawn the interactives
 	$Node2D/Outlet.set_modulate(ColorManager.color.main_dark)
@@ -84,3 +84,19 @@ func _on_Back_pressed():
 	$CanvasLayer/Control/Levels.hide()
 	
 	get_node("Node2D/Plug").unplug()
+
+
+func _on_Settings_toggled(button_pressed):
+	if button_pressed:
+		$CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Settings.set_h_size_flags(Control.SIZE_EXPAND_FILL)
+	else:
+		$CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Settings.set_h_size_flags(Control.SIZE_FILL)
+	
+	$CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Back.set_visible(not button_pressed)
+	
+	$CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer.set_current_tab(button_pressed)
+
+
+func _on_ColorSlider_value_changed(value):
+	ColorManager.generate_color(float(value) / 255.0)
+	ColorManager.apply_color()

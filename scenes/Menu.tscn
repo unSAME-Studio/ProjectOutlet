@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Menu.gd" type="Script" id=1]
 [ext_resource path="res://ui/fonts/Ubuntu_Reg.tres" type="DynamicFont" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scripts/console.gd" type="Script" id=4]
 [ext_resource path="res://objects/Outlet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/ui_blur.gdshader" type="Shader" id=6]
+[ext_resource path="res://ui/icons/setting_gear.png" type="Texture" id=7]
 [ext_resource path="res://ui/title.png" type="Texture" id=8]
 
 [sub_resource type="ShaderMaterial" id=2]
@@ -158,6 +159,7 @@ enabled_focus_mode = 0
 text = "Quit"
 
 [node name="Levels" type="CenterContainer" parent="CanvasLayer/Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -187,7 +189,28 @@ margin_top = 30.0
 margin_right = 1050.0
 margin_bottom = 1541.0
 
-[node name="Title" type="Label" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 1020.0
+margin_bottom = 1394.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 3 )
+tabs_visible = false
+
+[node name="Levels" type="Tabs" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Levels"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Levels/VBoxContainer"]
 margin_right = 1020.0
 margin_bottom = 80.0
 custom_fonts/font = ExtResource( 2 )
@@ -195,35 +218,141 @@ text = "Pick a level to play!"
 align = 1
 valign = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Levels/VBoxContainer"]
 margin_top = 84.0
 margin_right = 1020.0
 margin_bottom = 1394.0
-custom_constants/margin_right = 30
-custom_constants/margin_top = 30
-custom_constants/margin_left = 30
-custom_constants/margin_bottom = 30
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_top = 25
+custom_constants/margin_bottom = 25
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
-margin_left = 30.0
-margin_top = 30.0
-margin_right = 990.0
-margin_bottom = 1280.0
-rect_min_size = Vector2( 0, 1250 )
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Levels/VBoxContainer/MarginContainer"]
+margin_top = 25.0
+margin_right = 1020.0
+margin_bottom = 1285.0
 rect_pivot_offset = Vector2( 0, 625 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource( 3 )
 follow_focus = true
 scroll_horizontal_enabled = false
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Levels/VBoxContainer/MarginContainer/ScrollContainer"]
+margin_right = 1020.0
+margin_bottom = 1260.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 columns = 2
 
-[node name="Back" type="Button" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Settings" type="Tabs" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Settings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Settings/CenterContainer"]
+margin_left = 110.0
+margin_top = 418.0
+margin_right = 910.0
+margin_bottom = 976.0
+size_flags_vertical = 7
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Settings/CenterContainer/VBoxContainer"]
+margin_right = 800.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 2 )
+text = "Settings"
+align = 1
+valign = 1
+
+[node name="Random Color" type="CheckButton" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Settings/CenterContainer/VBoxContainer"]
+margin_top = 84.0
+margin_right = 800.0
+margin_bottom = 164.0
+focus_mode = 0
+theme = ExtResource( 3 )
+pressed = true
+text = "Random Color"
+
+[node name="ColorSlider" type="HSlider" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Settings/CenterContainer/VBoxContainer"]
+margin_top = 168.0
+margin_right = 800.0
+margin_bottom = 249.0
+theme = ExtResource( 3 )
+max_value = 255.0
+editable = false
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Settings/CenterContainer/VBoxContainer"]
+margin_top = 253.0
+margin_right = 800.0
+margin_bottom = 303.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="HighContrast" type="CheckButton" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Settings/CenterContainer/VBoxContainer"]
+margin_top = 307.0
+margin_right = 800.0
+margin_bottom = 387.0
+focus_mode = 0
+theme = ExtResource( 3 )
+text = "High Contrast Mode"
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Settings/CenterContainer/VBoxContainer"]
+margin_top = 391.0
+margin_right = 800.0
+margin_bottom = 441.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="Reset" type="Button" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Settings/CenterContainer/VBoxContainer"]
+margin_top = 445.0
+margin_right = 800.0
+margin_bottom = 558.0
+focus_mode = 0
+theme = ExtResource( 3 )
+text = "Reset Saves"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 1398.0
 margin_right = 1020.0
 margin_bottom = 1511.0
+
+[node name="Settings" type="Button" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+margin_right = 200.0
+margin_bottom = 113.0
+rect_min_size = Vector2( 200, 0 )
 focus_mode = 0
 mouse_default_cursor_shape = 2
+theme = ExtResource( 3 )
+toggle_mode = true
+enabled_focus_mode = 0
+expand_icon = true
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Settings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Settings/CenterContainer"]
+margin_left = 60.0
+margin_top = 16.0
+margin_right = 140.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 80, 80 )
+mouse_filter = 2
+texture = ExtResource( 7 )
+expand = true
+
+[node name="Back" type="Button" parent="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 1020.0
+margin_bottom = 113.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
 theme = ExtResource( 3 )
 enabled_focus_mode = 0
 text = "Back"
@@ -253,4 +382,6 @@ position = Vector2( 0, -500 )
 [connection signal="pressed" from="CanvasLayer/Control/Options/VBoxContainer/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Options/VBoxContainer/Editor" to="." method="_on_Editor_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Options/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/Back" to="." method="_on_Back_pressed"]
+[connection signal="value_changed" from="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Settings/CenterContainer/VBoxContainer/ColorSlider" to="." method="_on_ColorSlider_value_changed"]
+[connection signal="toggled" from="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Settings" to="." method="_on_Settings_toggled"]
+[connection signal="pressed" from="CanvasLayer/Control/Levels/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_Back_pressed"]

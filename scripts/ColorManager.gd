@@ -20,10 +20,9 @@ func _ready():
 	previous_color["background"] = color["background"]
 
 
-func generate_color():
+func generate_color(hue = randf()):
 	previous_color["background"] = color["background"]
 	
-	var hue = randf()
 	color.background = Color.from_hsv(hue, 0.3, 0.9, 1)
 	color.main = Color.from_hsv(wrapf(hue + 0.01, 0.0, 1.0), 0.43, 0.8, 1)
 	#color.main_light = color.main.lightened(0.7)

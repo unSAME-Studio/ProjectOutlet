@@ -344,7 +344,7 @@ func _process(delta):
 	# set the position of the rotation hint
 	$CanvasLayer/RotationHint.set_value(auto_rotate_timer * 200)
 	$CanvasLayer/RotationHint.set_visible(not auto_rotate_timer <= 0.0)
-	$CanvasLayer/RotationHint.set_global_position(get_global_mouse_position() + Vector2(20, 20))
+	$CanvasLayer/RotationHint.set_global_position(get_global_mouse_position() + Vector2(50, 50))
 	
 	# adjust end tangent base on cable distance
 	var cable_distance = (cable.head_end.distance_to($End.get_global_position()) / 2)

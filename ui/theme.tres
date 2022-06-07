@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=10 format=2]
+[gd_resource type="Theme" load_steps=18 format=2]
 
 [ext_resource path="res://ui/fonts/Ubuntu-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/fonts/Ubuntu_Reg.tres" type="DynamicFont" id=2]
 [ext_resource path="res://ui/icons/checkmark.png" type="Texture" id=3]
+[ext_resource path="res://arts/mini_all.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -17,7 +18,7 @@ corner_radius_bottom_left = 15
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 0, 0, 0.278431 )
 corner_radius_top_left = 15
 corner_radius_top_right = 15
@@ -31,12 +32,37 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="Gradient" id=12]
+offsets = PoolRealArray( 0, 0.167, 0.333, 0.5, 0.667, 0.833, 1 )
+colors = PoolColorArray( 0.901961, 0.631373, 0.631373, 1, 0.9, 0.8235, 0.63, 1, 0.7875, 0.9, 0.63, 1, 0.63, 0.9, 0.666, 1, 0.63, 0.9, 0.855, 1, 0.63, 0.7515, 0.9, 1, 0.901961, 0.631373, 0.631373, 1 )
+
+[sub_resource type="GradientTexture" id=13]
+gradient = SubResource( 12 )
+width = 800
+
+[sub_resource type="StyleBoxTexture" id=14]
+texture = SubResource( 13 )
+region_rect = Rect2( 0, 0, 800, 50 )
+
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0, 0, 0, 0.423529 )
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0, 0, 0.6 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id=6]
 content_margin_left = 15.0
@@ -50,29 +76,49 @@ corner_radius_bottom_left = 20
 [resource]
 Button/fonts/font = SubResource( 1 )
 Button/styles/hover = SubResource( 3 )
-Button/styles/normal = SubResource( 2 )
+Button/styles/normal = SubResource( 5 )
 Button/styles/pressed = SubResource( 4 )
+CheckButton/fonts/font = ExtResource( 2 )
+CheckButton/styles/hover = SubResource( 3 )
+CheckButton/styles/hover_pressed = SubResource( 4 )
+CheckButton/styles/normal = SubResource( 5 )
+CheckButton/styles/pressed = SubResource( 4 )
+HSlider/icons/grabber = ExtResource( 4 )
+HSlider/icons/grabber_disabled = ExtResource( 4 )
+HSlider/icons/grabber_highlight = ExtResource( 4 )
+HSlider/styles/grabber_area = SubResource( 10 )
+HSlider/styles/grabber_area_highlight = SubResource( 11 )
+HSlider/styles/slider = SubResource( 14 )
 ItemList/fonts/font = ExtResource( 2 )
-ItemList/styles/bg = SubResource( 5 )
-ItemList/styles/cursor = SubResource( 5 )
-ItemList/styles/selected = SubResource( 5 )
+ItemList/styles/bg = SubResource( 9 )
+ItemList/styles/cursor = SubResource( 9 )
+ItemList/styles/selected = SubResource( 9 )
 Label/fonts/font = ExtResource( 2 )
 LineEdit/fonts/font = ExtResource( 2 )
-LineEdit/styles/focus = SubResource( 5 )
-LineEdit/styles/normal = SubResource( 5 )
-Panel/styles/panel = SubResource( 5 )
-PanelContainer/styles/panel = SubResource( 5 )
+LineEdit/styles/focus = SubResource( 9 )
+LineEdit/styles/normal = SubResource( 9 )
+Panel/styles/panel = SubResource( 9 )
+PanelContainer/styles/panel = SubResource( 9 )
 PopupMenu/fonts/font = ExtResource( 2 )
 PopupMenu/icons/checked = ExtResource( 3 )
 PopupMenu/icons/radio_checked = ExtResource( 3 )
-PopupMenu/styles/hover = SubResource( 5 )
-PopupMenu/styles/panel = SubResource( 5 )
+PopupMenu/styles/hover = SubResource( 9 )
+PopupMenu/styles/panel = SubResource( 9 )
 RichTextLabel/fonts/normal_font = ExtResource( 2 )
+TabContainer/colors/font_color_bg = Color( 1, 1, 1, 0.447059 )
+TabContainer/colors/font_color_disabled = Color( 0, 0, 0, 0.584314 )
+TabContainer/colors/font_color_fg = Color( 1, 1, 1, 1 )
+TabContainer/fonts/font = ExtResource( 2 )
+TabContainer/styles/panel = SubResource( 7 )
+TabContainer/styles/tab_bg = SubResource( 5 )
+TabContainer/styles/tab_fg = SubResource( 8 )
+Tabs/fonts/font = ExtResource( 2 )
+Tabs/styles/tab_bg = SubResource( 5 )
 TextEdit/fonts/font = ExtResource( 2 )
-TextEdit/styles/focus = SubResource( 5 )
-TextEdit/styles/normal = SubResource( 5 )
-VScrollBar/styles/grabber = SubResource( 5 )
+TextEdit/styles/focus = SubResource( 9 )
+TextEdit/styles/normal = SubResource( 9 )
+VScrollBar/styles/grabber = SubResource( 9 )
 VScrollBar/styles/grabber_highlight = SubResource( 3 )
 VScrollBar/styles/grabber_pressed = SubResource( 4 )
 VScrollBar/styles/scroll = SubResource( 6 )
-VScrollBar/styles/scroll_focus = SubResource( 5 )
+VScrollBar/styles/scroll_focus = SubResource( 9 )
