@@ -213,7 +213,7 @@ var level = {
 			[1, 2, 0, 0],
 			[1, 2, 0, 0],
 		],
-		"hint": "[center]Thank you for playing![/center]",
+		"hint": "[center]Thank you for playing![/center]\n\n[center]Created by Sam Feng[/center]\n[center]and Jose Salas[/center]",
 		"completed": false,
 	}
 }
