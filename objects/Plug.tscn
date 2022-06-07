@@ -154,6 +154,7 @@ tracks/0/keys = {
 }
 
 [node name="Plug" type="Area2D" groups=["plug"]]
+scale = Vector2( 1e-05, 1e-05 )
 z_index = 6
 script = ExtResource( 1 )
 outlet = ExtResource( 2 )
