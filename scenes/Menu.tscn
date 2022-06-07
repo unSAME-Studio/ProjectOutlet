@@ -298,6 +298,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/Levels"]
+modulate = Color( 1, 1, 1, 0 )
 material = SubResource( 2 )
 margin_top = 174.0
 margin_right = 1080.0
@@ -305,6 +306,7 @@ margin_bottom = 1745.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 1080, 1571 )
+rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 829, 785.5 )
 theme = ExtResource( 3 )
 
@@ -514,6 +516,7 @@ position = Vector2( 0, -500 )
 
 [node name="Hint" type="Sprite" parent="Node2D"]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 material = SubResource( 13 )
 texture = ExtResource( 9 )
 offset = Vector2( 0, 15 )
